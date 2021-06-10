@@ -15,10 +15,10 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
+        "yarn fix",
         "yarn lint",
-        "yarn fix"
-    ],
-    "*": "yarn format"
+        "yarn format"
+    ]
   },
   "prettier": {
     "semi": false,
