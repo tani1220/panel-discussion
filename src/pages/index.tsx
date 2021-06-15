@@ -1,11 +1,12 @@
-import { Header } from 'src/components/Header'
+import { Container } from 'src/components/Container'
 import { Main } from 'src/components/Main'
 
 const Home = () => {
   return (
     <>
-      <Header />
-      <Main />
+      <Container>
+        <Main />
+      </Container>
     </>
   )
 }
