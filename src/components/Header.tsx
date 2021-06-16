@@ -1,7 +1,13 @@
+import { Modal } from 'src/components/Modal'
+
 export const Header = () => {
   return (
     <>
-      <p className="font-bold text-4xl text-center text-gray-500">パネルディスカッション</p>
+      <div className="flex justify-between items-center">
+        <a className="text-2xl bg-gray-800 text-white py-1 px-4 rounded-md">QIN</a>
+        <p className="font-bold text-4xl text-center text-gray-500">Panel discussion</p>
+        <Modal />
+      </div>
     </>
   )
 }
