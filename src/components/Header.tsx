@@ -1,7 +1,7 @@
 export const Header = () => {
   return (
     <>
-      <p className="bg-red-100">パネルディスカッション</p>
+      <p className="font-bold text-4xl text-center text-gray-500">パネルディスカッション</p>
     </>
   )
 }
