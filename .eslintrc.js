@@ -20,6 +20,8 @@ module.exports = {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
 }
