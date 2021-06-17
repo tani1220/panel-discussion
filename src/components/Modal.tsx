@@ -1,8 +1,11 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { Fragment, useState, VFC } from 'react'
 import { Button } from 'src/components/Button'
+import type { ModalInputType } from 'src/types/types'
 
-export const Modal = () => {
+type Props = ModalInputType
+
+export const Modal: VFC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const closeModal = () => {
@@ -15,12 +18,7 @@ export const Modal = () => {
 
   return (
     <>
-      <Button
-        onClick={openModal}
-        // className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-      >
-        投稿する
-      </Button>
+      <Button onClick={openModal}>投稿する</Button>
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={closeModal}>
@@ -42,17 +40,22 @@ export const Modal = () => {
               leaveTo="opacity-0 scale-95"
             >
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                <div className="mb-4">
+                {/* 名前記入機能追加予定 */}
+                {/* <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     名前
                   </label>
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="username"
+           
                     type="text"
+                    value={props.text}
+                    onChange={props.hundleChange}
+
                     placeholder="記入しない場合は匿名"
                   />
-                </div>
+                </div> */}
 
                 <div className="mb-6">
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="question">
@@ -62,23 +65,22 @@ export const Modal = () => {
                     className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                     id="question"
                     type="text"
+                    value={props.text}
+                    onChange={props.hundleChange}
                     placeholder="質問を入力して下さい"
                   ></input>
                 </div>
 
                 <div className="mt-4 flex justify-between items-center">
                   <Button
-                    // className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
+                    onClick={() => {
+                      props.hundleAdd()
+                      closeModal()
+                    }}
                   >
                     送信
                   </Button>
-                  <Button
-                    // className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
-                  >
-                    質問をやめる
-                  </Button>
+                  <Button onClick={closeModal}>質問をやめる</Button>
                 </div>
               </div>
             </Transition.Child>
