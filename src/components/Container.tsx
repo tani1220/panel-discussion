@@ -1,7 +1,8 @@
 import { ReactNode, VFC } from 'react'
 import { Header } from 'src/components/Header'
+import type { ModalInputType } from 'src/types/types'
 
-type Props = {
+type Props = ModalInputType & {
   children: ReactNode
 }
 
@@ -10,7 +11,7 @@ export const Container: VFC<Props> = (props) => {
     <>
       <div className="pb-20">
         <div className="mx-auto sm:py-2 sm:px-14 border-b-2">
-          <Header />
+          <Header text={props.text} hundleChange={props.hundleChange} hundleAdd={props.hundleAdd} />
         </div>
         <div className="mx-auto w-full max-w-screen-md">{props.children}</div>
       </div>
