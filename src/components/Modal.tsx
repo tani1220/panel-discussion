@@ -3,10 +3,7 @@ import { Fragment, useState, VFC } from 'react'
 import { Button } from 'src/components/Button'
 import type { ModalInputType } from 'src/types/types'
 
-type Props = ModalInputType & {
-  name: string
-  text: string
-}
+type Props = ModalInputType
 
 export const Modal: VFC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -53,7 +50,7 @@ export const Modal: VFC<Props> = (props) => {
                     id="username"
                     type="text"
                     name="name"
-                    value={props.name}
+                    value={props.values.name}
                     onChange={props.hundleChange}
                     placeholder="記入しない場合は匿名"
                   />
@@ -68,7 +65,7 @@ export const Modal: VFC<Props> = (props) => {
                     id="question"
                     type="text"
                     name="text"
-                    value={props.text}
+                    value={props.values.text}
                     onChange={props.hundleChange}
                     placeholder="質問を入力して下さい"
                   ></input>

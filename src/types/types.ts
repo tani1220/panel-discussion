@@ -1,10 +1,8 @@
 export type ModalInputType = {
-  values: string
+  values: {
+    name: string
+    text: string
+  }
   hundleChange: () => void
   hundleAdd: () => void
-}
-
-export type Tes = {
-  name: string
-  text: string
 }
