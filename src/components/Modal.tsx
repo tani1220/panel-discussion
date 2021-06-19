@@ -41,21 +41,20 @@ export const Modal: VFC<Props> = (props) => {
             >
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                 {/* 名前記入機能追加予定 */}
-                {/* <div className="mb-4">
+                <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     名前
                   </label>
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="username"
-           
                     type="text"
-                    value={props.text}
+                    name="name"
+                    value={props.values.name}
                     onChange={props.hundleChange}
-
                     placeholder="記入しない場合は匿名"
                   />
-                </div> */}
+                </div>
 
                 <div className="mb-6">
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="question">
@@ -65,7 +64,8 @@ export const Modal: VFC<Props> = (props) => {
                     className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                     id="question"
                     type="text"
-                    value={props.text}
+                    name="text"
+                    value={props.values.text}
                     onChange={props.hundleChange}
                     placeholder="質問を入力して下さい"
                   ></input>
@@ -75,6 +75,7 @@ export const Modal: VFC<Props> = (props) => {
                   <Button
                     onClick={() => {
                       props.hundleAdd()
+
                       closeModal()
                     }}
                   >
