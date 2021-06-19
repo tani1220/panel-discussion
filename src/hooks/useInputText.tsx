@@ -1,17 +1,24 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
+
+type UserData = {
+  name: string
+  text: string
+}
 
 export const useInputText = () => {
-  const [text, setText] = useState('')
-  const [array, setArray] = useState<(string | number)[]>([])
+  const [values, setValues] = useState({ text: '', name: '' })
+  const [array, setArray] = useState<UserData[]>([])
 
-  const hundleChange = useCallback((e: any) => {
-    setText(e.target.value)
-  }, [])
+  const hundleChange = (e: any) => {
+    const value = e.target.value
+    setValues({ ...values, [e.target.name]: value })
+  }
 
-  const hundleAdd = useCallback(() => {
+  const hundleAdd = () => {
     setArray((prevArray) => {
-      return [...prevArray, text]
+      return [...prevArray, values]
     })
-  }, [text])
-  return { text, array, hundleChange, hundleAdd }
+  }
+
+  return { values, array, hundleChange, hundleAdd }
 }
