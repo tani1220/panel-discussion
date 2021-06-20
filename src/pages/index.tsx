@@ -12,15 +12,22 @@ type Props = ModalInputType & {
 }
 
 const Home: NextPage<Props> = (props) => {
-  const { values, array, hundleChange, hundleAdd } = props
+  const { values, array, hundleChange, hundleAdd, closeModal, openModal, isOpen } = props
 
   return (
     <>
-      <Container values={values} hundleChange={hundleChange} hundleAdd={hundleAdd}>
+      <Container
+        values={values}
+        hundleChange={hundleChange}
+        hundleAdd={hundleAdd}
+        closeModal={closeModal}
+        openModal={openModal}
+        isOpen={isOpen}
+      >
         <ul>
           {array.map((item) => {
             return (
-              <li className="pt-4 text-3xl" key={item.name}>
+              <li className="pt-4 text-3xl" key={item.text}>
                 {item.name}
                 {item.text}
               </li>

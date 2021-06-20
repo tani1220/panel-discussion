@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 type UserData = {
   name: string
@@ -8,11 +8,23 @@ type UserData = {
 export const useInputText = () => {
   const [values, setValues] = useState({ text: '', name: '' })
   const [array, setArray] = useState<UserData[]>([])
+  const [isOpen, setIsOpen] = useState(false)
 
-  const hundleChange = (e: any) => {
-    const value = e.target.value
-    setValues({ ...values, [e.target.name]: value })
-  }
+  const closeModal = useCallback(() => {
+    setIsOpen(false)
+  }, [])
+
+  const openModal = useCallback(() => {
+    setIsOpen(true)
+  }, [])
+
+  const hundleChange = useCallback(
+    (e: any) => {
+      const value = e.target.value
+      setValues({ ...values, [e.target.name]: value })
+    },
+    [values]
+  )
 
   const hundleAdd = () => {
     setArray((prevArray) => {
@@ -20,5 +32,5 @@ export const useInputText = () => {
     })
   }
 
-  return { values, array, hundleChange, hundleAdd }
+  return { values, array, hundleChange, hundleAdd, closeModal, openModal, isOpen }
 }

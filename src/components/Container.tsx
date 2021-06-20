@@ -11,7 +11,14 @@ export const Container: VFC<Props> = (props) => {
     <>
       <div className="pb-20">
         <div className="mx-auto sm:py-2 sm:px-14 border-b-2">
-          <Header values={props.values} hundleChange={props.hundleChange} hundleAdd={props.hundleAdd} />
+          <Header
+            values={props.values}
+            hundleChange={props.hundleChange}
+            hundleAdd={props.hundleAdd}
+            closeModal={props.closeModal}
+            openModal={props.openModal}
+            isOpen={props.isOpen}
+          />
         </div>
         <div className="mx-auto w-full max-w-screen-md">{props.children}</div>
       </div>

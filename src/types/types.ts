@@ -5,4 +5,7 @@ export type ModalInputType = {
   }
   hundleChange: () => void
   hundleAdd: () => void
+  closeModal: () => void
+  openModal: () => void
+  isOpen: boolean
 }
