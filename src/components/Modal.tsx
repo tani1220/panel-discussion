@@ -1,27 +1,17 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState, VFC } from 'react'
+import { Fragment, VFC } from 'react'
 import { Button } from 'src/components/Button'
 import type { ModalInputType } from 'src/types/types'
 
 type Props = ModalInputType
 
 export const Modal: VFC<Props> = (props) => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const closeModal = () => {
-    setIsOpen(false)
-  }
-
-  const openModal = () => {
-    setIsOpen(true)
-  }
-
   return (
     <>
-      <Button onClick={openModal}>投稿する</Button>
+      <Button onClick={props.openModal}>投稿する</Button>
 
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={closeModal}>
+      <Transition appear show={props.isOpen} as={Fragment}>
+        <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={props.closeModal}>
           <div className="min-h-screen px-4 text-center">
             <Transition.Child as={Fragment} leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
               <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
@@ -75,13 +65,12 @@ export const Modal: VFC<Props> = (props) => {
                   <Button
                     onClick={() => {
                       props.hundleAdd()
-
-                      closeModal()
+                      props.closeModal()
                     }}
                   >
                     送信
                   </Button>
-                  <Button onClick={closeModal}>質問をやめる</Button>
+                  <Button onClick={props.closeModal}>質問をやめる</Button>
                 </div>
               </div>
             </Transition.Child>
