@@ -1,14 +1,22 @@
-import { useCallback, useState } from 'react'
-
-type UserData = {
-  name: string
-  text: string
-}
+import firebase from 'firebase/app'
+import { db } from 'lib/firebase'
+import { useCallback, useEffect, useState } from 'react'
+import type { UserData } from 'src/types/types'
 
 export const useInputText = () => {
   const [values, setValues] = useState({ text: '', name: '' })
-  const [array, setArray] = useState<UserData[]>([])
+  const [tasks, setTasks] = useState<UserData[]>([{ id: '', question: '', name: '' }])
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    const unsubscribe = db
+      .collection('tasks')
+      .orderBy('createdAt')
+      .onSnapshot((snapshot) => {
+        setTasks(snapshot.docs.map((doc) => ({ id: doc.id, question: doc.data().question, name: doc.data().name })))
+      })
+    return () => unsubscribe()
+  }, [])
 
   const closeModal = useCallback(() => {
     setIsOpen(false)
@@ -27,10 +35,13 @@ export const useInputText = () => {
   )
 
   const hundleAdd = () => {
-    setArray((prevArray) => {
-      return [...prevArray, values]
+    db.collection('tasks').add({
+      question: values.text,
+      name: values.name,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     })
+    setValues({ text: '', name: '' })
   }
 
-  return { values, array, hundleChange, hundleAdd, closeModal, openModal, isOpen }
+  return { values, hundleChange, hundleAdd, closeModal, openModal, isOpen, tasks }
 }
