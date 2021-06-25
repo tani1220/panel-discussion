@@ -1,4 +1,6 @@
+import { db } from 'lib/firebase'
 import type { NextPage } from 'next'
+import { useEffect, useState } from 'react'
 import { Container } from 'src/components/Container'
 import type { ModalInputType } from 'src/types/types'
 
@@ -13,6 +15,15 @@ type Props = ModalInputType & {
 
 const Home: NextPage<Props> = (props) => {
   const { values, array, hundleChange, hundleAdd, closeModal, openModal, isOpen } = props
+
+  const [tasks, setTasks] = useState([{ id: '', question: '' }])
+
+  useEffect(() => {
+    const unsubscribe = db.collection('tasks').onSnapshot((snapshot) => {
+      setTasks(snapshot.docs.map((doc) => ({ id: doc.id, question: doc.data().question })))
+    })
+    return () => unsubscribe()
+  }, [])
 
   return (
     <>
@@ -34,6 +45,11 @@ const Home: NextPage<Props> = (props) => {
             )
           })}
         </ul>
+        <div>
+          {tasks.map((task) => {
+            return <p key={task.id}>{task.question}</p>
+          })}
+        </div>
       </Container>
     </>
   )
