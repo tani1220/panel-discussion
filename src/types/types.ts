@@ -9,9 +9,3 @@ export type ModalInputType = {
   openModal: () => void
   isOpen: boolean
 }
-
-export type UserData = {
-  id: string
-  name: string
-  question: string
-}

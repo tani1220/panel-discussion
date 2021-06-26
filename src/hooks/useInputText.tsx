@@ -1,22 +1,11 @@
 import firebase from 'firebase/app'
-import { db } from 'lib/firebase'
-import { useCallback, useEffect, useState } from 'react'
-import type { UserData } from 'src/types/types'
+import { db } from 'firebase/clientApp'
+import { useCallback, useState } from 'react'
 
 export const useInputText = () => {
   const [values, setValues] = useState({ text: '', name: '' })
-  const [tasks, setTasks] = useState<UserData[]>([{ id: '', question: '', name: '' }])
-  const [isOpen, setIsOpen] = useState(false)
 
-  useEffect(() => {
-    const unsubscribe = db
-      .collection('tasks')
-      .orderBy('createdAt')
-      .onSnapshot((snapshot) => {
-        setTasks(snapshot.docs.map((doc) => ({ id: doc.id, question: doc.data().question, name: doc.data().name })))
-      })
-    return () => unsubscribe()
-  }, [])
+  const [isOpen, setIsOpen] = useState(false)
 
   const closeModal = useCallback(() => {
     setIsOpen(false)
@@ -43,5 +32,5 @@ export const useInputText = () => {
     setValues({ text: '', name: '' })
   }
 
-  return { values, hundleChange, hundleAdd, closeModal, openModal, isOpen, tasks }
+  return { values, hundleChange, hundleAdd, closeModal, openModal, isOpen }
 }
