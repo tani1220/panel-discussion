@@ -1,17 +1,16 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, VFC } from 'react'
+import { Fragment } from 'react'
 import { Button } from 'src/components/Button'
-import type { ModalInputType } from 'src/types/types'
+import { useInputText } from 'src/hooks/useInputText'
 
-type Props = ModalInputType
-
-export const Modal: VFC<Props> = (props) => {
+export const Modal = () => {
+  const { values, hundleChange, hundleAdd, closeModal, openModal, isOpen } = useInputText()
   return (
     <>
-      <Button onClick={props.openModal}>投稿する</Button>
+      <Button onClick={openModal}>投稿する</Button>
 
-      <Transition appear show={props.isOpen} as={Fragment}>
-        <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={props.closeModal}>
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={closeModal}>
           <div className="min-h-screen px-4 text-center">
             <Transition.Child as={Fragment} leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
               <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
@@ -40,8 +39,8 @@ export const Modal: VFC<Props> = (props) => {
                     id="username"
                     type="text"
                     name="name"
-                    value={props.values.name}
-                    onChange={props.hundleChange}
+                    value={values.name}
+                    onChange={hundleChange}
                     placeholder="記入しない場合は匿名"
                   />
                 </div>
@@ -55,8 +54,8 @@ export const Modal: VFC<Props> = (props) => {
                     id="question"
                     type="text"
                     name="text"
-                    value={props.values.text}
-                    onChange={props.hundleChange}
+                    value={values.text}
+                    onChange={hundleChange}
                     placeholder="質問を入力して下さい"
                   ></input>
                 </div>
@@ -64,13 +63,13 @@ export const Modal: VFC<Props> = (props) => {
                 <div className="mt-4 flex justify-between items-center">
                   <Button
                     onClick={() => {
-                      props.hundleAdd()
-                      props.closeModal()
+                      hundleAdd()
+                      closeModal()
                     }}
                   >
                     送信
                   </Button>
-                  <Button onClick={props.closeModal}>質問をやめる</Button>
+                  <Button onClick={closeModal}>質問をやめる</Button>
                 </div>
               </div>
             </Transition.Child>
