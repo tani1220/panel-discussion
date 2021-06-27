@@ -1,6 +1,12 @@
 
 # パネルディスカッションアプリ
 ## 使用言語
+- React/Next.js
+- typescript
+- ESlint/Prettier
+- firebase/firestore
+- tailwindcss
+- vercel
 ## 要件
 - ログイン無しで誰でもお題を投稿できる（簡単なテキストエリアがあり、そこから投稿）
 - お題を一覧で見ることができる（パネルディスカッション時に画面共有で皆にお題をお見せしながら話を進める想定）
