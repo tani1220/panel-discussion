@@ -1,4 +1,3 @@
-import firebase from 'firebase/app'
 import { db } from 'firebase/clientApp'
 import { useCallback, useState } from 'react'
 
@@ -27,7 +26,7 @@ export const useInputText = () => {
     db.collection('tasks').add({
       question: values.text,
       name: values.name,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createdAt: JSON.stringify(new Date()),
     })
     setValues({ text: '', name: '' })
   }
