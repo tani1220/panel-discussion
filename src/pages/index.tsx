@@ -1,35 +1,45 @@
-import type { NextPage } from 'next'
+import { db } from 'firebase/clientApp'
+import type { InferGetStaticPropsType, NextPage } from 'next'
 import { Container } from 'src/components/Container'
-import type { ModalInputType } from 'src/types/types'
+import { TextCard } from 'src/components/TextCard'
 
-type UserData = {
-  name: string
-  text: string
-}
+type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-type Props = ModalInputType & {
-  array: UserData[]
-}
+type Post = { id: string; question: string; name: string }[]
 
-const Home: NextPage<Props> = (props) => {
-  const { values, array, hundleChange, hundleAdd } = props
-
+const Home: NextPage<Props> = ({ newTasks }) => {
   return (
     <>
-      <Container values={values} hundleChange={hundleChange} hundleAdd={hundleAdd}>
+      <Container>
         <ul>
-          {array.map((item) => {
-            return (
-              <li className="pt-4 text-3xl" key={item.name}>
-                {item.name}
-                {item.text}
-              </li>
-            )
-          })}
+          {newTasks.map((task) => (
+            <li className="pt-4 text-3xl" key={task.id}>
+              <div className="cursor-pointer">
+                <TextCard id={task.id}>
+                  <a>{task.question}</a>
+                </TextCard>
+              </div>
+            </li>
+          ))}
         </ul>
       </Container>
     </>
   )
+}
+
+export const getStaticProps = async () => {
+  const newTasks: Post = []
+  const ref = await db.collection('tasks').orderBy('createdAt').get()
+  ref.docs.map((doc) => {
+    const data = { id: doc.id, name: doc.data().name, question: doc.data().question }
+    newTasks.push(data)
+  })
+  return {
+    props: {
+      newTasks,
+    },
+    revalidate: 10,
+  }
 }
 
 export default Home

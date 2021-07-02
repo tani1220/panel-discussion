@@ -1,21 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState, VFC } from 'react'
+import { Fragment } from 'react'
 import { Button } from 'src/components/Button'
-import type { ModalInputType } from 'src/types/types'
+import { useInputText } from 'src/hooks/useInputText'
 
-type Props = ModalInputType
-
-export const Modal: VFC<Props> = (props) => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const closeModal = () => {
-    setIsOpen(false)
-  }
-
-  const openModal = () => {
-    setIsOpen(true)
-  }
-
+export const Modal = () => {
+  const { values, hundleChange, hundleAdd, closeModal, openModal, isOpen } = useInputText()
   return (
     <>
       <Button onClick={openModal}>投稿する</Button>
@@ -50,8 +39,8 @@ export const Modal: VFC<Props> = (props) => {
                     id="username"
                     type="text"
                     name="name"
-                    value={props.values.name}
-                    onChange={props.hundleChange}
+                    value={values.name}
+                    onChange={hundleChange}
                     placeholder="記入しない場合は匿名"
                   />
                 </div>
@@ -65,8 +54,8 @@ export const Modal: VFC<Props> = (props) => {
                     id="question"
                     type="text"
                     name="text"
-                    value={props.values.text}
-                    onChange={props.hundleChange}
+                    value={values.text}
+                    onChange={hundleChange}
                     placeholder="質問を入力して下さい"
                   ></input>
                 </div>
@@ -74,8 +63,7 @@ export const Modal: VFC<Props> = (props) => {
                 <div className="mt-4 flex justify-between items-center">
                   <Button
                     onClick={() => {
-                      props.hundleAdd()
-
+                      hundleAdd()
                       closeModal()
                     }}
                   >
