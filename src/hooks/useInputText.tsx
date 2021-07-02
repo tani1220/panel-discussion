@@ -2,8 +2,7 @@ import { db } from 'firebase/clientApp'
 import { useCallback, useState } from 'react'
 
 export const useInputText = () => {
-  const [values, setValues] = useState({ text: '', name: '' })
-
+  const [values, setValues] = useState({ text: '', name: '匿名さん' })
   const [isOpen, setIsOpen] = useState(false)
 
   const closeModal = useCallback(() => {
@@ -28,7 +27,7 @@ export const useInputText = () => {
       name: values.name,
       createdAt: JSON.stringify(new Date()),
     })
-    setValues({ text: '', name: '' })
+    setValues({ text: '', name: '匿名さん' })
   }
 
   return { values, hundleChange, hundleAdd, closeModal, openModal, isOpen }
