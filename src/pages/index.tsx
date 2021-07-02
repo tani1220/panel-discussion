@@ -1,7 +1,7 @@
 import { db } from 'firebase/clientApp'
 import type { InferGetStaticPropsType, NextPage } from 'next'
-import Link from 'next/link'
 import { Container } from 'src/components/Container'
+import { TextCard } from 'src/components/TextCard'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -14,12 +14,11 @@ const Home: NextPage<Props> = ({ newTasks }) => {
         <ul>
           {newTasks.map((task) => (
             <li className="pt-4 text-3xl" key={task.id}>
-              <Link href={`/tasks/${task.id}`}>
-                <a>
-                  {task.name}
-                  {task.question}
-                </a>
-              </Link>
+              <div className="cursor-pointer">
+                <TextCard id={task.id}>
+                  <a>{task.question}</a>
+                </TextCard>
+              </div>
             </li>
           ))}
         </ul>
