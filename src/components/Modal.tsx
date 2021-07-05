@@ -1,10 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { Button } from 'src/components/Button'
-import { useInputText } from 'src/hooks/useInputText'
+import { useDialog } from 'src/hooks/useDialog'
 
 export const Modal = () => {
-  const { values, hundleChange, hundleAdd, closeModal, openModal, isOpen } = useInputText()
+  const { values, hundleChange, hundleAdd, closeModal, openModal, isOpen } = useDialog()
   return (
     <>
       <Button onClick={openModal}>投稿する</Button>

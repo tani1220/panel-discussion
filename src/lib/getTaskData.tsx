@@ -23,6 +23,7 @@ export const getTaskIds = async () => {
 
 export const getTaskData = async (id: string | undefined) => {
   const ref = await db.collection('tasks').doc(id).get()
+  const taskId = id
 
-  return ref.data()
+  return { ref: ref.data(), taskId }
 }

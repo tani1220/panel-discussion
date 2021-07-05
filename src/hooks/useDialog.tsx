@@ -1,7 +1,7 @@
 import { db } from 'firebase/clientApp'
 import { useCallback, useState } from 'react'
 
-export const useInputText = () => {
+export const useDialog = () => {
   const [values, setValues] = useState({ text: '', name: '匿名さん' })
   const [isOpen, setIsOpen] = useState(false)
 
