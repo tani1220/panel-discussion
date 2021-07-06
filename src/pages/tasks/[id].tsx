@@ -1,19 +1,19 @@
 import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
-import { Button } from 'src/components/Button'
+import { Button } from 'src/components/share/Button'
 import { useNote } from 'src/hooks/useNote'
 import { getTaskData, getTaskIds } from 'src/lib/getTaskData'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const TaskPage: NextPage<Props> = ({ initialData }) => {
-  const { hundleDelete } = useNote()
+  const { articleDelete } = useNote()
   const router = useRouter()
 
-  const taskDelete = () => {
+  const taskDelete = async () => {
     const id = initialData.taskId
-    hundleDelete(id)
+    await articleDelete(id)
     router.push('/')
   }
 

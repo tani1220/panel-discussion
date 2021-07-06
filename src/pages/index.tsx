@@ -1,7 +1,7 @@
 import { db } from 'firebase/clientApp'
 import type { InferGetStaticPropsType, NextPage } from 'next'
 import { Article } from 'src/components/articles/articleList'
-import { Container } from 'src/components/Container'
+import { Container } from 'src/components/share/Container'
 import type { articlePost } from 'src/types/types'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
@@ -27,7 +27,7 @@ export const getStaticProps = async () => {
     props: {
       newTasks,
     },
-    revalidate: 10,
+    revalidate: 60,
   }
 }
 

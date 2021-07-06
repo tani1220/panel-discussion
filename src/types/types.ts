@@ -1,5 +1,4 @@
-export type TaskPost = {
+export type articlePost = {
   id: string
   question: string
-  name: string
 }[]

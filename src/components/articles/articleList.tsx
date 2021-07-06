@@ -1,6 +1,6 @@
 import { db } from 'firebase/clientApp'
 import { useEffect, useState, VFC } from 'react'
-import { TextCard } from 'src/components/TextCard'
+import { TextCard } from 'src/components/share/TextCard'
 import type { articlePost } from 'src/types/types'
 
 type Props = {
