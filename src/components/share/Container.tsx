@@ -1,5 +1,5 @@
 import { ReactNode, VFC } from 'react'
-import { Header } from 'src/components/Header'
+import { Header } from 'src/components/share/Header'
 
 type Props = {
   children?: ReactNode

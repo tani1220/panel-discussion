@@ -1,4 +1,3 @@
-import { db } from 'firebase/clientApp'
 import { useCallback, useState } from 'react'
 
 export const useDialog = () => {
@@ -21,14 +20,5 @@ export const useDialog = () => {
     [values]
   )
 
-  const hundleAdd = () => {
-    db.collection('tasks').add({
-      question: values.text,
-      name: values.name,
-      createdAt: JSON.stringify(new Date()),
-    })
-    setValues({ text: '', name: '匿名さん' })
-  }
-
-  return { values, hundleChange, hundleAdd, closeModal, openModal, isOpen }
+  return { values, setValues, hundleChange, closeModal, openModal, isOpen }
 }

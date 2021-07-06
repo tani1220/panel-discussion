@@ -1,10 +1,12 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
-import { Button } from 'src/components/Button'
+import { Fragment, VFC } from 'react'
+import { Button } from 'src/components/share/Button'
 import { useDialog } from 'src/hooks/useDialog'
 
-export const Modal = () => {
-  const { values, hundleChange, hundleAdd, closeModal, openModal, isOpen } = useDialog()
+type Props = { handleSubmit: (arg0: { text: string; name: string }) => void }
+
+export const Modal: VFC<Props> = (props) => {
+  const { values, hundleChange, closeModal, openModal, isOpen } = useDialog()
   return (
     <>
       <Button onClick={openModal}>投稿する</Button>
@@ -63,7 +65,7 @@ export const Modal = () => {
                 <div className="mt-4 flex justify-between items-center">
                   <Button
                     onClick={() => {
-                      hundleAdd()
+                      props.handleSubmit(values)
                       closeModal()
                     }}
                   >

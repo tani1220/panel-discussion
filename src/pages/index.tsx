@@ -1,8 +1,8 @@
 import { db } from 'firebase/clientApp'
 import type { InferGetStaticPropsType, NextPage } from 'next'
-import { Article } from 'src/components/articles'
-import { Container } from 'src/components/Container'
-import type { TaskPost } from 'src/types/types'
+import { Article } from 'src/components/articles/articleList'
+import { Container } from 'src/components/share/Container'
+import type { articlePost } from 'src/types/types'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -17,17 +17,17 @@ const Home: NextPage<Props> = ({ newTasks }) => {
 }
 
 export const getStaticProps = async () => {
-  const newTasks: TaskPost = []
+  const newTasks: articlePost = []
   const ref = await db.collection('tasks').orderBy('createdAt').get()
   ref.docs.map((doc) => {
-    const data = { id: doc.id, name: doc.data().name, question: doc.data().question }
+    const data = { id: doc.id, question: doc.data().question }
     newTasks.push(data)
   })
   return {
     props: {
       newTasks,
     },
-    revalidate: 10,
+    revalidate: 60,
   }
 }
 
