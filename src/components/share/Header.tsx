@@ -1,5 +1,5 @@
 import { AddArticleForm } from 'src/components/articles/addArticleFrom'
-import { Sign } from 'src/components/share/sign'
+import { Sign } from 'src/components/share/Sign'
 
 export const Header = () => {
   return (
