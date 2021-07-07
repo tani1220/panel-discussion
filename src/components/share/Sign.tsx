@@ -2,7 +2,7 @@ import { Button } from 'src/components/share/Button'
 import { useSign } from 'src/hooks/useSign'
 
 export const Sign = () => {
-  const { signIn, hundleEmail, hundlePassword, email, password, isSignIn, register, hundleBoolean, hundleAuteLogin } =
+  const { setIsNotSignIn, signIn, hundleEmail, hundlePassword, email, password, isSignIn, register, hundleAuteLogin } =
     useSign()
 
   return (
@@ -51,14 +51,17 @@ export const Sign = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <div className="text-sm">
-                <a onClick={hundleBoolean} className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a
+                  onClick={() => setIsNotSignIn(!isSignIn)}
+                  className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500"
+                >
                   {isSignIn ? 'Create your register?' : 'Back to login?'}
                 </a>
               </div>
             </div>
 
             <div className="text-sm">
-              <a onClick={hundleAuteLogin} className="font-medium text-indigo-600 hover:text-indigo-500">
+              <a onClick={hundleAuteLogin} className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">
                 テストユーザー
               </a>
             </div>

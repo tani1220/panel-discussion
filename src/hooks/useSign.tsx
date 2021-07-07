@@ -48,14 +48,10 @@ export const useSign = () => {
     [password]
   )
 
-  const hundleBoolean = useCallback(() => {
-    setIsNotSignIn(!isSignIn)
-  }, [])
-
   const hundleAuteLogin = () => {
     setEmail('DiscussionTestEmail@yahoo.co.jp')
     setPassword('Password')
   }
 
-  return { signIn, hundleEmail, hundlePassword, email, password, isSignIn, register, hundleBoolean, hundleAuteLogin }
+  return { signIn, hundleEmail, hundlePassword, email, password, isSignIn, register, hundleAuteLogin, setIsNotSignIn }
 }
