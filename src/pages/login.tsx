@@ -1,5 +1,11 @@
+import { Sign } from 'src/components/share/Sign'
+
 const login = () => {
-  return <div>login component</div>
+  return (
+    <div>
+      <Sign />
+    </div>
+  )
 }
 
 export default login

@@ -1,5 +1,6 @@
+import Link from 'next/link'
 import { AddArticleForm } from 'src/components/articles/addArticleFrom'
-import { Sign } from 'src/components/share/Sign'
+import { Button } from 'src/components/share/Button'
 
 export const Header = () => {
   return (
@@ -11,7 +12,9 @@ export const Header = () => {
           <div className="mr-3">
             <AddArticleForm />
           </div>
-          <Sign>管理者</Sign>
+          <Link href="/login">
+            <Button>管理者</Button>
+          </Link>
         </div>
       </div>
     </>
