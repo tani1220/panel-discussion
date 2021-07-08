@@ -59,7 +59,7 @@ export const useSign = () => {
     const user = firebase.auth().currentUser
     if (user !== null) {
       const uid = user.uid
-      await db.collection('User').add({
+      await db.collection('users').doc(uid).set({
         userId: uid,
       })
     }
