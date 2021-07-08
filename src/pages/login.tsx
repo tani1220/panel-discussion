@@ -1,11 +1,7 @@
 import { Sign } from 'src/components/share/Sign'
 
 const login = () => {
-  return (
-    <div>
-      <Sign />
-    </div>
-  )
+  return <Sign />
 }
 
 export default login

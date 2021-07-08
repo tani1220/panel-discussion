@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 
 export const useDialog = () => {
-  const [values, setValues] = useState({ text: '', name: '匿名さん' })
+  const [values, setValues] = useState({ text: '', name: '' })
   const [isOpen, setIsOpen] = useState(false)
 
   const closeModal = useCallback(() => {

@@ -6,9 +6,10 @@ import { useDialog } from 'src/hooks/useDialog'
 type Props = { handleSubmit: (arg0: { text: string; name: string }) => void }
 
 export const Modal: VFC<Props> = (props) => {
-  const { values, hundleChange, closeModal, openModal, isOpen } = useDialog()
+  const { values, hundleChange, closeModal, openModal, isOpen, setValues } = useDialog()
+
   return (
-    <>
+    <div>
       <Button onClick={openModal}>投稿する</Button>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -31,7 +32,6 @@ export const Modal: VFC<Props> = (props) => {
               leaveTo="opacity-0 scale-95"
             >
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                {/* 名前記入機能追加予定 */}
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     名前
@@ -66,6 +66,7 @@ export const Modal: VFC<Props> = (props) => {
                   <Button
                     onClick={() => {
                       props.handleSubmit(values)
+                      setValues({ text: '', name: '' })
                       closeModal()
                     }}
                   >
@@ -78,6 +79,6 @@ export const Modal: VFC<Props> = (props) => {
           </div>
         </Dialog>
       </Transition>
-    </>
+    </div>
   )
 }

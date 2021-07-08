@@ -8,16 +8,14 @@ type Props = {
 
 export const Button: VFC<Props> = (props) => {
   return (
-    <>
-      <button
-        type="button"
-        onClick={props.onClick}
-        className={`${props.className}
+    <button
+      type="button"
+      onClick={props.onClick}
+      className={`${props.className}
 			  ${'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg'}
 			`}
-      >
-        {props.children}
-      </button>
-    </>
+    >
+      {props.children}
+    </button>
   )
 }

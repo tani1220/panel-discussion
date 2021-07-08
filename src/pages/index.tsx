@@ -6,26 +6,26 @@ import type { articlePost } from 'src/types/types'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-const Home: NextPage<Props> = ({ newTasks }) => {
+const Home: NextPage<Props> = ({ articles }) => {
   return (
-    <>
-      <Container>
-        <Article newTasks={newTasks} />
-      </Container>
-    </>
+    <Container>
+      <Article articles={articles} />
+    </Container>
   )
 }
 
 export const getStaticProps = async () => {
-  const newTasks: articlePost = []
-  const ref = await db.collection('tasks').orderBy('createdAt').get()
+  const articles: articlePost = []
+
+  const ref = await db.collection('articles').orderBy('createdAt').get()
   ref.docs.map((doc) => {
     const data = { id: doc.id, question: doc.data().question }
-    newTasks.push(data)
+    articles.push(data)
   })
+
   return {
     props: {
-      newTasks,
+      articles,
     },
     revalidate: 60,
   }

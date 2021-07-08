@@ -3,16 +3,16 @@ import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 import { Button } from 'src/components/share/Button'
 import { useNote } from 'src/hooks/useNote'
-import { getTaskData, getTaskIds } from 'src/lib/getTaskData'
+import { getArticleData, getArticleIds } from 'src/lib/getArticleData'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-const TaskPage: NextPage<Props> = ({ initialData }) => {
+const ArticlePage: NextPage<Props> = ({ initialData }) => {
   const { articleDelete } = useNote()
   const router = useRouter()
 
-  const taskDelete = async () => {
-    const id = initialData.taskId
+  const hundleDelete = async () => {
+    const id = initialData.ArticleId
     await articleDelete(id)
     router.push('/')
   }
@@ -27,7 +27,7 @@ const TaskPage: NextPage<Props> = ({ initialData }) => {
             <Link href="/">
               <Button className="mr-3">戻る</Button>
             </Link>
-            <Button onClick={taskDelete}>削除</Button>
+            <Button onClick={hundleDelete}>削除</Button>
           </div>
         </div>
       </div>
@@ -36,7 +36,7 @@ const TaskPage: NextPage<Props> = ({ initialData }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getTaskIds()
+  const paths = await getArticleIds()
   return {
     paths,
     fallback: 'blocking',
@@ -44,7 +44,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }: any) => {
-  const initialData = await getTaskData(params.id)
+  const initialData = await getArticleData(params.articleId)
 
   return {
     props: {
@@ -53,4 +53,4 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
   }
 }
 
-export default TaskPage
+export default ArticlePage
