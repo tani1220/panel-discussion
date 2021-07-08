@@ -36,7 +36,7 @@ export const useSign = () => {
   const signIn = async () => {
     try {
       await auth.signInWithEmailAndPassword(email, password)
-      userid()
+      await userid()
       router.push('/')
     } catch (error) {
       alert(error.message)
@@ -47,7 +47,7 @@ export const useSign = () => {
   const register = async () => {
     try {
       await auth.createUserWithEmailAndPassword(email, password)
-      userid()
+      await userid()
       router.push('/')
     } catch (error) {
       alert(error.message)
