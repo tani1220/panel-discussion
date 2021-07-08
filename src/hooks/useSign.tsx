@@ -25,19 +25,11 @@ export const useSign = () => {
     [password]
   )
 
-  // useEffect( ()=> {
-  //   //ログインやログアウトなど、認証関係に変更があると出力される。userには認証情報が入る
-  //   auth.onAuthStateChanged((user)=>{
-  //     user && router.push('/')
-  //   })
-  // })
-
   // ログイン
   const signIn = async () => {
     try {
       await auth.signInWithEmailAndPassword(email, password)
       await userid()
-      router.push('/')
     } catch (error) {
       alert(error.message)
     }
@@ -48,19 +40,26 @@ export const useSign = () => {
     try {
       await auth.createUserWithEmailAndPassword(email, password)
       await userid()
-      router.push('/')
     } catch (error) {
       alert(error.message)
     }
   }
 
-  //ログイン、またアカウント登録時にuidをfirebase/Userコレクションに追加
+  //認証時にuidをコレクションに追加してユーザーページに遷移
   const userid = async () => {
     const user = firebase.auth().currentUser
+
     if (user !== null) {
       const uid = user.uid
       await db.collection('users').doc(uid).set({
         userId: uid,
+      })
+      auth.onAuthStateChanged((user) => {
+        user &&
+          router.push({
+            pathname: '/users/[userId]',
+            query: { userId: user.uid },
+          })
       })
     }
   }
