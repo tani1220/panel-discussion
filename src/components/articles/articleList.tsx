@@ -4,15 +4,15 @@ import { TextCard } from 'src/components/share/TextCard'
 import type { articlePost } from 'src/types/types'
 
 type Props = {
-  newTasks: articlePost
+  articles: articlePost
 }
 
 export const Article: VFC<Props> = (props) => {
-  const [articles, setArticles] = useState(props.newTasks)
+  const [articles, setArticles] = useState(props.articles)
 
   useEffect(() => {
     const unsubscribe = db
-      .collection('tasks')
+      .collection('articles')
       .orderBy('createdAt')
       .onSnapshot((snapshot) => {
         setArticles(snapshot.docs.map((doc) => ({ id: doc.id, question: doc.data().question })))
@@ -21,18 +21,16 @@ export const Article: VFC<Props> = (props) => {
   }, [])
 
   return (
-    <div>
-      <ul>
-        {articles.map((task) => (
-          <li className="pt-4 text-3xl" key={task.id}>
-            <div className="cursor-pointer">
-              <TextCard id={task.id}>
-                <a>{task.question}</a>
-              </TextCard>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {articles.map((item) => (
+        <li className="pt-4 text-3xl" key={item.id}>
+          <div className="cursor-pointer">
+            <TextCard id={item.id}>
+              <a>{item.question}</a>
+            </TextCard>
+          </div>
+        </li>
+      ))}
+    </ul>
   )
 }
