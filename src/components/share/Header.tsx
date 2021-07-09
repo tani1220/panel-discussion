@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { AddArticleForm } from 'src/components/articles/addArticleFrom'
 import { Button } from 'src/components/share/Button'
+import { Logout } from 'src/components/share/Logout'
 
 export const Header = () => {
   return (
@@ -12,8 +13,9 @@ export const Header = () => {
           <AddArticleForm />
         </div>
         <Link href="/login">
-          <Button>管理者</Button>
+          <Button className="mr-3">管理者</Button>
         </Link>
+        <Logout />
       </div>
     </div>
   )

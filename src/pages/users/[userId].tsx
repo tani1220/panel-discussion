@@ -2,7 +2,7 @@ import { auth } from 'firebase/clientApp'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { Logout } from 'src/components/share/Logout'
+import { Container } from 'src/components/share/Container'
 import { getUserData, getUserIds } from 'src/lib/getUserData'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
@@ -20,8 +20,9 @@ const userPage: NextPage<Props> = ({ userData }) => {
 
   return (
     <>
-      <div>{userData.userId}</div>
-      <Logout />
+      <Container>
+        <div>{userData.userId}</div>
+      </Container>
     </>
   )
 }
