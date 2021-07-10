@@ -1,12 +1,15 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
-import { Button } from 'src/components/Button'
-import { useInputText } from 'src/hooks/useInputText'
+import { Fragment, VFC } from 'react'
+import { Button } from 'src/components/share/Button'
+import { useDialog } from 'src/hooks/useDialog'
 
-export const Modal = () => {
-  const { values, hundleChange, hundleAdd, closeModal, openModal, isOpen } = useInputText()
+type Props = { handleSubmit: (arg0: { text: string; name: string }) => void }
+
+export const Modal: VFC<Props> = (props) => {
+  const { values, hundleChange, closeModal, openModal, isOpen, setValues } = useDialog()
+
   return (
-    <>
+    <div>
       <Button onClick={openModal}>投稿する</Button>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -29,7 +32,6 @@ export const Modal = () => {
               leaveTo="opacity-0 scale-95"
             >
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                {/* 名前記入機能追加予定 */}
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     名前
@@ -63,7 +65,8 @@ export const Modal = () => {
                 <div className="mt-4 flex justify-between items-center">
                   <Button
                     onClick={() => {
-                      hundleAdd()
+                      props.handleSubmit(values)
+                      setValues({ text: '', name: '' })
                       closeModal()
                     }}
                   >
@@ -76,6 +79,6 @@ export const Modal = () => {
           </div>
         </Dialog>
       </Transition>
-    </>
+    </div>
   )
 }
