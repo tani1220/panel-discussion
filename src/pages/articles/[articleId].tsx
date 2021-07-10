@@ -19,10 +19,10 @@ const ArticlePage: NextPage<Props> = ({ initialData }) => {
 
   return (
     <>
-      <div className="h-screen flex border-8 border-indigo-600">
-        <div className="m-auto p-20">
-          <h1 className="text-5xl">{initialData.ref.question}</h1>
-          <h2 className="text-3xl mt-5">{initialData.ref.name}</h2>
+      <div className="h-screen flex border-8 border-gray-400 bg-gray-800 overflow-scroll">
+        <div className="m-auto sm:p-20 p-8 text-white font-mono">
+          <h1 className="sm:text-5xl text-2xl">{initialData.ref.question}</h1>
+          <h2 className="sm:text-3xl text-2xl mt-5">{initialData.ref.name}</h2>
           <div className="float-right">
             <Link href="/">
               <Button className="mr-3">戻る</Button>

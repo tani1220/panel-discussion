@@ -7,11 +7,9 @@ type Props = {
 
 export const Container: VFC<Props> = (props) => {
   return (
-    <div>
-      <div className="mx-auto sm:py-2 sm:px-14 border-b-2">
-        <Header />
-      </div>
-      <div className="mx-auto w-full max-w-screen-md">{props.children}</div>
+    <div className="h-full w-full">
+      <Header />
+      <div className="mx-auto py-16 sm:py-20 bg-black bg-opacity-90">{props.children}</div>
     </div>
   )
 }

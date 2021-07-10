@@ -11,10 +11,10 @@ export const TextCard: VFC<Props> = (props) => {
 
   return (
     <Link href={`/articles/${id}`}>
-      <div className="flex max-w-4xl w-full bg-white shadow-md rounded-lg overflow-hidden mx-auto">
-        <div className="flex items-center px-2 py-3">
+      <div className="max-w-xs sm:max-w-4xl p-4 sm:p-2 w-full bg-gray-800 rounded-xl mx-auto">
+        <div className="items-center sm:px-2 sm:py-3">
           <div className="mx-3">
-            <p className="text-gray-600 text-3xl">{props.children}</p>
+            <p className="text-xl sm:text-3xl font-mono text-gray-300">{props.children}</p>
           </div>
         </div>
       </div>
