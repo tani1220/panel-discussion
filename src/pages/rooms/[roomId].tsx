@@ -1,5 +1,5 @@
 import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import { Container } from 'panel-discussion/src/components/share/Container'
+import { Container } from 'src/components/share/Container'
 import { getRoomData, getRoomIds } from 'src/lib/getRoomData'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
