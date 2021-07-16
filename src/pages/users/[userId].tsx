@@ -2,7 +2,7 @@ import { auth } from 'firebase/clientApp'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { Container } from 'src/components/share/Container'
+import { Motif } from 'src/components/Motif'
 import { getUserData, getUserIds } from 'src/lib/getUserData'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
@@ -20,12 +20,11 @@ const userPage: NextPage<Props> = ({ userData }) => {
 
   return (
     <>
-      <Container>
-        <div className="h-screen bg-white">
-          <h1>ユーザーページ</h1>
-          <p>{userData.userId}</p>
-        </div>
-      </Container>
+      <div className="h-screen bg-white">
+        <h1>ユーザーページ</h1>
+        <p>{userData.userId}</p>
+        <Motif />
+      </div>
     </>
   )
 }
