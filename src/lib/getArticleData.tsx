@@ -1,10 +1,10 @@
 import { db } from 'firebase/clientApp'
 
-export const getArticleIds = async () => {
+export const getArticle = async () => {
   const Data: { id: string }[] = []
 
   await db
-    .collection('articles')
+    .collection('contents')
     .get()
     .then((snapshot) => {
       snapshot.docs.map((doc) => {
@@ -14,18 +14,41 @@ export const getArticleIds = async () => {
       })
     })
 
-  return Data.map((item) => {
+  return Data
+}
+
+export const getArticleIds = async () => {
+  const ref = await getArticle()
+  const allData: { question: string; name: string }[] = []
+
+  ref.map(async (item) => {
+    await db
+      .collection('contents')
+      .doc(item.id)
+      .collection(item.id)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.map((doc) => {
+          allData.push({
+            // id: doc.id,
+            question: doc.data().question,
+            name: doc.data().name,
+          })
+        })
+      })
+  })
+
+  return allData.map((item) => {
     return {
       params: {
-        articleId: item.id,
+        articleId: item.question,
       },
     }
   })
 }
 
 export const getArticleData = async (id: string | undefined) => {
-  const ref = await db.collection('articles').doc(id).get()
   const ArticleId = id
 
-  return { ref: ref.data(), ArticleId }
+  return { ArticleId }
 }
