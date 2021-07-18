@@ -1,15 +1,19 @@
 import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
+import { ArticleList } from 'src/components/articles/articleList'
 import { Container } from 'src/components/share/Container'
 import { getRoomData, getRoomIds } from 'src/lib/getRoomData'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-const RoomPage: NextPage<Props> = ({ initialData }) => {
+const RoomPage: NextPage<Props> = ({ articles }) => {
   return (
     <>
-      <Container>
-        {initialData.roomId}
-        {initialData.ref.theme}
+      <Container id={articles.roomId}>
+        <div className="text-white">
+          {articles.roomId}
+          {articles.ref.theme}
+        </div>
+        <ArticleList article={articles} />
       </Container>
     </>
   )
@@ -24,11 +28,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }: any) => {
-  const initialData = await getRoomData(params.roomId)
+  const articles = await getRoomData(params.roomId)
 
   return {
     props: {
-      initialData,
+      articles,
     },
   }
 }
