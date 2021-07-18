@@ -2,7 +2,7 @@ import { db } from 'firebase/clientApp'
 
 export const useNote = () => {
   const articleDelete = async (id: string) => {
-    await db.collection('articles').doc(id).delete()
+    await db.collection('contents').doc(id).delete()
   }
 
   const articleAdd = async (values: { text: string; name: string }) => {

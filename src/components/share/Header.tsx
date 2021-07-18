@@ -1,11 +1,15 @@
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, VFC } from 'react'
 import { AddArticleForm } from 'src/components/articles/addArticleFrom'
 import { Button } from 'src/components/share/Button'
 import { Logout } from 'src/components/share/Logout'
 import { NavDropdown } from 'src/components/share/NavDropdown'
 
-export const Header = () => {
+type Props = {
+  id?: string
+}
+
+export const Header: VFC<Props> = (props) => {
   const [isOpen, isNotOpen] = useState(false)
 
   const hundleNav = () => {
@@ -16,16 +20,15 @@ export const Header = () => {
     <div className="w-full fixed">
       <div className="flex justify-between items-center mx-auto sm:py-3 sm:px-14 p-4 bg-black">
         <div className="flex items-center">
-          <a className="sm:text-2xl text-lg font-semibold text-white bg-gray-600 py-1 sm:px-4 sm:mr-8 p-2 mr-3 rounded">
-            QIN
-          </a>
-          <p className="sm:text-5xl text-3xl font-bold text-white">Panel discussion</p>
+          <Link href="/">
+            <a className="sm:text-5xl text-3xl font-bold text-white">Panel discussion</a>
+          </Link>
         </div>
 
         <div className="hidden sm:block">
           <div className="flex">
             <div className="mr-3">
-              <AddArticleForm />
+              <AddArticleForm id={props.id} />
             </div>
             <Link href="/login">
               <Button className="mr-3">管理者</Button>
@@ -47,7 +50,7 @@ export const Header = () => {
           </svg>
         </button>
       </div>
-      <NavDropdown isOpen={isOpen} />
+      <NavDropdown isOpen={isOpen} id={props.id} />
     </div>
   )
 }

@@ -12,7 +12,7 @@ export const Motif = () => {
   )
 
   const hundleAdd = async (text: string) => {
-    await db.collection('contents').doc().set({
+    await db.collection('contents').doc(text).set({
       //お題
       theme: text,
       //参加者
@@ -29,7 +29,7 @@ export const Motif = () => {
   return (
     <div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+        <label className="block text-white text-sm font-bold mb-2" htmlFor="username">
           お題
         </label>
         <input
