@@ -19,7 +19,7 @@ export const getArticle = async () => {
 
 export const getArticleIds = async () => {
   const ref = await getArticle()
-  const allData: { question: string; name: string }[] = []
+  const allData: { question: string }[] = []
 
   ref.map(async (item) => {
     await db
@@ -30,9 +30,7 @@ export const getArticleIds = async () => {
       .then((snapshot) => {
         snapshot.docs.map((doc) => {
           allData.push({
-            // id: doc.id,
             question: doc.data().question,
-            name: doc.data().name,
           })
         })
       })
@@ -47,7 +45,7 @@ export const getArticleIds = async () => {
   })
 }
 
-export const getArticleData = async (id: string | undefined) => {
+export const getArticleData = async (id: string) => {
   const ArticleId = id
 
   return { ArticleId }

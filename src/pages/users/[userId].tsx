@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } fro
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { Motif } from 'src/components/Motif'
+import { Container } from 'src/components/share/Container'
 import { getUserData, getUserIds } from 'src/lib/getUserData'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
@@ -20,11 +21,13 @@ const userPage: NextPage<Props> = ({ userData }) => {
 
   return (
     <>
-      <div className="h-screen bg-white">
-        <h1>ユーザーページ</h1>
-        <p>{userData.userId}</p>
-        <Motif />
-      </div>
+      <Container>
+        <div className="text-white">
+          <h1>ユーザーページ</h1>
+          <p>{userData.userId}</p>
+          <Motif />
+        </div>
+      </Container>
     </>
   )
 }
