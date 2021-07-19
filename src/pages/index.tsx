@@ -1,7 +1,7 @@
 import { db } from 'firebase/clientApp'
 import type { InferGetStaticPropsType, NextPage } from 'next'
-import Link from 'next/link'
 import { Container } from 'src/components/share/Container'
+import { ThemeCard } from 'src/components/ThemeCard'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -10,12 +10,8 @@ const Home: NextPage<Props> = ({ articles }) => {
     <Container>
       <ul>
         {articles.map((item) => (
-          <li className="pt-4 text-3xl" key={item.id}>
-            <Link href={`/rooms/${item.id}`}>
-              <div className="cursor-pointer text-white">
-                <a>{item.id}</a>
-              </div>
-            </Link>
+          <li className="" key={item.id}>
+            <ThemeCard id={item.id} />
           </li>
         ))}
       </ul>
