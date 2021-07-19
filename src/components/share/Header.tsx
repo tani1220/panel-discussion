@@ -18,7 +18,7 @@ export const Header: VFC<Props> = (props) => {
 
   return (
     <div className="w-full fixed">
-      <div className="flex justify-between items-center mx-auto sm:py-3 sm:px-14 p-4 bg-black">
+      <div className="flex justify-between items-center mx-auto sm:py-3 sm:px-14 p-4 bg-black border-b-2 border-gray-400">
         <div className="flex items-center">
           <Link href="/">
             <a className="sm:text-5xl text-3xl font-bold text-white">Panel discussion</a>
