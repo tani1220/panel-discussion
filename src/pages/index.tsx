@@ -7,7 +7,7 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const Home: NextPage<Props> = ({ articles }) => {
   return (
-    <Container>
+    <Container left="title" right="user">
       <ul>
         {articles.map((item) => (
           <li className="" key={item.id}>
@@ -20,11 +20,11 @@ const Home: NextPage<Props> = ({ articles }) => {
 }
 
 export const getStaticProps = async () => {
-  const articles: { id: string }[] = []
+  const articles: { id: string; theme: string }[] = []
 
   const ref = await db.collection('contents').get()
   ref.docs.map((doc) => {
-    const data = { id: doc.id }
+    const data = { id: doc.id, theme: doc.data().theme }
     articles.push(data)
   })
 

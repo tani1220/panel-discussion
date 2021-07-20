@@ -1,30 +1,67 @@
 import Link from 'next/link'
-import { useState, VFC } from 'react'
+import { Dispatch, SetStateAction, VFC } from 'react'
 import { AddArticleForm } from 'src/components/articles/addArticleFrom'
 import { Button } from 'src/components/share/Button'
 import { Logout } from 'src/components/share/Logout'
 import { NavDropdown } from 'src/components/share/NavDropdown'
+import { useNote } from 'src/hooks/useNote'
 
-type Props = {
+export type HeaderProps = {
+  left?: 'title' | JSX.Element
+  right?: 'user' | JSX.Element
   id?: string
 }
 
-export const Header: VFC<Props> = (props) => {
-  const [isOpen, isNotOpen] = useState(false)
+type HundleNavProps = {
+  navIsOpen?: boolean
+  navIsNotOpen: Dispatch<SetStateAction<boolean>>
+}
 
-  const hundleNav = () => {
-    isNotOpen(!isOpen)
-  }
+export const Header: VFC<HeaderProps> = (props) => {
+  const { navIsOpen, navIsNotOpen } = useNote()
 
   return (
-    <div className="w-full fixed">
-      <div className="flex justify-between items-center mx-auto sm:py-3 sm:px-14 p-4 bg-black border-b-2 border-gray-400">
-        <div className="flex items-center">
-          <Link href="/">
-            <a className="sm:text-5xl text-3xl font-bold text-white">Panel discussion</a>
-          </Link>
+    <header>
+      <div className="w-full fixed">
+        <div className="flex justify-between items-center mx-auto sm:py-3 sm:px-14 p-4 bg-black border-b-2 border-gray-400">
+          <Left left={props.left} />
+          <Right right={props.right} id={props.id} navIsOpen={navIsOpen} navIsNotOpen={navIsNotOpen} />
         </div>
+        <NavDropdown isOpen={navIsOpen} id={props.id} />
+      </div>
+    </header>
+  )
+}
 
+const Left: VFC<HeaderProps> = (props) => {
+  if (!props.left) {
+    return null
+  }
+  if (props.left === 'title') {
+    return (
+      <div className="flex items-center">
+        <Link href="/">
+          <a className="sm:text-5xl text-3xl font-bold text-white">Panel discussion</a>
+        </Link>
+      </div>
+    )
+  }
+  return props.left
+}
+
+const Right: VFC<HeaderProps & HundleNavProps> = (props) => {
+  const { navIsOpen, navIsNotOpen } = props
+
+  const hundleNav = () => {
+    navIsNotOpen(!navIsOpen)
+  }
+
+  if (!props.right) {
+    return null
+  }
+  if (props.right === 'user') {
+    return (
+      <div>
         <div className="hidden sm:block">
           <div className="flex">
             <div className="mr-3">
@@ -50,7 +87,7 @@ export const Header: VFC<Props> = (props) => {
           </svg>
         </button>
       </div>
-      <NavDropdown isOpen={isOpen} id={props.id} />
-    </div>
-  )
+    )
+  }
+  return props.right
 }
