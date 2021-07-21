@@ -7,15 +7,17 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const Home: NextPage<Props> = ({ articles }) => {
   return (
-    <Container left="title" right="user">
-      <ul>
-        {articles.map((item) => (
-          <li className="" key={item.id}>
-            <ThemeCard id={item.id} />
-          </li>
-        ))}
-      </ul>
-    </Container>
+    <>
+      <Container left="title" right="before">
+        <ul>
+          {articles.map((item) => (
+            <li className="" key={item.id}>
+              <ThemeCard id={item.id} />
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </>
   )
 }
 

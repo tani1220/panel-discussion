@@ -21,7 +21,7 @@ const userPage: NextPage<Props> = ({ userData }) => {
 
   return (
     <>
-      <Container left="title" right="user">
+      <Container left="title" right="before">
         <div className="text-white">
           <h1>ユーザーページ</h1>
           <p>{userData.userId}</p>

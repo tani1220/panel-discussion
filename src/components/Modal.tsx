@@ -31,7 +31,7 @@ export const Modal: VFC<Props> = (props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded">
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     名前
@@ -72,7 +72,7 @@ export const Modal: VFC<Props> = (props) => {
                   >
                     送信
                   </Button>
-                  <Button onClick={closeModal}>質問をやめる</Button>
+                  <Button onClick={closeModal}>閉じる</Button>
                 </div>
               </div>
             </Transition.Child>
