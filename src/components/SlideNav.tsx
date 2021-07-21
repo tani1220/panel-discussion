@@ -2,6 +2,8 @@ import { ChatAlt2Icon } from '@heroicons/react/solid'
 import { SortAscendingIcon } from '@heroicons/react/solid'
 import { useCallback, useState } from 'react'
 
+import { Chat } from './Chat'
+
 export const SlideNav = () => {
   const [isOpen, isNotOpen] = useState(false)
 
@@ -12,11 +14,15 @@ export const SlideNav = () => {
   return (
     <>
       {isOpen ? (
-        <div className="sm:max-w-xs sm:w-full bg-black text-white pt-24">
-          <button className="text-2xl p-10" onClick={hundleChat}>
+        <div className="sm:max-w-xs sm:w-full bg-black text-white">
+          {/* <button className="text-2xl p-5" onClick={hundleChat}>
             閉じる
-          </button>
-          <div className="h-full">ここにチャットコンポーネント</div>
+          </button> */}
+          <div className="h-full flex items-end justify-center">
+            <div className="w-11/12">
+              <Chat />
+            </div>
+          </div>
         </div>
       ) : (
         <div className="fixed -bottom-0 right-0 flex mb-2 mr-3 text-white">
