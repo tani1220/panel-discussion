@@ -8,7 +8,7 @@ import { useNote } from 'src/hooks/useNote'
 
 export type HeaderProps = {
   left?: 'title' | JSX.Element
-  right?: 'user' | JSX.Element
+  right?: 'before' | 'after' | JSX.Element
   id?: string
 }
 
@@ -27,7 +27,7 @@ export const Header: VFC<HeaderProps> = (props) => {
           <Left left={props.left} />
           <Right right={props.right} id={props.id} navIsOpen={navIsOpen} navIsNotOpen={navIsNotOpen} />
         </div>
-        <NavDropdown isOpen={navIsOpen} id={props.id} />
+        <NavDropdown isOpen={navIsOpen} id={props.id} right={props.right} />
       </div>
     </header>
   )
@@ -59,14 +59,17 @@ const Right: VFC<HeaderProps & HundleNavProps> = (props) => {
   if (!props.right) {
     return null
   }
-  if (props.right === 'user') {
+  if (props.right === 'before' || props.right === 'after') {
     return (
       <div>
         <div className="hidden sm:block">
           <div className="flex">
-            <div className="mr-3">
-              <AddArticleForm id={props.id} />
-            </div>
+            {props.right === 'after' ? (
+              <div className="mr-3">
+                <AddArticleForm id={props.id} />
+              </div>
+            ) : null}
+
             <Link href="/login">
               <Button className="mr-3">管理者</Button>
             </Link>
