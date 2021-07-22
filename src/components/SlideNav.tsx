@@ -1,8 +1,7 @@
 import { ChatAlt2Icon } from '@heroicons/react/solid'
 import { SortAscendingIcon } from '@heroicons/react/solid'
 import { useCallback, useState } from 'react'
-
-import { Chat } from './Chat'
+import { Chat } from 'src/components/Chat'
 
 export const SlideNav = () => {
   const [isOpen, isNotOpen] = useState(false)
