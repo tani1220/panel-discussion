@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Dispatch, SetStateAction, VFC } from 'react'
+import { Dispatch, SetStateAction, useCallback, VFC } from 'react'
 import { AddArticleForm } from 'src/components/articles/addArticleFrom'
 import { Button } from 'src/components/share/Button'
 import { Logout } from 'src/components/share/Logout'
@@ -53,9 +53,9 @@ const Left: VFC<HeaderProps> = (props) => {
 const Right: VFC<HeaderProps & HundleNavProps> = (props) => {
   const { navIsOpen, navIsNotOpen } = props
 
-  const hundleNav = () => {
+  const hundleNav = useCallback(() => {
     navIsNotOpen(!navIsOpen)
-  }
+  }, [navIsOpen])
 
   if (!props.right) {
     return null

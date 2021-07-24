@@ -1,27 +1,14 @@
 import { XIcon } from '@heroicons/react/outline'
 import { ChevronRightIcon } from '@heroicons/react/solid'
-import { useCallback, useState, VFC } from 'react'
+import { VFC } from 'react'
+import { useChat } from 'src/hooks/useChat'
 
-type Props = {
+type ChatProps = {
   hundleChat: () => void
 }
 
-export const Chat: VFC<Props> = (props) => {
-  const [chatText, setChatText] = useState('')
-  const [chatList, setChatList] = useState<string[]>([])
-
-  const hundleText = useCallback(
-    (e: any) => {
-      setChatText(e.target.value)
-    },
-    [chatText]
-  )
-
-  const hundleAdd = useCallback(() => {
-    setChatList((prevChatList) => {
-      return [...prevChatList, chatText]
-    })
-  }, [chatText])
+export const Chat: VFC<ChatProps> = (props) => {
+  const { chatText, chatList, hundleText, hundleAdd } = useChat()
 
   return (
     <div className="mb-4">

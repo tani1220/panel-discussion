@@ -4,13 +4,13 @@ import { AddArticleForm } from 'src/components/articles/addArticleFrom'
 import { Button } from 'src/components/share/Button'
 import { Logout } from 'src/components/share/Logout'
 
-type Props = {
+type NavItemProps = {
   isOpen: boolean
   id?: string
   right?: 'before' | 'after' | JSX.Element
 }
 
-export const NavDropdown: VFC<Props> = (props) => {
+export const NavDropdown: VFC<NavItemProps> = (props) => {
   return (
     <div>
       {props.isOpen ? (

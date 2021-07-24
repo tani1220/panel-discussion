@@ -2,7 +2,7 @@ import { ReactNode, VFC } from 'react'
 import type { HeaderProps } from 'src/components/share/Header'
 import { Header } from 'src/components/share/Header'
 import { SlideNav } from 'src/components/SlideNav'
-import { useNote } from 'src/hooks/useNote'
+import { useChat } from 'src/hooks/useChat'
 
 type Props = HeaderProps & {
   children?: ReactNode
@@ -12,7 +12,7 @@ type Props = HeaderProps & {
 export const Container: VFC<Props> = (props) => {
   const { children, ...headerProps } = props
 
-  const { isChatOpen, hundleChat } = useNote()
+  const { isChatOpen, hundleChat } = useChat()
 
   return (
     <div>

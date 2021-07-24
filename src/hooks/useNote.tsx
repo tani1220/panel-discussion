@@ -1,9 +1,8 @@
 import { db } from 'firebase/clientApp'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 
 export const useNote = () => {
   const [navIsOpen, navIsNotOpen] = useState(false)
-  const [isChatOpen, isNotChatOpen] = useState(false)
 
   const articleDelete = async (id: string) => {
     await db.collection('contents').doc(id).delete()
@@ -17,9 +16,5 @@ export const useNote = () => {
     })
   }
 
-  const hundleChat = useCallback(() => {
-    isNotChatOpen(!isChatOpen)
-  }, [isChatOpen])
-
-  return { articleDelete, articleAdd, navIsOpen, navIsNotOpen, isChatOpen, isNotChatOpen, hundleChat }
+  return { articleDelete, articleAdd, navIsOpen, navIsNotOpen }
 }

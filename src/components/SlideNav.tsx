@@ -3,12 +3,12 @@ import { SortAscendingIcon } from '@heroicons/react/solid'
 import { VFC } from 'react'
 import { Chat } from 'src/components/Chat'
 
-type Props = {
+type SlideNavProps = {
   isChatOpen: boolean
   hundleChat: () => void
 }
 
-export const SlideNav: VFC<Props> = (props) => {
+export const SlideNav: VFC<SlideNavProps> = (props) => {
   const { isChatOpen, hundleChat } = props
 
   return (

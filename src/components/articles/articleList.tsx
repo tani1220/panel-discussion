@@ -7,7 +7,7 @@ type articlePost = {
   question: string
 }[]
 
-type Prop = {
+type articleProps = {
   article: {
     roomId: string
     ref: {
@@ -16,7 +16,7 @@ type Prop = {
   }
 }
 
-export const ArticleList: VFC<Prop> = ({ article }) => {
+export const ArticleList: VFC<articleProps> = ({ article }) => {
   const [articles, setArticles] = useState<articlePost>([])
 
   useEffect(() => {

@@ -12,14 +12,14 @@ export const useSign = () => {
   const router = useRouter()
 
   const hundleEmail = useCallback(
-    (e: any) => {
+    (e) => {
       setEmail(e.target.value)
     },
     [email]
   )
 
   const hundlePassword = useCallback(
-    (e: any) => {
+    (e) => {
       setPassword(e.target.value)
     },
     [password]

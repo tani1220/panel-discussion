@@ -1,4 +1,4 @@
-import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
+import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { Button } from 'src/components/share/Button'
 import { useNote } from 'src/hooks/useNote'
@@ -43,7 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }: any) => {
+export const getStaticProps = async ({ params }: any) => {
   const initialData = await getArticleData(params.articleId)
 
   return {
