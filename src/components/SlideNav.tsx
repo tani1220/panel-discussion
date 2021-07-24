@@ -1,25 +1,23 @@
 import { ChatAlt2Icon } from '@heroicons/react/solid'
 import { SortAscendingIcon } from '@heroicons/react/solid'
-import { useCallback, useState } from 'react'
+import { VFC } from 'react'
 import { Chat } from 'src/components/Chat'
 
-export const SlideNav = () => {
-  const [isOpen, isNotOpen] = useState(false)
+type Props = {
+  isChatOpen: boolean
+  hundleChat: () => void
+}
 
-  const hundleChat = useCallback(() => {
-    isNotOpen(!isOpen)
-  }, [isOpen])
+export const SlideNav: VFC<Props> = (props) => {
+  const { isChatOpen, hundleChat } = props
 
   return (
     <>
-      {isOpen ? (
+      {isChatOpen ? (
         <div className="sm:max-w-xs sm:w-full bg-black text-white">
-          {/* <button className="text-2xl p-5" onClick={hundleChat}>
-            閉じる
-          </button> */}
           <div className="h-full flex items-end justify-center">
             <div className="w-11/12">
-              <Chat />
+              <Chat hundleChat={hundleChat} />
             </div>
           </div>
         </div>

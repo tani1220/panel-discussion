@@ -1,7 +1,12 @@
+import { XIcon } from '@heroicons/react/outline'
 import { ChevronRightIcon } from '@heroicons/react/solid'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, VFC } from 'react'
 
-export const Chat = () => {
+type Props = {
+  hundleChat: () => void
+}
+
+export const Chat: VFC<Props> = (props) => {
   const [chatText, setChatText] = useState('')
   const [chatList, setChatList] = useState<string[]>([])
 
@@ -19,16 +24,19 @@ export const Chat = () => {
   }, [chatText])
 
   return (
-    <div className="mb-4 bg-gray-600">
-      <ul className="text-white">
-        {chatList.map((item) => {
-          return (
-            <li key={item} className="py-1 text-sm">
-              {item}
-            </li>
-          )
-        })}
-      </ul>
+    <div className="mb-4">
+      <div className="max-h-screen overflow-y-scroll">
+        <ul className="text-white">
+          {chatList.map((item) => {
+            return (
+              <li key={item} className="py-2 text-sm text-white text-opacity-80">
+                {item}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+
       <div className="mt-2 text-white">
         <input
           type="text"
@@ -40,14 +48,21 @@ export const Chat = () => {
           placeholder="テキストを入力"
         />
       </div>
-      <div className="flex justify-end pt-3">
-        <div className="text-xs my-auto pr-3">文字数</div>
-        <button onClick={hundleAdd}>
-          <ChevronRightIcon
-            className="hover:bg-gray-700 rounded-full text-white flex-shrink-0 h-8 w-8"
-            aria-hidden="true"
-          />
+
+      <div className="flex justify-between pt-3">
+        <button className="text-2xl" onClick={props.hundleChat}>
+          <XIcon className="text-white flex-shrink-0 h-6 w-6" aria-hidden="true" />
         </button>
+
+        <div className="flex">
+          <div className="text-xs my-auto pr-3">文字数</div>
+          <button onClick={hundleAdd}>
+            <ChevronRightIcon
+              className="hover:bg-gray-700 rounded-full text-white flex-shrink-0 h-8 w-8"
+              aria-hidden="true"
+            />
+          </button>
+        </div>
       </div>
     </div>
   )

@@ -10,6 +10,7 @@ export type HeaderProps = {
   left?: 'title' | JSX.Element
   right?: 'before' | 'after' | JSX.Element
   id?: string
+  isChatOpen?: boolean
 }
 
 type HundleNavProps = {
@@ -22,7 +23,7 @@ export const Header: VFC<HeaderProps> = (props) => {
 
   return (
     <header>
-      <div className="w-full fixed">
+      <div className={props.isChatOpen ? 'w-full' : 'w-full fixed'}>
         <div className="flex justify-between items-center mx-auto sm:py-3 sm:px-14 p-4 bg-black border-b-2 border-gray-400">
           <Left left={props.left} />
           <Right right={props.right} id={props.id} navIsOpen={navIsOpen} navIsNotOpen={navIsNotOpen} />
@@ -62,7 +63,7 @@ const Right: VFC<HeaderProps & HundleNavProps> = (props) => {
   if (props.right === 'before' || props.right === 'after') {
     return (
       <div>
-        <div className="hidden sm:block">
+        <div className="hidden lg:block">
           <div className="flex">
             {props.right === 'after' ? (
               <div className="mr-3">
@@ -78,7 +79,7 @@ const Right: VFC<HeaderProps & HundleNavProps> = (props) => {
         </div>
 
         {/* 携帯画面 */}
-        <button onClick={hundleNav} className="sm:hidden text-gray-300 bg-black">
+        <button onClick={hundleNav} className="lg:hidden text-gray-300 bg-black">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"

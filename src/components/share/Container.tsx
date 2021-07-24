@@ -2,6 +2,7 @@ import { ReactNode, VFC } from 'react'
 import type { HeaderProps } from 'src/components/share/Header'
 import { Header } from 'src/components/share/Header'
 import { SlideNav } from 'src/components/SlideNav'
+import { useNote } from 'src/hooks/useNote'
 
 type Props = HeaderProps & {
   children?: ReactNode
@@ -10,14 +11,20 @@ type Props = HeaderProps & {
 
 export const Container: VFC<Props> = (props) => {
   const { children, ...headerProps } = props
+
+  const { isChatOpen, hundleChat } = useNote()
+
   return (
     <div>
-      <Header {...headerProps} />
-      <div className="flex h-screen pt-16">
+      <div className="flex h-screen">
         <div className="overflow-scroll w-full bg-black bg-opacity-90">
-          <div className="mx-auto pb-16 pt-2">{children}</div>
+          <Header {...headerProps} isChatOpen={isChatOpen} />
+          <div className="mx-auto pb-16">
+            <div className={isChatOpen ? 'pt-2' : 'pt-20'}>{children}</div>
+          </div>
         </div>
-        <SlideNav />
+
+        <SlideNav isChatOpen={isChatOpen} hundleChat={hundleChat} />
       </div>
     </div>
   )

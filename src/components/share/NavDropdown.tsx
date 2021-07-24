@@ -14,7 +14,7 @@ export const NavDropdown: VFC<Props> = (props) => {
   return (
     <div>
       {props.isOpen ? (
-        <div className="text-white bg-black flex justify-between p-4 px-6 border-t-2 sm:hidden">
+        <div className="text-white bg-black flex justify-between p-4 px-6 border-t-2 lg:hidden">
           {props.right === 'after' ? <AddArticleForm id={props.id} /> : null}
 
           <Link href="/login">
