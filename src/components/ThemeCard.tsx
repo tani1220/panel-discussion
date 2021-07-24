@@ -20,7 +20,7 @@ function classNames(...classes: string[]) {
 
 export const ThemeCard: VFC<ThemeCardProps> = (props) => {
   return (
-    <div className="lg:flex lg:items-center lg:justify-between bg-gray-900 border-2 border-gray-600 rounded-xl mx-4 p-5 mt-5">
+    <div className="lg:flex lg:items-center lg:justify-between bg-gray-900 border-2 border-white border-opacity-10 rounded-xl mx-4 p-5 mt-5">
       <div className="flex-1 min-w-0">
         <h2 className="text-2xl font-bold leading-7 text-gray-100 sm:text-3xl sm:truncate">{props.id}</h2>
         <div className="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">

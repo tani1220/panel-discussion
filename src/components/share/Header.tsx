@@ -24,7 +24,7 @@ export const Header: VFC<HeaderProps> = (props) => {
   return (
     <header>
       <div className={props.isChatOpen ? 'w-full' : 'w-full fixed'}>
-        <div className="flex justify-between items-center mx-auto sm:py-3 sm:px-14 p-4 bg-black border-b-2 border-gray-400">
+        <div className="flex justify-between items-center mx-auto sm:py-3 sm:px-14 p-4 bg-black">
           <Left left={props.left} />
           <Right right={props.right} id={props.id} navIsOpen={navIsOpen} navIsNotOpen={navIsNotOpen} />
         </div>

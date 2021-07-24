@@ -33,7 +33,6 @@ export const ArticleList: VFC<articleProps> = ({ article }) => {
 
   return (
     <div>
-      <p className="text-white">テーマは{article.ref.theme}</p>
       <ul>
         {articles.map((item) => (
           <li className="pt-4 text-3xl" key={item.roomId}>

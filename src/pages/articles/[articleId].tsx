@@ -16,8 +16,6 @@ const ArticlePage: NextPage<Props> = ({ initialData }) => {
     router.back()
   }
 
-  console.log(initialData.ArticleId)
-
   return (
     <>
       <div className="h-screen flex border-8 border-gray-400 bg-gray-800 overflow-scroll">
