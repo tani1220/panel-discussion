@@ -1,25 +1,32 @@
 import { db } from 'firebase/clientApp'
 import type { InferGetStaticPropsType, NextPage } from 'next'
-import { Article } from 'src/components/articles/articleList'
 import { Container } from 'src/components/share/Container'
-import type { articlePost } from 'src/types/types'
+import { ThemeCard } from 'src/components/ThemeCard'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const Home: NextPage<Props> = ({ articles }) => {
   return (
-    <Container>
-      <Article articles={articles} />
-    </Container>
+    <>
+      <Container left="title" right="before">
+        <ul>
+          {articles.map((item) => (
+            <li className="" key={item.id}>
+              <ThemeCard id={item.id} />
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </>
   )
 }
 
 export const getStaticProps = async () => {
-  const articles: articlePost = []
+  const articles: { id: string; theme: string }[] = []
 
-  const ref = await db.collection('articles').orderBy('createdAt').get()
+  const ref = await db.collection('contents').get()
   ref.docs.map((doc) => {
-    const data = { id: doc.id, question: doc.data().question }
+    const data = { id: doc.id, theme: doc.data().theme }
     articles.push(data)
   })
 
