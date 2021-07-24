@@ -39,7 +39,7 @@ const Thread: VFC<SlideNavProps> = (props) => {
             </div>
           </div>
         ) : (
-          <div className="fixed -bottom-0 right-0 flex mb-2 mr-3 text-white">
+          <div className="fixed -bottom-0 right-0 sm:flex hidden mb-2 mr-3 text-white">
             <button
               className="flex mr-3 p-2 bg-black items-center border-2 border-gray-500 rounded"
               onClick={props.hundleChat}
