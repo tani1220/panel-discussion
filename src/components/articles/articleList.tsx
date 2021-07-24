@@ -7,7 +7,7 @@ type articlePost = {
   question: string
 }[]
 
-type Prop = {
+type articleProps = {
   article: {
     roomId: string
     ref: {
@@ -16,7 +16,7 @@ type Prop = {
   }
 }
 
-export const ArticleList: VFC<Prop> = ({ article }) => {
+export const ArticleList: VFC<articleProps> = ({ article }) => {
   const [articles, setArticles] = useState<articlePost>([])
 
   useEffect(() => {
@@ -33,7 +33,6 @@ export const ArticleList: VFC<Prop> = ({ article }) => {
 
   return (
     <div>
-      <p className="text-white">テーマは{article.ref.theme}</p>
       <ul>
         {articles.map((item) => (
           <li className="pt-4 text-3xl" key={item.roomId}>

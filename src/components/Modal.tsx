@@ -3,9 +3,9 @@ import { Fragment, VFC } from 'react'
 import { Button } from 'src/components/share/Button'
 import { useDialog } from 'src/hooks/useDialog'
 
-type Props = { handleSubmit: (arg0: { text: string; name: string }) => void }
+type ModalProps = { handleSubmit: (arg0: { text: string; name: string }) => void }
 
-export const Modal: VFC<Props> = (props) => {
+export const Modal: VFC<ModalProps> = (props) => {
   const { values, hundleChange, closeModal, openModal, isOpen, setValues } = useDialog()
 
   return (

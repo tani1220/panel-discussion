@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import { ReactNode, VFC } from 'react'
 
-type Props = {
+type TextCardProps = {
   id: string
   children: ReactNode
 }
 
-export const TextCard: VFC<Props> = (props) => {
+export const TextCard: VFC<TextCardProps> = (props) => {
   const id = props.id
 
   return (

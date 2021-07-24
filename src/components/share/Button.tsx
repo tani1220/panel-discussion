@@ -1,12 +1,12 @@
 import { DOMAttributes, ReactNode, VFC } from 'react'
 
-type Props = {
+type ButtonProps = {
   children: ReactNode
   className?: string
   onClick?: DOMAttributes<HTMLButtonElement>['onClick']
 }
 
-export const Button: VFC<Props> = (props) => {
+export const Button: VFC<ButtonProps> = (props) => {
   return (
     <button
       type="button"
