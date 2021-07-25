@@ -8,11 +8,11 @@ import { useChat } from 'src/hooks/useChat'
 type Props = HeaderProps &
   ThreadProps & {
     children?: ReactNode
-    id?: string
+    roomId?: string
   }
 
 export const Container: VFC<Props> = (props) => {
-  const { children, thread, ...headerProps } = props
+  const { children, roomId, thread, ...headerProps } = props
 
   const { isChatOpen, hundleChat } = useChat()
 
@@ -26,7 +26,7 @@ export const Container: VFC<Props> = (props) => {
           </div>
         </div>
 
-        <SlideNav thread={thread} isChatOpen={isChatOpen} hundleChat={hundleChat} />
+        <SlideNav thread={thread} isChatOpen={isChatOpen} hundleChat={hundleChat} roomId={roomId} />
       </div>
     </div>
   )

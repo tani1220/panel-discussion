@@ -1,23 +1,59 @@
 import { XIcon } from '@heroicons/react/outline'
 import { ChevronRightIcon } from '@heroicons/react/solid'
-import { VFC } from 'react'
+import { db } from 'firebase/clientApp'
+import { useCallback, useEffect, useState, VFC } from 'react'
 import { useChat } from 'src/hooks/useChat'
 
 type ChatProps = {
   hundleChat: () => void
+  roomId?: string
 }
 
+type ChatTable = {
+  message: string
+  id: string
+}[]
+
 export const Chat: VFC<ChatProps> = (props) => {
-  const { chatText, chatList, hundleText, hundleAdd } = useChat()
+  const { chatText, setChatText, hundleText } = useChat()
+
+  const [chatTable, setChatTable] = useState<ChatTable>([])
+
+  useEffect(() => {
+    const unsub = db
+      .collection('contents')
+      .doc(props.roomId)
+      .collection('thread')
+      .orderBy('createdAt')
+      .onSnapshot((snapshot) => {
+        setChatTable(snapshot.docs.map((doc) => ({ message: doc.data().message, id: doc.id })))
+      })
+    return () => unsub()
+  }, [])
+
+  const hundleAdd = useCallback(
+    async (chatText) => {
+      await db
+        .collection('contents')
+        .doc(props.roomId)
+        .collection('thread')
+        .add({
+          message: chatText,
+          createdAt: JSON.stringify(new Date()),
+        })
+      setChatText('')
+    },
+    [chatText]
+  )
 
   return (
     <div className="mb-4">
       <div className="max-h-screen overflow-y-scroll">
         <ul className="text-white">
-          {chatList.map((item) => {
+          {chatTable.map((item) => {
             return (
-              <li key={item} className="py-2 text-sm text-white text-opacity-80">
-                {item}
+              <li key={item.id} className="py-2 text-sm text-white text-opacity-80">
+                {item.message}
               </li>
             )
           })}
@@ -43,7 +79,11 @@ export const Chat: VFC<ChatProps> = (props) => {
 
         <div className="flex">
           <div className="text-xs my-auto pr-3">文字数</div>
-          <button onClick={hundleAdd}>
+          <button
+            onClick={() => {
+              hundleAdd(chatText)
+            }}
+          >
             <ChevronRightIcon
               className="hover:bg-gray-700 rounded-full text-white flex-shrink-0 h-8 w-8"
               aria-hidden="true"

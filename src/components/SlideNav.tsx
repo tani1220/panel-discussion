@@ -10,14 +10,15 @@ export type ThreadProps = {
 type SlideNavProps = ThreadProps & {
   isChatOpen: boolean
   hundleChat: () => void
+  roomId?: string
 }
 
 export const SlideNav: VFC<SlideNavProps> = (props) => {
-  const { isChatOpen, hundleChat } = props
+  const { isChatOpen, hundleChat, thread, roomId } = props
 
   return (
     <>
-      <Thread isChatOpen={isChatOpen} hundleChat={hundleChat} thread={props.thread} />
+      <Thread isChatOpen={isChatOpen} hundleChat={hundleChat} thread={thread} roomId={roomId} />
     </>
   )
 }
@@ -34,7 +35,7 @@ const Thread: VFC<SlideNavProps> = (props) => {
           <div className="sm:max-w-xs sm:w-full bg-black text-white">
             <div className="h-full flex items-end justify-center">
               <div className="w-11/12">
-                <Chat hundleChat={props.hundleChat} />
+                <Chat hundleChat={props.hundleChat} roomId={props.roomId} />
               </div>
             </div>
           </div>
