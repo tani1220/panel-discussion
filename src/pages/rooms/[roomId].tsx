@@ -8,7 +8,7 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>
 const RoomPage: NextPage<Props> = ({ articles }) => {
   return (
     <>
-      <Container id={articles.roomId} left="title" right="after" thread="on">
+      <Container roomId={articles.roomId} left="title" right="after" thread="on">
         <ArticleList article={articles} />
       </Container>
     </>
