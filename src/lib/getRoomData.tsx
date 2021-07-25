@@ -4,7 +4,7 @@ export const getRoomIds = async () => {
   const Data: { id: string }[] = []
 
   await db
-    .collection('contentr')
+    .collection('contents')
     .get()
     .then((snapshot) => {
       snapshot.docs.map((doc) => {
