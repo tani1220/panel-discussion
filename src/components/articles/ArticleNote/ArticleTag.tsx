@@ -6,7 +6,7 @@ type TextCardProps = {
   children: ReactNode
 }
 
-export const TextCard: VFC<TextCardProps> = (props) => {
+export const ArticleTag: VFC<TextCardProps> = (props) => {
   const id = props.id
 
   return (

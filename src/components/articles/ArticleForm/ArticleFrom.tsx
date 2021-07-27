@@ -1,13 +1,13 @@
 import { db } from 'firebase/clientApp'
 import { VFC } from 'react'
-import { Modal } from 'src/components/Modal'
+import { ArticleModal } from 'src/components/articles/ArticleForm/ArticleModal'
 
-type Props = {
-  id?: string
+type addArticleProps = {
+  roomId?: string
 }
 
-export const AddArticleForm: VFC<Props> = (props) => {
-  const id = props.id
+export const ArticleForm: VFC<addArticleProps> = (props) => {
+  const id = props.roomId
 
   const articleAdd = async (values: { text: string; name: string }) => {
     if (id) {
@@ -20,19 +20,6 @@ export const AddArticleForm: VFC<Props> = (props) => {
           name: values.name,
           createdAt: JSON.stringify(new Date()),
         })
-    } else {
-      await db.collection('contents').doc(values.text).set({
-        //お題
-        theme: values.text,
-        //参加者
-        participant: '',
-        //日時
-        time: '',
-        //zoomlinkなど
-        link: '',
-        //詳細
-        description: '',
-      })
     }
   }
 
@@ -40,5 +27,5 @@ export const AddArticleForm: VFC<Props> = (props) => {
     await articleAdd(values)
   }
 
-  return <Modal handleSubmit={handleSubmit} />
+  return <ArticleModal handleSubmit={handleSubmit} />
 }

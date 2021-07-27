@@ -1,5 +1,5 @@
 import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import { ArticleList } from 'src/components/articles/articleList'
+import { ArticleNote } from 'src/components/articles/ArticleNote/ArticleNote'
 import { Container } from 'src/components/share/Container'
 import { getRoomData, getRoomIds } from 'src/lib/getRoomData'
 
@@ -9,7 +9,7 @@ const RoomPage: NextPage<Props> = ({ articles }) => {
   return (
     <>
       <Container roomId={articles.roomId} left="title" right="after" thread="on">
-        <ArticleList article={articles} />
+        <ArticleNote article={articles} />
       </Container>
     </>
   )

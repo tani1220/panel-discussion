@@ -1,13 +1,13 @@
 import { db } from 'firebase/clientApp'
 import { useEffect, useState, VFC } from 'react'
-import { TextCard } from 'src/components/share/TextCard'
+import { ArticleTag } from 'src/components/articles/ArticleNote/ArticleTag'
 
 type articlePost = {
   roomId: string
   question: string
 }[]
 
-type articleProps = {
+type articleListProps = {
   article: {
     roomId: string
     ref: {
@@ -16,7 +16,7 @@ type articleProps = {
   }
 }
 
-export const ArticleList: VFC<articleProps> = ({ article }) => {
+export const ArticleNote: VFC<articleListProps> = ({ article }) => {
   const [articles, setArticles] = useState<articlePost>([])
 
   useEffect(() => {
@@ -37,10 +37,10 @@ export const ArticleList: VFC<articleProps> = ({ article }) => {
         {articles.map((item) => (
           <li className="pt-4 text-3xl" key={item.roomId}>
             <div className="cursor-pointer">
-              <TextCard id={item.question}>
+              <ArticleTag id={item.question}>
                 <a>{item.question}</a>
                 <a>{item.roomId}</a>
-              </TextCard>
+              </ArticleTag>
             </div>
           </li>
         ))}
