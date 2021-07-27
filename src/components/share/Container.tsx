@@ -1,12 +1,12 @@
 import { ReactNode, VFC } from 'react'
 import type { HeaderProps } from 'src/components/share/Header/Header'
 import { Header } from 'src/components/share/Header/Header'
-import type { ThreadProps } from 'src/components/share/SlideNav/SlideNav'
 import { SlideNav } from 'src/components/share/SlideNav/SlideNav'
+import type { ThreadType } from 'src/components/share/SlideNav/types'
 import { useChat } from 'src/hooks/useChat'
 
 type Props = HeaderProps &
-  ThreadProps & {
+  ThreadType & {
     children?: ReactNode
     roomId?: string
   }
