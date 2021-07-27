@@ -1,7 +1,7 @@
 import { db } from 'firebase/clientApp'
 import { useCallback, useState } from 'react'
 
-export const Motif = () => {
+export const UserPage = () => {
   const [text, setText] = useState('')
 
   const hundleChange = useCallback(
