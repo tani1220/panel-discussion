@@ -1,11 +1,11 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, VFC } from 'react'
-import { Button } from 'src/components/share/Button'
+import { Button } from 'src/components/share/Button/Button'
 import { useDialog } from 'src/hooks/useDialog'
 
 type ModalProps = { handleSubmit: (arg0: { text: string; name: string }) => void }
 
-export const Modal: VFC<ModalProps> = (props) => {
+export const ArticleModal: VFC<ModalProps> = (props) => {
   const { values, hundleChange, closeModal, openModal, isOpen, setValues } = useDialog()
 
   return (

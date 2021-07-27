@@ -1,15 +1,15 @@
 import Link from 'next/link'
 import { Dispatch, SetStateAction, useCallback, VFC } from 'react'
-import { AddArticleForm } from 'src/components/articles/addArticleFrom'
-import { Button } from 'src/components/share/Button'
-import { Logout } from 'src/components/share/Logout'
-import { NavDropdown } from 'src/components/share/NavDropdown'
+import { ArticleForm } from 'src/components/articles/ArticleForm/ArticleFrom'
+import { Button } from 'src/components/share/Button/Button'
+import { Logout } from 'src/components/share/Header/Logout'
+import { MobileMenu } from 'src/components/share/Header/MobileMenu'
 import { useNote } from 'src/hooks/useNote'
 
 export type HeaderProps = {
   left?: 'title' | JSX.Element
   right?: 'before' | 'after' | JSX.Element
-  id?: string
+  roomId?: string
   isChatOpen?: boolean
 }
 
@@ -26,9 +26,9 @@ export const Header: VFC<HeaderProps> = (props) => {
       <div className={props.isChatOpen ? 'w-full' : 'w-full fixed'}>
         <div className="flex justify-between items-center mx-auto sm:py-3 sm:px-14 p-4 bg-black">
           <Left left={props.left} />
-          <Right right={props.right} id={props.id} navIsOpen={navIsOpen} navIsNotOpen={navIsNotOpen} />
+          <Right right={props.right} roomId={props.roomId} navIsOpen={navIsOpen} navIsNotOpen={navIsNotOpen} />
         </div>
-        <NavDropdown isOpen={navIsOpen} id={props.id} right={props.right} />
+        <MobileMenu isOpen={navIsOpen} roomId={props.roomId} right={props.right} />
       </div>
     </header>
   )
@@ -67,7 +67,7 @@ const Right: VFC<HeaderProps & HundleNavProps> = (props) => {
           <div className="flex">
             {props.right === 'after' ? (
               <div className="mr-3">
-                <AddArticleForm id={props.id} />
+                <ArticleForm roomId={props.roomId} />
               </div>
             ) : null}
 

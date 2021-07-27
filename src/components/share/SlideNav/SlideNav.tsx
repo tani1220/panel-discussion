@@ -1,7 +1,7 @@
 import { ChatAlt2Icon } from '@heroicons/react/solid'
 import { SortAscendingIcon } from '@heroicons/react/solid'
 import { VFC } from 'react'
-import { Chat } from 'src/components/Chat'
+import { Chat } from 'src/components/share/SlideNav/Chat'
 
 export type ThreadProps = {
   thread?: 'on' | JSX.Element

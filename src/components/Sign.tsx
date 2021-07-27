@@ -1,4 +1,4 @@
-import { Button } from 'src/components/share/Button'
+import { Button } from 'src/components/share/Button/Button'
 import { useSign } from 'src/hooks/useSign'
 
 export const Sign = () => {

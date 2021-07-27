@@ -1,4 +1,4 @@
-import { Sign } from 'src/components/share/Sign'
+import { Sign } from 'src/components/Sign'
 
 const login = () => {
   return <Sign />

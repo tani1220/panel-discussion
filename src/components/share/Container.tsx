@@ -1,8 +1,8 @@
 import { ReactNode, VFC } from 'react'
-import type { HeaderProps } from 'src/components/share/Header'
-import { Header } from 'src/components/share/Header'
-import type { ThreadProps } from 'src/components/SlideNav'
-import { SlideNav } from 'src/components/SlideNav'
+import type { HeaderProps } from 'src/components/share/Header/Header'
+import { Header } from 'src/components/share/Header/Header'
+import type { ThreadProps } from 'src/components/share/SlideNav/SlideNav'
+import { SlideNav } from 'src/components/share/SlideNav/SlideNav'
 import { useChat } from 'src/hooks/useChat'
 
 type Props = HeaderProps &
@@ -20,7 +20,7 @@ export const Container: VFC<Props> = (props) => {
     <div>
       <div className="flex h-screen">
         <div className="overflow-scroll w-full bg-black bg-opacity-90">
-          <Header {...headerProps} isChatOpen={isChatOpen} />
+          <Header {...headerProps} isChatOpen={isChatOpen} roomId={roomId} />
           <div className="mx-auto pb-16">
             <div className={isChatOpen ? 'pt-2' : 'pt-20'}>{children}</div>
           </div>
