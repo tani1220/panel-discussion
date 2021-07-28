@@ -1,10 +1,8 @@
-import { XIcon } from '@heroicons/react/outline'
-import { ChevronRightIcon } from '@heroicons/react/solid'
 import { db } from 'firebase/clientApp'
 import { useCallback, useEffect, VFC } from 'react'
-import { SlideButton } from 'src/components/share/SlideNav/SlideButton'
 import { useChat } from 'src/hooks/useChat'
 
+import { SlideMenu } from './SlideMenu'
 import { General } from './types'
 
 export const Chat: VFC<General> = (props) => {
@@ -68,31 +66,18 @@ export const Chat: VFC<General> = (props) => {
                   />
                 </div>
 
-                <div className="flex justify-between pt-3">
-                  <button className="text-2xl" onClick={props.hundleChat}>
-                    <XIcon className="text-white flex-shrink-0 h-6 w-6" aria-hidden="true" />
-                  </button>
-
-                  <div className="flex">
-                    {/* 文字数カウント機能実装予定 */}
-                    <div className="text-xs my-auto pr-3">文字数</div>
-                    <button
-                      onClick={() => {
-                        hundleAdd(chatText)
-                      }}
-                    >
-                      <ChevronRightIcon
-                        className="hover:bg-gray-700 rounded-full text-white flex-shrink-0 h-8 w-8"
-                        aria-hidden="true"
-                      />
-                    </button>
-                  </div>
-                </div>
+                <SlideMenu
+                  hundleChat={props.hundleChat}
+                  hundleAdd={() => {
+                    hundleAdd(chatText)
+                  }}
+                  variety="close"
+                />
               </div>
             </div>
           </div>
         ) : (
-          <SlideButton hundleChat={props.hundleChat} />
+          <SlideMenu hundleChat={props.hundleChat} variety="openChat" />
         )}
       </>
     )
