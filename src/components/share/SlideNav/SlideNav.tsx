@@ -1,7 +1,7 @@
 import { VFC } from 'react'
-import { Chat } from 'src/components/share/SlideNav/Chat'
-import { Motif } from 'src/components/share/SlideNav/Motif'
 
+import { Chat } from './Chat'
+import { Motif } from './Motif'
 import { General } from './types'
 
 export const SlideNav: VFC<General> = (props) => {
