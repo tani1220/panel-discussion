@@ -1,36 +1,47 @@
-import { VFC } from 'react'
+import { useCallback, useState, VFC } from 'react'
 
 import { SlideMenu } from './SlideMenu'
+import { FormType } from './types'
 
-type Form = {
-  hundleChat: () => void
-}
+export const Form: VFC<FormType> = (props) => {
+  const [data, setData] = useState({ theme: '', name: '', date: '', time: '', link: '', discription: '' })
 
-export const Form: VFC<Form> = (props) => {
+  const hundleChange = useCallback(
+    (e: any) => {
+      const value = e.target.value
+      setData({ ...data, [e.target.name]: value })
+    },
+    [data]
+  )
+
   return (
     <div>
       <div className="mt-10">
-        <label htmlFor="first-name" className="mb-2 block text-sm font-medium text-gray-500">
+        <label htmlFor="theme" className="mb-2 block text-sm font-medium text-gray-500">
           お題
         </label>
         <input
           type="text"
-          name="first-name"
-          id="first-name"
-          autoComplete="given-name"
+          name="theme"
+          id="theme"
+          value={data.theme}
+          onChange={hundleChange}
+          autoComplete="off"
           className="focus:outline-none w-full h-8 px-2 sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded"
         />
       </div>
 
       <div className="mt-6">
-        <label htmlFor="first-name" className="mb-2 block text-sm font-medium text-gray-500">
+        <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-500">
           名前
         </label>
         <input
           type="text"
-          name="first-name"
-          id="first-name"
-          autoComplete="given-name"
+          name="name"
+          id="name"
+          value={data.name}
+          onChange={hundleChange}
+          autoComplete="off"
           className="focus:outline-none w-1/3 h-8 px-2 sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded"
         />
       </div>
@@ -44,6 +55,9 @@ export const Form: VFC<Form> = (props) => {
             type="date"
             name="date"
             id="date"
+            value={data.date}
+            onChange={hundleChange}
+            autoComplete="off"
             className="focus:outline-none h-8 px-2 mr-4 sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded"
           />
         </div>
@@ -55,6 +69,9 @@ export const Form: VFC<Form> = (props) => {
             type="time"
             name="time"
             id="time"
+            value={data.time}
+            onChange={hundleChange}
+            autoComplete="off"
             className="focus:outline-none h-8 px-2 sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded"
           />
         </div>
@@ -72,6 +89,9 @@ export const Form: VFC<Form> = (props) => {
             type="text"
             name="link"
             id="link"
+            value={data.link}
+            onChange={hundleChange}
+            autoComplete="off"
             className="focus:outline-none w-full h-8 px-2 sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded rounded-l-none"
             placeholder="www.example.com"
           />
@@ -85,13 +105,14 @@ export const Form: VFC<Form> = (props) => {
         <textarea
           name="discription"
           id="discription"
+          value={data.discription}
+          onChange={hundleChange}
+          autoComplete="off"
           className="text-white h-40 w-full p-2 focus:outline-none sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded"
         ></textarea>
       </div>
 
-      <div className="">
-        <SlideMenu hundleChat={props.hundleChat} variety="close" />
-      </div>
+      <SlideMenu hundleChat={props.hundleChat} variety="close" />
     </div>
   )
 }
