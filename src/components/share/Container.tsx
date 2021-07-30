@@ -3,7 +3,7 @@ import type { HeaderProps } from 'src/components/share/Header/Header'
 import { Header } from 'src/components/share/Header/Header'
 import { SlideNav } from 'src/components/share/SlideNav/SlideNav'
 import type { ThreadType } from 'src/components/share/SlideNav/types'
-import { useChat } from 'src/hooks/useChat'
+import { useSlideNav } from 'src/hooks/useSlideNav'
 
 type Props = HeaderProps &
   ThreadType & {
@@ -14,7 +14,7 @@ type Props = HeaderProps &
 export const Container: VFC<Props> = (props) => {
   const { children, roomId, thread, ...headerProps } = props
 
-  const { isChatOpen, hundleChat } = useChat()
+  const { isChatOpen, hundleChat } = useSlideNav()
 
   return (
     <div>

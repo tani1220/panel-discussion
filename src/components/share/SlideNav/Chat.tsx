@@ -1,12 +1,12 @@
 import { db } from 'firebase/clientApp'
 import { useCallback, useEffect, VFC } from 'react'
-import { useChat } from 'src/hooks/useChat'
+import { useSlideNav } from 'src/hooks/useSlideNav'
 
 import { SlideMenu } from './SlideMenu'
 import { General } from './types'
 
 export const Chat: VFC<General> = (props) => {
-  const { chatText, setChatText, hundleText, chatTable, setChatTable } = useChat()
+  const { chatText, setChatText, hundleText, chatTable, setChatTable } = useSlideNav()
 
   useEffect(() => {
     const unsub = db

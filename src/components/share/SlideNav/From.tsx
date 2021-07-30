@@ -1,21 +1,15 @@
-import { useCallback, useState, VFC } from 'react'
+import { VFC } from 'react'
+import { useSlideNav } from 'src/hooks/useSlideNav'
 
 import { SlideMenu } from './SlideMenu'
 import { FormType } from './types'
 
 export const Form: VFC<FormType> = (props) => {
-  const [data, setData] = useState({ theme: '', name: '', date: '', time: '', link: '', discription: '' })
-
-  const hundleChange = useCallback(
-    (e: any) => {
-      const value = e.target.value
-      setData({ ...data, [e.target.name]: value })
-    },
-    [data]
-  )
+  const { data, hundleChange, hundleAdd } = useSlideNav()
 
   return (
     <div>
+      <div className="text-center text-xl font-mono p-10">お題を投稿してみよう！</div>
       <div className="mt-10">
         <label htmlFor="theme" className="mb-2 block text-sm font-medium text-gray-500">
           お題
@@ -112,7 +106,13 @@ export const Form: VFC<FormType> = (props) => {
         ></textarea>
       </div>
 
-      <SlideMenu hundleChat={props.hundleChat} variety="close" />
+      <SlideMenu
+        hundleChat={props.hundleChat}
+        hundleAdd={() => {
+          hundleAdd(data)
+        }}
+        variety="close"
+      />
     </div>
   )
 }
