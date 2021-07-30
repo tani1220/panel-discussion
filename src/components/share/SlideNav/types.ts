@@ -1,5 +1,8 @@
-type ChatType = {
+type FormType = {
   hundleChat: () => void
+}
+
+type ChatType = FormType & {
   isChatOpen: boolean
 }
 
@@ -14,8 +17,9 @@ type MenuType = {
 }
 
 type General = ThreadType &
-  ChatType & {
+  ChatType &
+  FormType & {
     roomId?: string
   }
 
-export type { ChatType, General, MenuType, ThreadType }
+export type { ChatType, FormType, General, MenuType, ThreadType }
