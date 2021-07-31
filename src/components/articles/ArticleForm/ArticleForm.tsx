@@ -1,6 +1,7 @@
 import { db } from 'firebase/clientApp'
 import { VFC } from 'react'
-import { ArticleModal } from 'src/components/articles/ArticleForm/ArticleModal'
+
+import { ArticleModal } from './ArticleModal'
 
 type addArticleProps = {
   roomId?: string

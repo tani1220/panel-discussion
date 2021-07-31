@@ -1,8 +1,8 @@
 import { ReactNode, VFC } from 'react'
-import type { HeaderProps } from 'src/components/share/Header/Header'
-import { Header } from 'src/components/share/Header/Header'
-import { SlideNav } from 'src/components/share/SlideNav/SlideNav'
-import type { ThreadType } from 'src/components/share/SlideNav/types'
+import type { HeaderProps } from 'src/components/share/Header'
+import { Header } from 'src/components/share/Header'
+import type { ThreadType } from 'src/components/share/SlideNav'
+import { SlideNav } from 'src/components/share/SlideNav'
 import { useSlideNav } from 'src/hooks/useSlideNav'
 
 type Props = HeaderProps &

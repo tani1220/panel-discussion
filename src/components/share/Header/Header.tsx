@@ -1,22 +1,12 @@
 import Link from 'next/link'
-import { Dispatch, SetStateAction, useCallback, VFC } from 'react'
-import { ArticleForm } from 'src/components/articles/ArticleForm/ArticleFrom'
-import { Button } from 'src/components/share/Button/Button'
-import { Logout } from 'src/components/share/Header/Logout'
-import { MobileMenu } from 'src/components/share/Header/MobileMenu'
+import { useCallback, VFC } from 'react'
+import { ArticleForm } from 'src/components/articles/ArticleForm'
+import { Button } from 'src/components/share/Button'
 import { useNote } from 'src/hooks/useNote'
 
-export type HeaderProps = {
-  left?: 'title' | JSX.Element
-  right?: 'before' | 'after' | JSX.Element
-  roomId?: string
-  isChatOpen?: boolean
-}
-
-type HundleNavProps = {
-  navIsOpen?: boolean
-  navIsNotOpen: Dispatch<SetStateAction<boolean>>
-}
+import { Logout } from './Logout'
+import { MobileMenu } from './MobileMenu'
+import { HeaderProps, HundleNavProps } from './types'
 
 export const Header: VFC<HeaderProps> = (props) => {
   const { navIsOpen, navIsNotOpen } = useNote()

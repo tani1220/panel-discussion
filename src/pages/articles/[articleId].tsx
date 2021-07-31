@@ -1,6 +1,6 @@
 import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next'
 import { useRouter } from 'next/dist/client/router'
-import { Button } from 'src/components/share/Button/Button'
+import { Button } from 'src/components/share/Button'
 import { useNote } from 'src/hooks/useNote'
 import { getArticleData, getArticleIds } from 'src/lib/getArticleData'
 
