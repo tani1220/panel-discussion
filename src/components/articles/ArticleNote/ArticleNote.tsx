@@ -1,6 +1,7 @@
 import { db } from 'firebase/clientApp'
 import { useEffect, useState, VFC } from 'react'
-import { ArticleTag } from 'src/components/articles/ArticleNote/ArticleTag'
+
+import { ArticleTag } from './ArticleTag'
 
 type articlePost = {
   roomId: string

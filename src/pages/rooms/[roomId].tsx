@@ -1,5 +1,5 @@
 import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import { ArticleNote } from 'src/components/articles/ArticleNote/ArticleNote'
+import { ArticleNote } from 'src/components/articles/ArticleNote'
 import { Container } from 'src/components/share/Container'
 import { getRoomData, getRoomIds } from 'src/lib/getRoomData'
 

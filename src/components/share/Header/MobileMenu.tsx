@@ -1,14 +1,10 @@
 import Link from 'next/link'
 import { VFC } from 'react'
-import { ArticleForm } from 'src/components/articles/ArticleForm/ArticleFrom'
-import { Button } from 'src/components/share/Button/Button'
-import { Logout } from 'src/components/share/Header/Logout'
+import { ArticleForm } from 'src/components/articles/ArticleForm'
+import { Button } from 'src/components/share/Button'
 
-type NavItemProps = {
-  isOpen: boolean
-  roomId?: string
-  right?: 'before' | 'after' | JSX.Element
-}
+import { Logout } from './Logout'
+import { NavItemProps } from './types'
 
 export const MobileMenu: VFC<NavItemProps> = (props) => {
   return (

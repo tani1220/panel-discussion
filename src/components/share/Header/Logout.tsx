@@ -1,7 +1,7 @@
 import { auth } from 'firebase/clientApp'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { Button } from 'src/components/share/Button/Button'
+import { Button } from 'src/components/share/Button'
 
 export const Logout = () => {
   const router = useRouter()
