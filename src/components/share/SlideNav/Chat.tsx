@@ -6,7 +6,7 @@ import { SlideMenu } from './SlideMenu'
 import { General } from './types'
 
 export const Chat: VFC<General> = (props) => {
-  const { chatText, setChatText, hundleText, chatTable, setChatTable } = useSlideNav()
+  const { chatText, setChatText, hundleText, chatTable, setChatTable, scrollChatList, scrollRef } = useSlideNav()
 
   useEffect(() => {
     const unsub = db
@@ -20,6 +20,10 @@ export const Chat: VFC<General> = (props) => {
     return () => unsub()
   }, [])
 
+  useEffect(() => {
+    scrollChatList()
+  }, [props.hundleChat])
+
   const hundleAdd = useCallback(
     async (chatText) => {
       await db
@@ -31,6 +35,7 @@ export const Chat: VFC<General> = (props) => {
           createdAt: JSON.stringify(new Date()),
         })
       setChatText('')
+      scrollChatList()
     },
     [chatText]
   )
@@ -51,6 +56,7 @@ export const Chat: VFC<General> = (props) => {
                         </li>
                       )
                     })}
+                    <div ref={scrollRef} />
                   </ul>
                 </div>
 
