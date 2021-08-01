@@ -2,20 +2,7 @@ import { db } from 'firebase/clientApp'
 import { useEffect, useState, VFC } from 'react'
 
 import { ArticleTag } from './ArticleTag'
-
-type articlePost = {
-  roomId: string
-  question: string
-}[]
-
-type articleListProps = {
-  article: {
-    roomId: string
-    ref: {
-      theme: string
-    }
-  }
-}
+import type { articleListProps, articlePost } from './types'
 
 export const ArticleNote: VFC<articleListProps> = ({ article }) => {
   const [articles, setArticles] = useState<articlePost>([])
@@ -27,7 +14,9 @@ export const ArticleNote: VFC<articleListProps> = ({ article }) => {
       .collection(article.roomId)
       .orderBy('createdAt')
       .onSnapshot((snapshot) => {
-        setArticles(snapshot.docs.map((doc) => ({ roomId: doc.id, question: doc.data().question })))
+        setArticles(
+          snapshot.docs.map((doc) => ({ roomId: doc.id, question: doc.data().question, name: doc.data().name }))
+        )
       })
     return () => unsubscribe()
   }, [])
@@ -38,9 +27,9 @@ export const ArticleNote: VFC<articleListProps> = ({ article }) => {
         {articles.map((item) => (
           <li className="pt-4 text-3xl" key={item.roomId}>
             <div className="cursor-pointer">
-              <ArticleTag id={item.question}>
-                <a>{item.question}</a>
-                <a>{item.roomId}</a>
+              <ArticleTag id={item.roomId} name={item.name}>
+                <p>{item.question}</p>
+                <p>投稿ID - {item.roomId}</p>
               </ArticleTag>
             </div>
           </li>

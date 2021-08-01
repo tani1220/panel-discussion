@@ -1,5 +1,5 @@
 import { db } from 'firebase/clientApp'
-import { useCallback, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 
 type ChatTable = {
   message: string
@@ -20,6 +20,13 @@ export const useSlideNav = () => {
   const [isChatOpen, isNotChatOpen] = useState(false)
   const [chatTable, setChatTable] = useState<ChatTable>([])
   const [data, setData] = useState({ theme: '', name: '', date: '', time: '', link: '', discription: '' })
+
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const scrollChatList = useCallback(() => {
+    scrollRef?.current?.scrollIntoView()
+    console.log('ugoita')
+  }, [scrollRef])
 
   const hundleAdd = async (data: FormProps) => {
     await db.collection('contents').doc(data.theme).set({
@@ -63,5 +70,7 @@ export const useSlideNav = () => {
     data,
     hundleChange,
     hundleAdd,
+    scrollRef,
+    scrollChatList,
   }
 }
