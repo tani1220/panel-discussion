@@ -1,23 +1,14 @@
-import Link from 'next/link'
-import { ReactNode, VFC } from 'react'
+import { VFC } from 'react'
 
-type TextCardProps = {
-  id: string
-  children: ReactNode
-}
+import { Modal } from './Modal'
+import type { TextCardProps } from './types'
 
 export const ArticleTag: VFC<TextCardProps> = (props) => {
-  const id = props.id
-
   return (
-    <Link href={`/articles/${id}`}>
+    <Modal name={props.name}>
       <div className="max-w-xs sm:max-w-4xl p-4 sm:p-2 w-full bg-gray-800 rounded-xl mx-auto">
-        <div className="items-center sm:px-2 sm:py-3">
-          <div className="mx-3">
-            <p className="text-xl sm:text-3xl font-mono text-gray-300">{props.children}</p>
-          </div>
-        </div>
+        <div className="sm:px-2 sm:py-3 mx-3">{props.children}</div>
       </div>
-    </Link>
+    </Modal>
   )
 }
