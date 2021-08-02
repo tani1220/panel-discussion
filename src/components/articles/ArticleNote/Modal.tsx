@@ -1,10 +1,15 @@
 import { Dialog, Transition } from '@headlessui/react'
+import { db } from 'firebase/clientApp'
 import { Fragment, useRef, useState, VFC } from 'react'
 
-import type { ModalProps } from './types'
+import type { ArticleCard } from './types'
 
-export const Modal: VFC<ModalProps> = (props) => {
+export const Modal: VFC<ArticleCard> = (props) => {
   const [open, setOpen] = useState(false)
+
+  const articleDelete = async (id: string) => {
+    await db.collection('contents').doc(props.roomId).collection(props.roomId).doc(id).delete()
+  }
 
   const cancelButtonRef = useRef(null)
 
@@ -69,7 +74,10 @@ export const Modal: VFC<ModalProps> = (props) => {
                   <button
                     type="button"
                     className="w-full inline-flex justify-center rounded px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      articleDelete(props.id)
+                      setOpen(false)
+                    }}
                   >
                     削除
                   </button>
