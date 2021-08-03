@@ -1,29 +1,22 @@
 import { ReactNode } from 'react'
 
-type ModalProps = {
-  children: ReactNode
-  name: string
-}
-
-type TextCardProps = {
+type ArticleCard = {
   id: string
   name: string
   children: ReactNode
+  roomId: string
 }
 
 type articlePost = {
-  roomId: string
+  id: string
   question: string
   name: string
 }[]
 
-type articleListProps = {
+type articleNoteProps = {
   article: {
     roomId: string
-    ref: {
-      theme: string
-    }
   }
 }
 
-export type { articleListProps, articlePost, ModalProps, TextCardProps }
+export type { ArticleCard, articleNoteProps, articlePost }
