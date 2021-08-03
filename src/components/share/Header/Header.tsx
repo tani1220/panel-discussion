@@ -52,17 +52,17 @@ const Right: VFC<HeaderProps> = (props) => {
             ) : null}
 
             <Link href="/login">
-              <Button className="mr-3">管理者</Button>
+              <Button type="normal" className="mr-3">
+                管理者
+              </Button>
             </Link>
-            <Logout />
+            <Logout buttonType="normal" />
           </div>
         </div>
 
         {/* 携帯画面 */}
         <div className="lg:hidden text-gray-300 bg-black flex items-center">
-          <div className="mr-3">
-            <ArticleForm roomId={props.roomId} />
-          </div>
+          <div className="mr-3">{props.right === 'after' ? <ArticleForm roomId={props.roomId} /> : null}</div>
           <MobileMenu />
         </div>
       </div>

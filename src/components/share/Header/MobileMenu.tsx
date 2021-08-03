@@ -27,18 +27,22 @@ export const MobileMenu = () => {
           >
             <Menu.Items
               static
-              className="mt-10 origin-top-right absolute right-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+              className="mt-10 absolute right-0 rounded-md bg-black bg-opacity-50 border border-gray-500 cursor-pointer"
             >
               <div className="py-1">
-                <Menu.Item>
-                  <Link href="/login">
-                    <Button className="mr-3">管理者</Button>
-                  </Link>
-                </Menu.Item>
+                <div className="hover:bg-blue-600">
+                  <Menu.Item>
+                    <Link href="/login">
+                      <Button type="mobilelMenu">管理者</Button>
+                    </Link>
+                  </Menu.Item>
+                </div>
 
-                <Menu.Item>
-                  <Logout />
-                </Menu.Item>
+                <div className="hover:bg-blue-600">
+                  <Menu.Item>
+                    <Logout buttonType="mobilelMenu" />
+                  </Menu.Item>
+                </div>
               </div>
             </Menu.Items>
           </Transition>
