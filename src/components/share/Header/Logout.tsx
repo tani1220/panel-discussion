@@ -1,9 +1,13 @@
 import { auth } from 'firebase/clientApp'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, VFC } from 'react'
 import { Button } from 'src/components/share/Button'
 
-export const Logout = () => {
+type LogoutProps = {
+  buttonType?: 'normal' | 'mobilelMenu' | JSX.Element
+}
+
+export const Logout: VFC<LogoutProps> = (props) => {
   const router = useRouter()
   const [isLogin, setIsNotLogin] = useState(false)
 
@@ -23,5 +27,13 @@ export const Logout = () => {
     }
   }
 
-  return <div>{isLogin ? <Button onClick={hundleLogout}>ログアウト</Button> : null}</div>
+  return (
+    <div>
+      {isLogin ? (
+        <Button type={props.buttonType} onClick={hundleLogout}>
+          ログアウト
+        </Button>
+      ) : null}
+    </div>
+  )
 }

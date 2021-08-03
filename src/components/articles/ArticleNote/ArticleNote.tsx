@@ -1,22 +1,10 @@
 import { db } from 'firebase/clientApp'
 import { useEffect, useState, VFC } from 'react'
-import { TextCard } from 'src/components/share/TextCard'
 
-type articlePost = {
-  roomId: string
-  question: string
-}[]
+import { ArticleTag } from './ArticleTag'
+import type { articleNoteProps, articlePost } from './types'
 
-type articleProps = {
-  article: {
-    roomId: string
-    ref: {
-      theme: string
-    }
-  }
-}
-
-export const ArticleList: VFC<articleProps> = ({ article }) => {
+export const ArticleNote: VFC<articleNoteProps> = ({ article }) => {
   const [articles, setArticles] = useState<articlePost>([])
 
   useEffect(() => {
@@ -26,7 +14,7 @@ export const ArticleList: VFC<articleProps> = ({ article }) => {
       .collection(article.roomId)
       .orderBy('createdAt')
       .onSnapshot((snapshot) => {
-        setArticles(snapshot.docs.map((doc) => ({ roomId: doc.id, question: doc.data().question })))
+        setArticles(snapshot.docs.map((doc) => ({ id: doc.id, question: doc.data().question, name: doc.data().name })))
       })
     return () => unsubscribe()
   }, [])
@@ -35,12 +23,11 @@ export const ArticleList: VFC<articleProps> = ({ article }) => {
     <div>
       <ul>
         {articles.map((item) => (
-          <li className="pt-4 text-3xl" key={item.roomId}>
+          <li className="pt-4 text-xl sm:text-3xl" key={item.id}>
             <div className="cursor-pointer">
-              <TextCard id={item.question}>
-                <a>{item.question}</a>
-                <a>{item.roomId}</a>
-              </TextCard>
+              <ArticleTag id={item.id} name={item.name} roomId={article.roomId}>
+                <p>{item.question}</p>
+              </ArticleTag>
             </div>
           </li>
         ))}

@@ -2,13 +2,12 @@ import { auth } from 'firebase/clientApp'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { Motif } from 'src/components/Motif'
 import { Container } from 'src/components/share/Container'
 import { getUserData, getUserIds } from 'src/lib/getUserData'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-const userPage: NextPage<Props> = ({ userData }) => {
+const UserHome: NextPage<Props> = ({ userData }) => {
   const router = useRouter()
 
   //認証情報がない場合はログイン画面に遷移
@@ -21,11 +20,10 @@ const userPage: NextPage<Props> = ({ userData }) => {
 
   return (
     <>
-      <Container left="title" right="before">
+      <Container left="title" right="before" thread="motif">
         <div className="text-white">
           <h1>ユーザーページ</h1>
           <p>{userData.userId}</p>
-          <Motif />
         </div>
       </Container>
     </>
@@ -51,4 +49,4 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
   }
 }
 
-export default userPage
+export default UserHome

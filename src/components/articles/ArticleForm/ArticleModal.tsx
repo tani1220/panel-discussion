@@ -1,16 +1,20 @@
 import { Dialog, Transition } from '@headlessui/react'
+import { PencilIcon } from '@heroicons/react/solid'
 import { Fragment, VFC } from 'react'
 import { Button } from 'src/components/share/Button'
 import { useDialog } from 'src/hooks/useDialog'
 
 type ModalProps = { handleSubmit: (arg0: { text: string; name: string }) => void }
 
-export const Modal: VFC<ModalProps> = (props) => {
+export const ArticleModal: VFC<ModalProps> = (props) => {
   const { values, hundleChange, closeModal, openModal, isOpen, setValues } = useDialog()
 
   return (
     <div>
-      <Button onClick={openModal}>投稿する</Button>
+      <Button type="normal" className="contents sm:contents md:flex" onClick={openModal}>
+        <PencilIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
+        <div className="ml-2 hidden sm:hidden md:block">質問する</div>
+      </Button>
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={closeModal}>
@@ -64,6 +68,7 @@ export const Modal: VFC<ModalProps> = (props) => {
 
                 <div className="mt-4 flex justify-between items-center">
                   <Button
+                    type="normal"
                     onClick={() => {
                       props.handleSubmit(values)
                       setValues({ text: '', name: '' })
@@ -72,7 +77,9 @@ export const Modal: VFC<ModalProps> = (props) => {
                   >
                     送信
                   </Button>
-                  <Button onClick={closeModal}>閉じる</Button>
+                  <Button type="normal" onClick={closeModal}>
+                    閉じる
+                  </Button>
                 </div>
               </div>
             </Transition.Child>
