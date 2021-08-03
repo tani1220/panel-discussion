@@ -1,4 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
+import { PencilIcon } from '@heroicons/react/solid'
 import { Fragment, VFC } from 'react'
 import { Button } from 'src/components/share/Button'
 import { useDialog } from 'src/hooks/useDialog'
@@ -10,7 +11,10 @@ export const ArticleModal: VFC<ModalProps> = (props) => {
 
   return (
     <div>
-      <Button onClick={openModal}>投稿する</Button>
+      <Button className="contents sm:contents md:flex" onClick={openModal}>
+        <PencilIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
+        <div className="ml-2 hidden sm:hidden md:block">質問する</div>
+      </Button>
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={closeModal}>
