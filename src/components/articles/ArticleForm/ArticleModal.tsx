@@ -11,7 +11,7 @@ export const ArticleModal: VFC<ModalProps> = (props) => {
 
   return (
     <div>
-      <Button className="contents sm:contents md:flex" onClick={openModal}>
+      <Button type="normal" className="contents sm:contents md:flex" onClick={openModal}>
         <PencilIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
         <div className="ml-2 hidden sm:hidden md:block">質問する</div>
       </Button>
@@ -68,6 +68,7 @@ export const ArticleModal: VFC<ModalProps> = (props) => {
 
                 <div className="mt-4 flex justify-between items-center">
                   <Button
+                    type="normal"
                     onClick={() => {
                       props.handleSubmit(values)
                       setValues({ text: '', name: '' })
@@ -76,7 +77,9 @@ export const ArticleModal: VFC<ModalProps> = (props) => {
                   >
                     送信
                   </Button>
-                  <Button onClick={closeModal}>閉じる</Button>
+                  <Button type="normal" onClick={closeModal}>
+                    閉じる
+                  </Button>
                 </div>
               </div>
             </Transition.Child>
