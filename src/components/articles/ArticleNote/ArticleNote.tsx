@@ -23,12 +23,10 @@ export const ArticleNote: VFC<articleNoteProps> = ({ article }) => {
     <div>
       <ul>
         {articles.map((item) => (
-          <li className="pt-4 text-xl sm:text-3xl" key={item.id}>
-            <div className="cursor-pointer">
-              <ArticleTag id={item.id} name={item.name} roomId={article.roomId}>
-                <p>{item.question}</p>
-              </ArticleTag>
-            </div>
+          <li key={item.id}>
+            <ArticleTag id={item.id} name={item.name} roomId={article.roomId}>
+              <p>{item.question}</p>
+            </ArticleTag>
           </li>
         ))}
       </ul>

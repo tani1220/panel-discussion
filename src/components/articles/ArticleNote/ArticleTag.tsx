@@ -5,10 +5,12 @@ import type { ArticleCard } from './types'
 
 export const ArticleTag: VFC<ArticleCard> = (props) => {
   return (
-    <Modal name={props.name} id={props.id} roomId={props.roomId}>
-      <div className="max-w-xs sm:max-w-4xl p-4 sm:p-2 w-full bg-gray-800 rounded-xl mx-auto">
-        <div className="sm:px-2 sm:py-3 mx-3">{props.children}</div>
+    <div className="pt-4 text-lg mx-5 sm:mx-10 md:text-2xl xl:text-3xl cursor-pointer">
+      <div className="w-auto bg-gray-800 rounded-xl p-4">
+        <Modal name={props.name} id={props.id} roomId={props.roomId}>
+          {props.children}
+        </Modal>
       </div>
-    </Modal>
+    </div>
   )
 }

@@ -24,8 +24,8 @@ export const Modal: VFC<ArticleCard> = (props) => {
       </a>
 
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" static className="fixed z-10 inset-0 overflow-y-auto" open={open} onClose={setOpen}>
-          <div className="flex items-end justify-center h-screen">
+        <Dialog as="div" static className="fixed z-10 inset-0 m-5 overflow-y-auto" open={open} onClose={setOpen}>
+          <div className="flex items-end justify-center h-screen ">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -51,20 +51,20 @@ export const Modal: VFC<ArticleCard> = (props) => {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <div className="m-auto bg-gray-800 rounded sm:max-w-4xl transform sm:w-full">
+              <div className="m-auto rounded sm:max-w-4xl sm:w-full transform">
                 <Dialog.Title
                   as="h1"
-                  className="sm:text-4xl text-2xl leading-snug font-medium text-center text-gray-200"
+                  className="sm:text-4xl text-xl leading-snug font-medium text-center text-gray-200"
                 >
                   {props.children}
                 </Dialog.Title>
-                <Dialog.Title as="h3" className="sm:text-2xl font-medium text-center text-gray-300">
+                <Dialog.Title as="h3" className="text-xl sm:text-2xl font-medium text-center text-gray-300">
                   {props.name}
                 </Dialog.Title>
 
-                <div className="bg-gray-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <div className="bg-gray-800 px-4 py-3 sm:px-6 flex sm:flex-row-reverse">
                   <Button
-                    className="w-full inline-flex justify-center rounded px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                    className="mt-3 mr-2 sm:mt-0 sm:ml-3 sm:w-auto text-sm px-4 py-2 w-full inline-flex justify-center rounded bg-red-600 font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                     onClick={() => {
                       articleDelete(props.id)
                       setOpen(false)
@@ -73,7 +73,7 @@ export const Modal: VFC<ArticleCard> = (props) => {
                     削除
                   </Button>
                   <Button
-                    className="mt-3 w-full inline-flex justify-center rounded  px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    className="mt-3 sm:mt-0 sm:ml-3 sm:w-auto text-sm px-4 py-2 w-full inline-flex justify-center rounded bg-white font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     onClick={() => setOpen(false)}
                   >
                     閉じる
