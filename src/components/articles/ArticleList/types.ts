@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-type ArticleCard = {
+type ModalProps = {
   id: string
   name: string
   children: ReactNode
@@ -13,10 +13,10 @@ type articlePost = {
   name: string
 }[]
 
-type articleNoteProps = {
+type articleListProps = {
   article: {
     roomId: string
   }
 }
 
-export type { ArticleCard, articleNoteProps, articlePost }
+export type { articleListProps, articlePost, ModalProps }

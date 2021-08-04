@@ -1,10 +1,10 @@
 import { db } from 'firebase/clientApp'
 import { useEffect, useState, VFC } from 'react'
 
-import { ArticleTag } from './ArticleTag'
-import type { articleNoteProps, articlePost } from './types'
+import { Modal } from './Modal'
+import type { articleListProps, articlePost } from './types'
 
-export const ArticleNote: VFC<articleNoteProps> = ({ article }) => {
+export const ArticleList: VFC<articleListProps> = ({ article }) => {
   const [articles, setArticles] = useState<articlePost>([])
 
   useEffect(() => {
@@ -24,9 +24,13 @@ export const ArticleNote: VFC<articleNoteProps> = ({ article }) => {
       <ul>
         {articles.map((item) => (
           <li key={item.id}>
-            <ArticleTag id={item.id} name={item.name} roomId={article.roomId}>
-              <p>{item.question}</p>
-            </ArticleTag>
+            <div className="pt-4 text-lg mx-5 sm:mx-10 md:text-2xl xl:text-3xl cursor-pointer">
+              <div className="w-auto bg-gray-800 rounded-xl p-4">
+                <Modal name={item.name} id={item.id} roomId={article.roomId}>
+                  {item.question}
+                </Modal>
+              </div>
+            </div>
           </li>
         ))}
       </ul>

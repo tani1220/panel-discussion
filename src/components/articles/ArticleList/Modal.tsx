@@ -3,9 +3,9 @@ import { db } from 'firebase/clientApp'
 import { Fragment, useState, VFC } from 'react'
 import { Button } from 'src/components/share/Button'
 
-import type { ArticleCard } from './types'
+import type { ModalProps } from './types'
 
-export const Modal: VFC<ArticleCard> = (props) => {
+export const Modal: VFC<ModalProps> = (props) => {
   const [open, setOpen] = useState(false)
 
   const articleDelete = async (id: string) => {
@@ -15,7 +15,7 @@ export const Modal: VFC<ArticleCard> = (props) => {
   return (
     <div>
       <a
-        className="text-white"
+        className="text-white block"
         onClick={() => {
           setOpen(!open)
         }}
@@ -37,7 +37,6 @@ export const Modal: VFC<ArticleCard> = (props) => {
             >
               <Dialog.Overlay className="fixed inset-0 bg-gray-800 transition-opacity" />
             </Transition.Child>
-            {/* This element is to trick the browser into centering the modal contents. */}
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
               &#8203;
             </span>
