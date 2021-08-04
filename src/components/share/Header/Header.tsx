@@ -26,9 +26,9 @@ const Left: VFC<HeaderProps> = (props) => {
   }
   if (props.left === 'title') {
     return (
-      <div className="flex items-center">
+      <div className="flex items-center md:text-5xl sm:text-3xl text-2xl font-bold text-white">
         <Link href="/">
-          <a className="sm:text-5xl text-3xl font-bold text-white">Panel discussion</a>
+          <a>Panel discussion</a>
         </Link>
       </div>
     )

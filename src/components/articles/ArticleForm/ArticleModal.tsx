@@ -11,9 +11,9 @@ export const ArticleModal: VFC<ModalProps> = (props) => {
 
   return (
     <div>
-      <Button type="normal" className="contents sm:contents md:flex" onClick={openModal}>
+      <Button type="normal" className="contents md:contents lg:flex" onClick={openModal}>
         <PencilIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
-        <div className="ml-2 hidden sm:hidden md:block">質問する</div>
+        <div className="ml-2 hidden md:hidden lg:block">質問する</div>
       </Button>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -22,10 +22,11 @@ export const ArticleModal: VFC<ModalProps> = (props) => {
             <Transition.Child as={Fragment} leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
               <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
             </Transition.Child>
-            {/* This element is to trick the browser into centering the modal contents. */}
+
             <span className="inline-block h-screen align-middle" aria-hidden="true">
               &#8203;
             </span>
+
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
