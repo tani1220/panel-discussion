@@ -83,7 +83,7 @@ export const Chat: VFC<General> = (props) => {
             </div>
           </div>
         ) : (
-          <SlideMenu hundleChat={props.hundleChat} variety="openChat" />
+          <SlideMenu hundleChat={props.hundleChat} variety="open" />
         )}
       </>
     )
