@@ -20,8 +20,8 @@ export const Admin = () => {
       </Button>
 
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" static className="fixed z-10 inset-0 m-5" open={open} onClose={setOpen}>
-          <div className="flex items-end justify-center h-screen ">
+        <Dialog as="div" static className="fixed z-10 inset-0 " open={open} onClose={setOpen}>
+          <div className="flex items-end justify-center h-screen">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -46,103 +46,93 @@ export const Admin = () => {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <div className="sm:h-2/3 h-full bg-black m-auto rounded-2xl sm:max-w-xl sm:w-full transform sm:mt-20">
-                <div className="text-white flex justify-between items-center font-mono p-2 border-b border-gray-700">
+              <div className="sm:h-5/6 h-full bg-black m-auto rounded-2xl sm:max-w-xl sm:w-full transform sm:mt-20">
+                <div className="text-white flex justify-between items-center font-mono rounded-t-2xl bg-gray-900 p-2 px-6 sm:p-4">
                   <Button
                     onClick={() => {
                       setOpen(false)
                     }}
                   >
-                    <XIcon className="h-7 w-7" aria-hidden="true" />
+                    <XIcon className="h-6 w-6 text-blue-600" aria-hidden="true" />
                   </Button>
 
-                  <h1 className="text-xl text-gray-300">お題を投稿する</h1>
-                  <Button className="py-1 px-3 rounded-2xl bg-blue-600" onClick={() => setOpen(false)}>
+                  <h1 className="sm:text-xl text-md text-gray-300">お題を投稿する</h1>
+                  <Button className="py-1 px-3 rounded-2xl bg-blue-500" onClick={() => setOpen(false)}>
                     送信
                   </Button>
                 </div>
 
                 <div className="h-5/6 flex overflow-y-auto">
-                  <div className="w-full m-3">
-                    <label htmlFor="theme" className="mb-2 block text-sm font-medium text-gray-500">
-                      お題
-                    </label>
+                  <div className="w-full m-8">
                     <input
                       type="text"
                       name="theme"
                       id="theme"
                       autoComplete="off"
-                      className="focus:outline-none w-full h-8 px-2 sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded"
+                      className="focus:outline-none focus:border-blue-900 w-full text-white h-8 px-2 sm:text-sm bg-black border-b border-gray-500"
+                      placeholder="タイトルを入力"
                     />
-
-                    <div className="mt-6">
-                      <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-500">
-                        名前
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        autoComplete="off"
-                        className="focus:outline-none w-1/3 h-8 px-2 sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded"
-                      />
-                    </div>
-
-                    <div className="mt-8 flex">
+                    <input
+                      type="name"
+                      name="name"
+                      id="name"
+                      autoComplete="off"
+                      className="focus:outline-none focus:border-blue-900 sm:w-1/3 w-2/4 text-white h-8 px-2 sm:text-sm bg-black border-b border-gray-500 my-8"
+                      placeholder="名前を入力"
+                    />
+                    <div className="my-8 flex">
                       <div>
-                        <label htmlFor="date" className="mb-2 block text-sm font-medium text-gray-500">
+                        <label htmlFor="date" className="mb-1 block text-sm font-medium text-gray-400">
                           日付
                         </label>
                         <input
                           type="date"
                           name="date"
                           id="date"
-                          autoComplete="off"
-                          className="focus:outline-none h-8 px-2 mr-4 sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded"
+                          className="focus:outline-none h-8 px-2 mr-4 sm:text-sm bg-white bg-opacity-30 border-gray-300 rounded"
                         />
                       </div>
                       <div>
-                        <label htmlFor="time" className="mb-2 block text-sm font-medium text-gray-500">
+                        <label htmlFor="time" className="mb-1 block text-sm font-medium text-gray-400">
                           時間
                         </label>
                         <input
                           type="time"
                           name="time"
                           id="time"
-                          autoComplete="off"
-                          className="focus:outline-none h-8 px-2 sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded"
+                          className="focus:outline-none h-8 px-2 sm:text-sm bg-white bg-opacity-30 border-gray-300 rounded"
                         />
                       </div>
                     </div>
 
-                    <div className="mt-8">
-                      <label htmlFor="Zoom URL" className="mb-2 block text-sm font-medium text-gray-500">
+                    <div className="my-8">
+                      <label htmlFor="Zoom URL" className="mb-1 block text-sm font-medium text-gray-500">
                         URL
                       </label>
                       <div className="mt-1 flex rounded-md shadow-sm">
-                        <span className="inline-flex items-center px-3 rounded rounded-r-none border-r-2 border-black bg-white bg-opacity-30 text-gray-300 text-sm">
-                          http://
+                        <span className="inline-flex items-center px-3 rounded rounded-r-none border-r-2 border-black bg-white bg-opacity-10 text-gray-300 text-sm">
+                          https://
                         </span>
                         <input
                           type="text"
                           name="link"
                           id="link"
                           autoComplete="off"
-                          className="focus:outline-none w-full h-8 px-2 sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded rounded-l-none"
+                          className="focus:outline-none focus:border-blue-900 w-full text-white h-8 px-2 sm:text-sm bg-black border-b border-gray-500"
                           placeholder="www.example.com"
                         />
                       </div>
                     </div>
 
-                    <div className="mt-10">
-                      <label htmlFor="discription" className="mb-2 block text-sm font-medium text-gray-500 mt-5">
+                    <div className="my-8">
+                      <label htmlFor="discription" className="mb-1 block text-sm font-medium text-gray-500 mt-5">
                         詳細
                       </label>
                       <textarea
                         name="discription"
                         id="discription"
                         autoComplete="off"
-                        className="text-white h-40 w-full p-2 focus:outline-none sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded"
+                        className="focus:outline-none focus:border-blue-900 w-full text-white h-40 p-2 sm:text-sm bg-black border border-gray-500 rounded"
                       ></textarea>
                     </div>
                   </div>
