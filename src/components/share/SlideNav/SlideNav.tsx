@@ -1,7 +1,6 @@
 import { VFC } from 'react'
 
 import { Chat } from './Chat'
-import { Motif } from './Motif'
 import { General } from './types'
 
 export const SlideNav: VFC<General> = (props) => {
@@ -18,7 +17,6 @@ const Thread: VFC<General> = (props) => {
   return (
     <>
       <Chat hundleChat={hundleChat} roomId={roomId} isChatOpen={isChatOpen} thread={thread} />
-      <Motif hundleChat={hundleChat} isChatOpen={isChatOpen} thread={thread} />
     </>
   )
 }

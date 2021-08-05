@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { VFC } from 'react'
 import { ArticleForm } from 'src/components/articles/ArticleForm'
+import { Admin } from 'src/components/articles/ArticleForm/Admin'
 import { Button } from 'src/components/share/Button'
 
 import { Logout } from './Logout'
@@ -13,7 +14,10 @@ export const Header: VFC<HeaderProps> = (props) => {
       <div className={props.isChatOpen ? 'w-full' : 'w-full fixed'}>
         <div className="flex justify-between items-center mx-auto sm:py-3 sm:px-14 p-4 bg-black">
           <Left left={props.left} />
-          <Right right={props.right} roomId={props.roomId} />
+          <div className="flex">
+            <Center center={props.center} roomId={props.roomId} />
+            <Right right={props.right} />
+          </div>
         </div>
       </div>
     </header>
@@ -40,17 +44,11 @@ const Right: VFC<HeaderProps> = (props) => {
   if (!props.right) {
     return null
   }
-  if (props.right === 'before' || props.right === 'after') {
+  if (props.right === 'menu') {
     return (
       <div>
         <div className="hidden lg:block">
           <div className="flex">
-            {props.right === 'after' ? (
-              <div className="mr-3">
-                <ArticleForm roomId={props.roomId} />
-              </div>
-            ) : null}
-
             <Link href="/login">
               <Button type="normal" className="mr-3">
                 管理者
@@ -62,11 +60,34 @@ const Right: VFC<HeaderProps> = (props) => {
 
         {/* 携帯画面 */}
         <div className="lg:hidden text-gray-300 bg-black flex items-center">
-          <div className="mr-3">{props.right === 'after' ? <ArticleForm roomId={props.roomId} /> : null}</div>
           <MobileMenu />
         </div>
       </div>
     )
   }
   return props.right
+}
+
+const Center: VFC<HeaderProps> = (props) => {
+  if (!props.center) {
+    return null
+  }
+
+  if (props.center === 'admin') {
+    return (
+      <div className="mr-3">
+        <Admin />
+      </div>
+    )
+  }
+
+  if (props.center === 'user') {
+    return (
+      <div className="mr-3">
+        <ArticleForm roomId={props.roomId} />
+      </div>
+    )
+  }
+
+  return props.center
 }

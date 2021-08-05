@@ -16,7 +16,7 @@ const SlideButton: VFC<MenuType> = (props) => {
     return null
   }
 
-  if (props.variety === 'openChat' || props.variety === 'openMotif') {
+  if (props.variety === 'open') {
     return (
       <div className="fixed -bottom-0 right-0 sm:flex hidden mb-2 mr-3 text-white">
         <Button
@@ -24,7 +24,7 @@ const SlideButton: VFC<MenuType> = (props) => {
           onClick={props.hundleChat}
         >
           <ChatAlt2Icon className="flex-shrink-0 h-7 w-7 mr-2 text-gray-300" aria-hidden="true" />
-          <p>{props.variety === 'openChat' ? 'チャット' : 'お題投稿'}</p>
+          <p>チャット</p>
         </Button>
 
         <Button className="flex p-2 bg-black items-center border-2 border-gray-500 rounded">

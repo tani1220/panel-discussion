@@ -8,7 +8,7 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>
 const Home: NextPage<Props> = ({ articles }) => {
   return (
     <>
-      <Container left="title" right="before">
+      <Container left="title" right="menu">
         <ul>
           {articles.map((item) => (
             <li className="" key={item.id}>
