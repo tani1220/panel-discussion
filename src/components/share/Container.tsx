@@ -19,7 +19,7 @@ export const Container: VFC<Props> = (props) => {
   return (
     <div>
       <div className="flex h-screen">
-        <div className="overflow-scroll w-full bg-black bg-opacity-90">
+        <div className="overflow-scroll w-full bg-black">
           <Header {...headerProps} isChatOpen={isChatOpen} roomId={roomId} />
           <div className="mx-auto pb-16">
             <div className={isChatOpen ? 'pt-2' : 'pt-20'}>{children}</div>

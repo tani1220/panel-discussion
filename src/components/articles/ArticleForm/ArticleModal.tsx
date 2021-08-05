@@ -12,7 +12,7 @@ export const ArticleModal: VFC<ModalProps> = (props) => {
   return (
     <div>
       <Button type="normal" className="contents md:contents lg:flex" onClick={openModal}>
-        <PencilIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
+        <PencilIcon className="h-6 w-6" aria-hidden="true" />
         <div className="ml-2 hidden md:hidden lg:block">質問する</div>
       </Button>
 

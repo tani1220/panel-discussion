@@ -24,8 +24,8 @@ export const ArticleList: VFC<articleListProps> = ({ article }) => {
       <ul>
         {articles.map((item) => (
           <li key={item.id}>
-            <div className="pt-4 text-lg mx-5 sm:mx-10 md:text-2xl xl:text-3xl cursor-pointer">
-              <div className="w-auto bg-gray-800 rounded-xl p-4">
+            <div className="pt-4 text-lg mx-5 sm:mx-10 md:text-xl xl:text-2xl cursor-pointer">
+              <div className="w-auto bg-white bg-opacity-10 rounded p-6">
                 <Modal name={item.name} id={item.id} roomId={article.roomId}>
                   {item.question}
                 </Modal>

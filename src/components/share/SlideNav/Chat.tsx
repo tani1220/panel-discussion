@@ -44,11 +44,11 @@ export const Chat: VFC<General> = (props) => {
     return (
       <>
         {props.isChatOpen ? (
-          <div className="sm:max-w-xs sm:w-full bg-black text-white ">
+          <div className="sm:max-w-xs sm:w-full bg-black text-white border-l border-gray-800">
             <div className="h-full flex items-end justify-center">
               <div className="w-11/12 mb-4">
                 <div className="max-h-screen overflow-y-scroll">
-                  <ul className="text-white text-sm text-opacity-80">
+                  <ul className=" text-sm text-opacity-80">
                     {chatTable.map((item) => {
                       return (
                         <li key={item.id} className="py-2">
@@ -60,7 +60,7 @@ export const Chat: VFC<General> = (props) => {
                   </ul>
                 </div>
 
-                <div className="mt-2 text-white">
+                <div className="mt-2 ">
                   <input
                     type="text"
                     name="text"
