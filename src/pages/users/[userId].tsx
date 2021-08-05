@@ -20,7 +20,7 @@ const UserHome: NextPage<Props> = ({ userData }) => {
 
   return (
     <>
-      <Container left="title" right="before" thread="motif">
+      <Container left="title" right="menu" center="admin" thread="motif">
         <div className="text-white">
           <h1>ユーザーページ</h1>
           <p>{userData.userId}</p>

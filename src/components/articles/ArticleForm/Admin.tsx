@@ -46,7 +46,7 @@ export const Admin = () => {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <div className="h-2/3 bg-black m-auto rounded-2xl sm:max-w-xl sm:w-full transform mt-20">
+              <div className="sm:h-2/3 h-full bg-black m-auto rounded-2xl sm:max-w-xl sm:w-full transform sm:mt-20">
                 <div className="text-white flex justify-between items-center font-mono p-2 border-b border-gray-700">
                   <Button
                     onClick={() => {
