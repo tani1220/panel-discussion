@@ -2,9 +2,11 @@ import { Dialog, Transition } from '@headlessui/react'
 import { DocumentTextIcon, XIcon } from '@heroicons/react/outline'
 import { Fragment, useState } from 'react'
 import { Button } from 'src/components/share/Button'
+import { useAdmin } from 'src/hooks/useAdmin'
 
 export const Admin = () => {
   const [open, setOpen] = useState(false)
+  const { data, hundleChange, hundleAdd } = useAdmin()
 
   return (
     <div>
@@ -57,7 +59,13 @@ export const Admin = () => {
                   </Button>
 
                   <h1 className="sm:text-xl text-md text-gray-300">お題を投稿する</h1>
-                  <Button className="py-1 px-3 rounded-2xl bg-blue-500" onClick={() => setOpen(false)}>
+                  <Button
+                    className="py-1 px-3 rounded-2xl bg-blue-500"
+                    onClick={() => {
+                      setOpen(false)
+                      hundleAdd(data)
+                    }}
+                  >
                     送信
                   </Button>
                 </div>
@@ -68,14 +76,18 @@ export const Admin = () => {
                       type="text"
                       name="theme"
                       id="theme"
+                      value={data.theme}
+                      onChange={hundleChange}
                       autoComplete="off"
                       className="focus:outline-none focus:border-blue-900 w-full text-white h-8 px-2 sm:text-sm bg-black border-b border-gray-500"
                       placeholder="タイトルを入力"
                     />
                     <input
-                      type="name"
+                      type="text"
                       name="name"
                       id="name"
+                      value={data.name}
+                      onChange={hundleChange}
                       autoComplete="off"
                       className="focus:outline-none focus:border-blue-900 sm:w-1/3 w-2/4 text-white h-8 px-2 sm:text-sm bg-black border-b border-gray-500 my-8"
                       placeholder="名前を入力"
@@ -89,6 +101,8 @@ export const Admin = () => {
                           type="date"
                           name="date"
                           id="date"
+                          value={data.date}
+                          onChange={hundleChange}
                           className="focus:outline-none h-8 px-2 mr-4 sm:text-sm bg-white bg-opacity-30 border-gray-300 rounded"
                         />
                       </div>
@@ -100,6 +114,8 @@ export const Admin = () => {
                           type="time"
                           name="time"
                           id="time"
+                          value={data.time}
+                          onChange={hundleChange}
                           className="focus:outline-none h-8 px-2 sm:text-sm bg-white bg-opacity-30 border-gray-300 rounded"
                         />
                       </div>
@@ -117,6 +133,8 @@ export const Admin = () => {
                           type="text"
                           name="link"
                           id="link"
+                          value={data.link}
+                          onChange={hundleChange}
                           autoComplete="off"
                           className="focus:outline-none focus:border-blue-900 w-full text-white h-8 px-2 sm:text-sm bg-black border-b border-gray-500"
                           placeholder="www.example.com"
@@ -131,6 +149,8 @@ export const Admin = () => {
                       <textarea
                         name="discription"
                         id="discription"
+                        value={data.discription}
+                        onChange={hundleChange}
                         autoComplete="off"
                         className="focus:outline-none focus:border-blue-900 w-full text-white h-40 p-2 sm:text-sm bg-black border border-gray-500 rounded"
                       ></textarea>
