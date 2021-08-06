@@ -1,12 +1,12 @@
 import { ReactNode, VFC } from 'react'
+import type { ThreadProps } from 'src/components/share/Chat'
+import { Chat } from 'src/components/share/Chat'
 import type { HeaderProps } from 'src/components/share/Header'
 import { Header } from 'src/components/share/Header'
-import type { ThreadType } from 'src/components/share/SlideNav'
-import { SlideNav } from 'src/components/share/SlideNav'
 import { useSlideNav } from 'src/hooks/useSlideNav'
 
 type Props = HeaderProps &
-  ThreadType & {
+  ThreadProps & {
     children?: ReactNode
     roomId?: string
   }
@@ -26,7 +26,7 @@ export const Container: VFC<Props> = (props) => {
           </div>
         </div>
 
-        <SlideNav thread={thread} isChatOpen={isChatOpen} hundleChat={hundleChat} roomId={roomId} />
+        <Chat thread={thread} isChatOpen={isChatOpen} hundleChat={hundleChat} roomId={roomId} />
       </div>
     </div>
   )

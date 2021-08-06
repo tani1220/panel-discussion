@@ -2,12 +2,13 @@ import { db } from 'firebase/clientApp'
 import { useCallback, useEffect, VFC } from 'react'
 import { useSlideNav } from 'src/hooks/useSlideNav'
 
-import { SlideMenu } from './SlideMenu'
-import { General } from './types'
+import { ChatItem } from './ChatItem'
+import { ChatProps } from './types'
 
-export const Chat: VFC<General> = (props) => {
+export const Chat: VFC<ChatProps> = (props) => {
   const { chatText, setChatText, hundleText, chatTable, setChatTable, scrollChatList, scrollRef } = useSlideNav()
 
+  //チャットデータ取得
   useEffect(() => {
     const unsub = db
       .collection('contents')
@@ -20,10 +21,12 @@ export const Chat: VFC<General> = (props) => {
     return () => unsub()
   }, [])
 
+  //スクロール制御
   useEffect(() => {
     scrollChatList()
   }, [props.hundleChat])
 
+  //チャット送信
   const hundleAdd = useCallback(
     async (chatText) => {
       await db
@@ -39,6 +42,10 @@ export const Chat: VFC<General> = (props) => {
     },
     [chatText]
   )
+
+  if (!props.thread) {
+    return null
+  }
 
   if (props.thread === 'chat') {
     return (
@@ -72,7 +79,7 @@ export const Chat: VFC<General> = (props) => {
                   />
                 </div>
 
-                <SlideMenu
+                <ChatItem
                   hundleChat={props.hundleChat}
                   hundleAdd={() => {
                     hundleAdd(chatText)
@@ -83,10 +90,10 @@ export const Chat: VFC<General> = (props) => {
             </div>
           </div>
         ) : (
-          <SlideMenu hundleChat={props.hundleChat} variety="open" />
+          <ChatItem hundleChat={props.hundleChat} variety="open" />
         )}
       </>
     )
   }
-  return null
+  return props.thread
 }
