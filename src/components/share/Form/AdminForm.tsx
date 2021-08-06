@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react'
 import { Button } from 'src/components/share/Button'
 import { useAdmin } from 'src/hooks/useAdmin'
 
-export const Admin = () => {
+export const AdminForm = () => {
   const [open, setOpen] = useState(false)
   const { data, hundleChange, hundleAdd } = useAdmin()
 
@@ -12,13 +12,13 @@ export const Admin = () => {
     <div>
       <Button
         type="normal"
-        className="contents md:contents lg:flex"
+        className="contents sm:contents md:flex"
         onClick={() => {
           setOpen(!open)
         }}
       >
-        <DocumentTextIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
-        <div className="ml-2 hidden md:hidden lg:block">お題作成</div>
+        <DocumentTextIcon className="h-6 w-6" aria-hidden="true" />
+        <div className="ml-2 hidden sm:hidden md:block">お題作成</div>
       </Button>
 
       <Transition.Root show={open} as={Fragment}>
@@ -33,7 +33,7 @@ export const Admin = () => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 sm:bg-white sm:bg-opacity-10 bg-black transition-opacity" />
+              <Dialog.Overlay className="fixed inset-0 sm:bg-white sm:bg-opacity-20 bg-black transition-opacity" />
             </Transition.Child>
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
               &#8203;
@@ -55,12 +55,13 @@ export const Admin = () => {
                       setOpen(false)
                     }}
                   >
-                    <XIcon className="h-6 w-6 text-blue-600" aria-hidden="true" />
+                    <XIcon className="h-6 w-6 text-blue-500 hover:text-blue-700" aria-hidden="true" />
                   </Button>
 
-                  <h1 className="sm:text-xl text-md text-gray-300">お題を投稿する</h1>
+                  <h1 className="sm:text-xl text-md text-blue-100">お題を投稿する</h1>
                   <Button
-                    className="py-1 px-3 rounded-2xl bg-blue-500"
+                    type="normal"
+                    className="py-0 px-3 rounded-2xl hover:bg-blue-900"
                     onClick={() => {
                       setOpen(false)
                       hundleAdd(data)

@@ -1,10 +1,10 @@
 import { db } from 'firebase/clientApp'
 import { useEffect, useState, VFC } from 'react'
 
-import { Modal } from './Modal'
-import type { articleListProps, articlePost } from './types'
+import { ListDialog } from './ListDialog'
+import type { articlePost, ListProps } from './types'
 
-export const ArticleList: VFC<articleListProps> = ({ article }) => {
+export const List: VFC<ListProps> = ({ article }) => {
   const [articles, setArticles] = useState<articlePost>([])
 
   useEffect(() => {
@@ -24,11 +24,11 @@ export const ArticleList: VFC<articleListProps> = ({ article }) => {
       <ul>
         {articles.map((item) => (
           <li key={item.id}>
-            <div className="pt-4 text-lg mx-5 sm:mx-10 md:text-2xl xl:text-3xl cursor-pointer">
-              <div className="w-auto bg-gray-800 rounded-xl p-4">
-                <Modal name={item.name} id={item.id} roomId={article.roomId}>
+            <div className="pt-4 text-lg mx-5 sm:mx-10 md:text-xl xl:text-2xl cursor-pointer">
+              <div className="w-auto bg-white bg-opacity-10 rounded p-6">
+                <ListDialog name={item.name} id={item.id} roomId={article.roomId}>
                   {item.question}
-                </Modal>
+                </ListDialog>
               </div>
             </div>
           </li>

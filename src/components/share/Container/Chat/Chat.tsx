@@ -2,12 +2,13 @@ import { db } from 'firebase/clientApp'
 import { useCallback, useEffect, VFC } from 'react'
 import { useSlideNav } from 'src/hooks/useSlideNav'
 
-import { SlideMenu } from './SlideMenu'
-import { General } from './types'
+import { ChatItem } from './ChatItem'
+import { ChatProps } from './types'
 
-export const Chat: VFC<General> = (props) => {
+export const Chat: VFC<ChatProps> = (props) => {
   const { chatText, setChatText, hundleText, chatTable, setChatTable, scrollChatList, scrollRef } = useSlideNav()
 
+  //チャットデータ取得
   useEffect(() => {
     const unsub = db
       .collection('contents')
@@ -20,10 +21,12 @@ export const Chat: VFC<General> = (props) => {
     return () => unsub()
   }, [])
 
+  //スクロール制御
   useEffect(() => {
     scrollChatList()
   }, [props.hundleChat])
 
+  //チャット送信
   const hundleAdd = useCallback(
     async (chatText) => {
       await db
@@ -40,15 +43,19 @@ export const Chat: VFC<General> = (props) => {
     [chatText]
   )
 
+  if (!props.thread) {
+    return null
+  }
+
   if (props.thread === 'chat') {
     return (
       <>
         {props.isChatOpen ? (
-          <div className="sm:max-w-xs sm:w-full bg-black text-white ">
+          <div className="sm:max-w-xs sm:w-full bg-black text-white border-l border-gray-800">
             <div className="h-full flex items-end justify-center">
               <div className="w-11/12 mb-4">
                 <div className="max-h-screen overflow-y-scroll">
-                  <ul className="text-white text-sm text-opacity-80">
+                  <ul className=" text-sm text-opacity-80">
                     {chatTable.map((item) => {
                       return (
                         <li key={item.id} className="py-2">
@@ -60,7 +67,7 @@ export const Chat: VFC<General> = (props) => {
                   </ul>
                 </div>
 
-                <div className="mt-2 text-white">
+                <div className="mt-2 ">
                   <input
                     type="text"
                     name="text"
@@ -72,7 +79,7 @@ export const Chat: VFC<General> = (props) => {
                   />
                 </div>
 
-                <SlideMenu
+                <ChatItem
                   hundleChat={props.hundleChat}
                   hundleAdd={() => {
                     hundleAdd(chatText)
@@ -83,10 +90,10 @@ export const Chat: VFC<General> = (props) => {
             </div>
           </div>
         ) : (
-          <SlideMenu hundleChat={props.hundleChat} variety="open" />
+          <ChatItem hundleChat={props.hundleChat} variety="open" />
         )}
       </>
     )
   }
-  return null
+  return props.thread
 }

@@ -1,6 +1,6 @@
 import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import { ArticleList } from 'src/components/articles/ArticleList'
 import { Container } from 'src/components/share/Container'
+import { List } from 'src/components/share/List'
 import { getRoomData, getRoomIds } from 'src/lib/getRoomData'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
@@ -9,7 +9,7 @@ const RoomPage: NextPage<Props> = ({ articles }) => {
   return (
     <>
       <Container roomId={articles.roomId} left="title" right="menu" center="user" thread="chat">
-        <ArticleList article={articles} />
+        <List article={articles} />
       </Container>
     </>
   )

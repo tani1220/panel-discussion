@@ -6,13 +6,13 @@ import { useDialog } from 'src/hooks/useDialog'
 
 type ModalProps = { handleSubmit: (arg0: { text: string; name: string }) => void }
 
-export const ArticleModal: VFC<ModalProps> = (props) => {
+export const UserModal: VFC<ModalProps> = (props) => {
   const { values, hundleChange, closeModal, openModal, isOpen, setValues } = useDialog()
 
   return (
     <div>
       <Button type="normal" className="contents md:contents lg:flex" onClick={openModal}>
-        <PencilIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
+        <PencilIcon className="h-6 w-6" aria-hidden="true" />
         <div className="ml-2 hidden md:hidden lg:block">質問する</div>
       </Button>
 

@@ -1,13 +1,13 @@
 import { db } from 'firebase/clientApp'
 import { VFC } from 'react'
 
-import { ArticleModal } from './ArticleModal'
+import { UserModal } from './UserModal'
 
 type addArticleProps = {
   roomId?: string
 }
 
-export const ArticleForm: VFC<addArticleProps> = (props) => {
+export const UserForm: VFC<addArticleProps> = (props) => {
   const id = props.roomId
 
   const articleAdd = async (values: { text: string; name: string }) => {
@@ -28,5 +28,5 @@ export const ArticleForm: VFC<addArticleProps> = (props) => {
     await articleAdd(values)
   }
 
-  return <ArticleModal handleSubmit={handleSubmit} />
+  return <UserModal handleSubmit={handleSubmit} />
 }
