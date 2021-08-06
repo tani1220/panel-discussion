@@ -1,9 +1,10 @@
 import { ReactNode, VFC } from 'react'
-import type { ThreadProps } from 'src/components/share/Chat'
-import { Chat } from 'src/components/share/Chat'
-import type { HeaderProps } from 'src/components/share/Header'
-import { Header } from 'src/components/share/Header'
 import { useSlideNav } from 'src/hooks/useSlideNav'
+
+import type { ThreadProps } from './Chat'
+import { Chat } from './Chat'
+import type { HeaderProps } from './Header'
+import { Header } from './Header'
 
 type Props = HeaderProps &
   ThreadProps & {

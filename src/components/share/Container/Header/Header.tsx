@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { VFC } from 'react'
-import { ArticleForm } from 'src/components/articles/ArticleForm'
-import { Admin } from 'src/components/articles/ArticleForm/Admin'
 import { Button } from 'src/components/share/Button'
+import { UserForm } from 'src/components/share/Form'
+import { AdminForm } from 'src/components/share/Form'
 
 import { Logout } from './Logout'
 import { MobileMenu } from './MobileMenu'
@@ -76,7 +76,7 @@ const Center: VFC<HeaderProps> = (props) => {
   if (props.center === 'admin') {
     return (
       <div className="mr-3">
-        <Admin />
+        <AdminForm />
       </div>
     )
   }
@@ -84,7 +84,7 @@ const Center: VFC<HeaderProps> = (props) => {
   if (props.center === 'user') {
     return (
       <div className="mr-3">
-        <ArticleForm roomId={props.roomId} />
+        <UserForm roomId={props.roomId} />
       </div>
     )
   }

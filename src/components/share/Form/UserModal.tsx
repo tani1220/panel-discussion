@@ -6,7 +6,7 @@ import { useDialog } from 'src/hooks/useDialog'
 
 type ModalProps = { handleSubmit: (arg0: { text: string; name: string }) => void }
 
-export const ArticleModal: VFC<ModalProps> = (props) => {
+export const UserModal: VFC<ModalProps> = (props) => {
   const { values, hundleChange, closeModal, openModal, isOpen, setValues } = useDialog()
 
   return (

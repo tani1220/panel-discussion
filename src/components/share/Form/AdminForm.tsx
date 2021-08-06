@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react'
 import { Button } from 'src/components/share/Button'
 import { useAdmin } from 'src/hooks/useAdmin'
 
-export const Admin = () => {
+export const AdminForm = () => {
   const [open, setOpen] = useState(false)
   const { data, hundleChange, hundleAdd } = useAdmin()
 

@@ -23,7 +23,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export const ThemeCard: VFC<ThemeCardProps> = (props) => {
+export const Theme: VFC<ThemeCardProps> = (props) => {
   return (
     <div className="lg:flex lg:items-center lg:justify-between bg-gray-900 rounded-md mx-4 p-5 mt-5">
       <div className="flex-1 min-w-0">

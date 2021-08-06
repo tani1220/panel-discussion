@@ -3,9 +3,9 @@ import { db } from 'firebase/clientApp'
 import { Fragment, useState, VFC } from 'react'
 import { Button } from 'src/components/share/Button'
 
-import type { ModalProps } from './types'
+import type { ListDialogProps } from './types'
 
-export const Modal: VFC<ModalProps> = (props) => {
+export const ListDialog: VFC<ListDialogProps> = (props) => {
   const [open, setOpen] = useState(false)
 
   const articleDelete = async (id: string) => {
