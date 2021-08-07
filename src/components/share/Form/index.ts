@@ -1,4 +1,4 @@
-import { AdminForm } from './AdminForm'
-import { UserForm } from './UserForm'
+import { InputAdmin } from './InputAdmin'
+import { InputUser } from './InputUser'
 
-export { AdminForm, UserForm }
+export { InputAdmin, InputUser }
