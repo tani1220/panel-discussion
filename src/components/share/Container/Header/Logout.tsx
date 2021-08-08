@@ -21,7 +21,7 @@ export const Logout: VFC<LogoutProps> = (props) => {
   const hundleLogout = async () => {
     try {
       await auth.signOut()
-      router.push('/login')
+      router.push('/')
     } catch (error) {
       alert(error.message)
     }

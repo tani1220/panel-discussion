@@ -6,10 +6,10 @@ export const Sign = () => {
     useSign()
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-blue-100">
             {isSignIn ? '管理者ログイン' : 'アカウント登録'}
           </h2>
         </div>
@@ -26,8 +26,9 @@ export const Sign = () => {
                 type="email"
                 value={email}
                 onChange={hundleEmail}
+                autoComplete="off"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none bg-blue-50 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
               />
             </div>
@@ -41,8 +42,9 @@ export const Sign = () => {
                 type="password"
                 value={password}
                 onChange={hundlePassword}
+                autoComplete="off"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none bg-blue-50 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
               />
             </div>
@@ -53,15 +55,15 @@ export const Sign = () => {
               <div className="text-sm">
                 <a
                   onClick={() => setIsNotSignIn(!isSignIn)}
-                  className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500"
+                  className="cursor-pointer font-medium text-indigo-200 hover:text-indigo-500"
                 >
-                  {isSignIn ? 'Create your register?' : 'Back to login?'}
+                  {isSignIn ? 'アカウント作成' : '戻る'}
                 </a>
               </div>
             </div>
 
             <div className="text-sm">
-              <a onClick={hundleAuteLogin} className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">
+              <a onClick={hundleAuteLogin} className="cursor-pointer font-mono text-white hover:text-indigo-500">
                 テストユーザー
               </a>
             </div>
