@@ -1,12 +1,13 @@
 import { db } from 'firebase/clientApp'
 import { useEffect, useState, VFC } from 'react'
+import { ListDialog } from 'src/components/share/Dialog'
 
-import { ListDialog } from './ListDialog'
 import type { articlePost, ListProps } from './types'
 
 export const List: VFC<ListProps> = ({ article }) => {
   const [articles, setArticles] = useState<articlePost>([])
 
+  //質問データ取得
   useEffect(() => {
     const unsubscribe = db
       .collection('contents')
