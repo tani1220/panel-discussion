@@ -4,7 +4,7 @@ import { ListDialog } from 'src/components/share/Dialog'
 
 import type { articlePost, ListProps } from './types'
 
-export const List: VFC<ListProps> = ({ article }) => {
+export const ArticleList: VFC<ListProps> = ({ article }) => {
   const [articles, setArticles] = useState<articlePost>([])
 
   //質問データ取得
