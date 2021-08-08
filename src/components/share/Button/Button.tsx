@@ -10,8 +10,9 @@ type ButtonProps = {
 
 export const Button: VFC<ButtonProps> = (props) => {
   const classes = clsx({
-    'bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded': props.type === 'normal',
-    'text-white font-mono text-base py-1 w-28': props.type === 'mobilelMenu',
+    'border border-blue-500 text-blue-400 hover:border-blue-700 hover:text-blue-700 font-bold sm:py-2 sm:px-4 px-2 py-1 rounded-xl':
+      props.type === 'normal',
+    'text-blue-50 font-mono text-base py-1 w-28': props.type === 'mobilelMenu',
   })
   return (
     <button type="button" onClick={props.onClick} className={clsx(classes, props.className)}>

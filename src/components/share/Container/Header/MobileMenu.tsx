@@ -12,7 +12,7 @@ export const MobileMenu = () => {
       {({ open }) => (
         <>
           <Menu.Button className="inline-flex justify-center">
-            <MenuIcon className="h-7 w-7" aria-hidden="true" />
+            <MenuIcon className="h-7 w-7 text-blue-300" aria-hidden="true" />
           </Menu.Button>
 
           <Transition
@@ -27,7 +27,7 @@ export const MobileMenu = () => {
           >
             <Menu.Items
               static
-              className="mt-10 absolute right-0 rounded-md bg-black bg-opacity-50 border border-gray-500 cursor-pointer"
+              className="mt-10 absolute right-0 rounded-md bg-black border border-gray-500 cursor-pointer"
             >
               <div className="py-1">
                 <div className="hover:bg-blue-600">

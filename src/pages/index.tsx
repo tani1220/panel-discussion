@@ -1,18 +1,18 @@
 import { db } from 'firebase/clientApp'
 import type { InferGetStaticPropsType, NextPage } from 'next'
 import { Container } from 'src/components/share/Container'
-import { ThemeCard } from 'src/components/ThemeCard'
+import { ThemeList } from 'src/components/share/List'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const Home: NextPage<Props> = ({ articles }) => {
   return (
     <>
-      <Container left="title" right="before">
+      <Container left="title" right="menu">
         <ul>
           {articles.map((item) => (
             <li className="" key={item.id}>
-              <ThemeCard id={item.id} theme={item.theme} name={item.name} date={item.date} time={item.time} />
+              <ThemeList id={item.id} theme={item.theme} name={item.name} date={item.date} time={item.time} />
             </li>
           ))}
         </ul>

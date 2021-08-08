@@ -13,14 +13,14 @@ const UserHome: NextPage<Props> = ({ userData }) => {
   //認証情報がない場合はログイン画面に遷移
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      !user && router.push('/login')
+      !user && router.push('/')
     })
     return () => unsubscribe()
   }, [])
 
   return (
     <>
-      <Container left="title" right="before" thread="motif">
+      <Container left="title" right="menu" center="admin">
         <div className="text-white">
           <h1>ユーザーページ</h1>
           <p>{userData.userId}</p>

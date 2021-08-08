@@ -1,12 +1,13 @@
 import { db } from 'firebase/clientApp'
 import { useEffect, useState, VFC } from 'react'
+import { ListDialog } from 'src/components/share/Dialog'
 
-import { ArticleTag } from './ArticleTag'
-import type { articleNoteProps, articlePost } from './types'
+import type { articlePost, ListProps } from './types'
 
-export const ArticleNote: VFC<articleNoteProps> = ({ article }) => {
+export const ArticleList: VFC<ListProps> = ({ article }) => {
   const [articles, setArticles] = useState<articlePost>([])
 
+  //質問データ取得
   useEffect(() => {
     const unsubscribe = db
       .collection('contents')
@@ -23,11 +24,13 @@ export const ArticleNote: VFC<articleNoteProps> = ({ article }) => {
     <div>
       <ul>
         {articles.map((item) => (
-          <li className="pt-4 text-xl sm:text-3xl" key={item.id}>
-            <div className="cursor-pointer">
-              <ArticleTag id={item.id} name={item.name} roomId={article.roomId}>
-                <p>{item.question}</p>
-              </ArticleTag>
+          <li key={item.id}>
+            <div className="pt-4 text-lg mx-5 sm:mx-10 md:text-xl xl:text-2xl cursor-pointer">
+              <div className="w-auto bg-white bg-opacity-10 rounded p-6">
+                <ListDialog name={item.name} id={item.id} roomId={article.roomId}>
+                  {item.question}
+                </ListDialog>
+              </div>
             </div>
           </li>
         ))}
