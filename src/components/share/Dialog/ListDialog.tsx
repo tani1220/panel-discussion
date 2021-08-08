@@ -1,9 +1,15 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { db } from 'firebase/clientApp'
 import { Fragment, useState, VFC } from 'react'
+import { ReactNode } from 'react'
 import { Button } from 'src/components/share/Button'
 
-import type { ListDialogProps } from './types'
+type ListDialogProps = {
+  id: string
+  name: string
+  children: ReactNode
+  roomId: string
+}
 
 export const ListDialog: VFC<ListDialogProps> = (props) => {
   const [open, setOpen] = useState(false)
