@@ -21,7 +21,7 @@ export const ListDialog: VFC<ListDialogProps> = (props) => {
   return (
     <div>
       <a
-        className="text-white block"
+        className="text-white block whitespace-pre-wrap"
         onClick={() => {
           setOpen(!open)
         }}
@@ -57,10 +57,13 @@ export const ListDialog: VFC<ListDialogProps> = (props) => {
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <div className="m-auto rounded sm:max-w-4xl sm:w-full transform">
-                <Dialog.Title as="h1" className="sm:text-4xl text-xl font-medium text-center text-gray-200">
+                <Dialog.Title
+                  as="h1"
+                  className="sm:text-4xl text-xl font-medium text-center text-gray-200 whitespace-pre-wrap"
+                >
                   {props.children}
                 </Dialog.Title>
-                <Dialog.Title as="h3" className="text-xl sm:text-2xl font-medium text-center text-gray-300">
+                <Dialog.Title as="h3" className="text-xl sm:text-2xl font-medium text-center text-gray-300 mt-14">
                   {props.name}
                 </Dialog.Title>
 

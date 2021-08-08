@@ -16,7 +16,7 @@ export const InputUser: VFC<InputUserPorps> = (props) => {
       <div className="p-6 text-white">
         <label htmlFor="text">
           <textarea
-            className="whitespace-pre-wrap bg-black outline-none w-full h-40 p-2 sm:text-xl"
+            className="bg-black outline-none w-full h-40 p-2 sm:text-xl"
             name="text"
             id="text"
             value={props.value.text}
