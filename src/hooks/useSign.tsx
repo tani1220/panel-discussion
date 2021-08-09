@@ -2,7 +2,7 @@ import firebase from 'firebase'
 import { auth } from 'firebase/clientApp'
 import { db } from 'firebase/clientApp'
 import { useRouter } from 'next/dist/client/router'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export const useSign = () => {
   const [email, setEmail] = useState('')
@@ -63,6 +63,19 @@ export const useSign = () => {
       })
     }
   }
+
+  //既に認証IDを持っていたらuserページに遷移
+  useEffect(() => {
+    const user = firebase.auth().currentUser
+
+    if (user) {
+      const uid = user.uid
+      router.push({
+        pathname: '/users/[userId]',
+        query: { userId: uid },
+      })
+    }
+  }, [])
 
   // テストユーザー
   const hundleAuteLogin = () => {
