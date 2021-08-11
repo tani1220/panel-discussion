@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { VFC } from 'react'
+import { memo, VFC } from 'react'
 import { Button } from 'src/components/share/Button'
 import { AdminDialog, UserDialog } from 'src/components/share/Dialog'
 
@@ -23,7 +23,7 @@ export const Header: VFC<HeaderProps> = (props) => {
   )
 }
 
-const Left: VFC<HeaderProps> = (props) => {
+const Left: VFC<HeaderProps> = memo((props) => {
   if (!props.left) {
     return null
   }
@@ -37,9 +37,11 @@ const Left: VFC<HeaderProps> = (props) => {
     )
   }
   return props.left
-}
+})
 
-const Right: VFC<HeaderProps> = (props) => {
+Left.displayName = 'Left'
+
+const Right: VFC<HeaderProps> = memo((props) => {
   if (!props.right) {
     return null
   }
@@ -65,9 +67,11 @@ const Right: VFC<HeaderProps> = (props) => {
     )
   }
   return props.right
-}
+})
 
-const Center: VFC<HeaderProps> = (props) => {
+Right.displayName = 'Right'
+
+const Center: VFC<HeaderProps> = memo((props) => {
   if (!props.center) {
     return null
   }
@@ -89,4 +93,6 @@ const Center: VFC<HeaderProps> = (props) => {
   }
 
   return props.center
-}
+})
+
+Center.displayName = 'Center'
