@@ -14,7 +14,6 @@ export const useSlideNav = () => {
 
   const scrollChatList = useCallback(() => {
     scrollRef?.current?.scrollIntoView()
-    console.log('ugoita')
   }, [scrollRef])
 
   const hundleText = useCallback(
