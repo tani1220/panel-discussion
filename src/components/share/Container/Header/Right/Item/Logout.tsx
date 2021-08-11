@@ -3,11 +3,9 @@ import { useRouter } from 'next/router'
 import { useEffect, useState, VFC } from 'react'
 import { Button } from 'src/components/share/Button'
 
-type LogoutProps = {
-  buttonType?: 'normal' | 'mobilelMenu' | JSX.Element
-}
+import { Logout as Props } from '../../types'
 
-export const Logout: VFC<LogoutProps> = (props) => {
+export const Logout: VFC<Props> = (props) => {
   const router = useRouter()
   const [isLogin, setIsNotLogin] = useState(false)
 
