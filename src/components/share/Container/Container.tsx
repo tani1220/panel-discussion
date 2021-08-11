@@ -27,7 +27,7 @@ export const Container: VFC<Props> = (props) => {
           </div>
         </div>
 
-        <Chat thread={thread} isChatOpen={isChatOpen} hundleChat={hundleChat} roomId={roomId} />
+        {thread ? <Chat thread={thread} isChatOpen={isChatOpen} hundleChat={hundleChat} roomId={roomId} /> : null}
       </div>
     </div>
   )
