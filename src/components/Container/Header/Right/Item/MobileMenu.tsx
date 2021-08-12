@@ -2,7 +2,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { MenuIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import { Fragment } from 'react'
-import { Button } from 'src/components/share/Button'
+import { Button } from 'src/components/Button'
 
 import { Logout } from './Logout'
 

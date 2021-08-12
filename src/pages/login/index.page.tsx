@@ -1,4 +1,4 @@
-import { Sign } from 'src/components/Sign'
+import { Sign } from './Sign'
 
 const login = () => {
   return <Sign />

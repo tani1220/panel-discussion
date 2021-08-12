@@ -1,8 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { DocumentTextIcon, XIcon } from '@heroicons/react/outline'
 import { Fragment } from 'react'
-import { Button } from 'src/components/share/Button'
-import { InputAdmin } from 'src/components/share/Form'
+import { Button } from 'src/components/Button'
+import { InputAdmin } from 'src/components/Form'
 import { useAdmin } from 'src/hooks/useDialog/useAdmin'
 
 export const AdminDialog = () => {

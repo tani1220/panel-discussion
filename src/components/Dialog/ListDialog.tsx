@@ -2,7 +2,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { db } from 'firebase/clientApp'
 import { Fragment, useState, VFC } from 'react'
 import { ReactNode } from 'react'
-import { Button } from 'src/components/share/Button'
+import { Button } from 'src/components/Button'
 
 type ListDialogProps = {
   id: string

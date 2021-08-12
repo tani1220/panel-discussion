@@ -1,7 +1,7 @@
 import { ClockIcon } from '@heroicons/react/solid'
 import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import { Container } from 'src/components/share/Container'
-import { ArticleList } from 'src/components/share/List'
+import { Container } from 'src/components/Container'
+import { ArticleList } from 'src/components/List'
 import { getRoomData, getRoomIds } from 'src/lib/getRoomData'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>

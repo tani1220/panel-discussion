@@ -1,5 +1,5 @@
 import { InputHTMLAttributes, VFC } from 'react'
-import type { AdminFormProps } from 'src/types'
+import type { AdminFormProps } from 'src/hooks/useDialog/useAdmin'
 
 type InputAdminProps = {
   value: AdminFormProps

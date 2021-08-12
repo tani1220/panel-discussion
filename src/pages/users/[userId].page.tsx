@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } fro
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { Container } from 'src/components/share/Container'
+import { Container } from 'src/components/Container'
 import { getUserData, getUserIds } from 'src/lib/getUserData'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>

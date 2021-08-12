@@ -1,7 +1,7 @@
 import { db } from 'firebase/clientApp'
 import type { InferGetStaticPropsType, NextPage } from 'next'
-import { Container } from 'src/components/share/Container'
-import { ThemeList } from 'src/components/share/List'
+import { Container } from 'src/components/Container'
+import { ThemeList } from 'src/components/List'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 

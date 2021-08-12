@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { memo, VFC } from 'react'
-import { Button } from 'src/components/share/Button'
+import { Button } from 'src/components/Button'
 
 import { Right as Props } from '../types'
 import { Logout } from './Item/Logout'

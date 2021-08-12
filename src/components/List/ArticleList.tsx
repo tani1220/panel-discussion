@@ -1,6 +1,6 @@
 import { db } from 'firebase/clientApp'
 import { useEffect, useState, VFC } from 'react'
-import { ListDialog } from 'src/components/share/Dialog'
+import { ListDialog } from 'src/components/Dialog'
 
 import type { articlePost, ListProps } from './types'
 

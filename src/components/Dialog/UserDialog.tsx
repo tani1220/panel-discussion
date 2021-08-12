@@ -3,8 +3,8 @@ import { XIcon } from '@heroicons/react/outline'
 import { PencilIcon } from '@heroicons/react/solid'
 import { db } from 'firebase/clientApp'
 import { Fragment, VFC } from 'react'
-import { Button } from 'src/components/share/Button'
-import { InputUser } from 'src/components/share/Form'
+import { Button } from 'src/components/Button'
+import { InputUser } from 'src/components/Form'
 import { useUser } from 'src/hooks/useDialog/useUser'
 
 type addArticleProps = {
