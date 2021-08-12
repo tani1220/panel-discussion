@@ -5,7 +5,7 @@ type ChatTable = {
   id: string
 }[]
 
-export const useSlideNav = () => {
+export const useChat = () => {
   const [chatText, setChatText] = useState('')
   const [isChatOpen, isNotChatOpen] = useState(false)
   const [chatTable, setChatTable] = useState<ChatTable>([])
