@@ -57,7 +57,7 @@ export const useSign = () => {
       auth.onAuthStateChanged((user) => {
         user &&
           router.push({
-            pathname: '/users/[userId]',
+            pathname: '/user/[userId]',
             query: { userId: user.uid },
           })
       })
@@ -71,7 +71,7 @@ export const useSign = () => {
     if (user) {
       const uid = user.uid
       router.push({
-        pathname: '/users/[userId]',
+        pathname: '/user/[userId]',
         query: { userId: uid },
       })
     }

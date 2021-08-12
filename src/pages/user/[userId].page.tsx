@@ -3,7 +3,7 @@ import { db } from 'firebase/clientApp'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Container } from 'src/components/Container'
 import { getUserData, getUserIds } from 'src/lib/getUserData'
 
@@ -13,7 +13,7 @@ const UserHome: NextPage<Props> = ({ userData }) => {
   const router = useRouter()
   const [data, setData] = useState([{ theme: '' }])
 
-  //認証情報がない場合はログイン画面に遷移
+  //認証情報がない場合はホーム画面に遷移
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       !user && router.push('/')
@@ -22,13 +22,19 @@ const UserHome: NextPage<Props> = ({ userData }) => {
   }, [])
 
   //お題UIDとユーザーUIDが一致していれば、そのデータを取得してstateに格納
-  useEffect(() => {
-    db.collection('contents')
+  const fetchUser = useCallback(async () => {
+    await db
+      .collection('contents')
       .where('uid', '==', userData.userId)
       .get()
       .then((querySnapshot) => {
         setData(querySnapshot.docs.map((doc) => ({ theme: doc.data().theme })))
       })
+    console.log('ugoitaYo!')
+  }, [])
+
+  useEffect(() => {
+    fetchUser()
   }, [])
 
   return (
@@ -37,11 +43,13 @@ const UserHome: NextPage<Props> = ({ userData }) => {
         <p className="text-2xl font-mono text-gray-300 text-center my-5">作成したお題</p>
 
         {data.length > 1 ? (
-          <ul className="text-gray-100 sm:text-3xl font-bold text-2xl hover:text-blue-500">
+          <ul className="text-gray-100 sm:text-3xl font-bold text-2xl">
             {data.map((item) => (
-              <li key={item.theme} className="bg-gray-900 rounded-md mx-4 p-5 mt-5 cursor-pointer">
-                <Link href={`/rooms/${item.theme}`}>{item.theme}</Link>
-              </li>
+              <Link key={item.theme} href={`/room/${item.theme}`}>
+                <li className="bg-gray-900 rounded-md mx-4 p-5 mt-5 cursor-pointer hover:text-blue-500">
+                  {item.theme}
+                </li>
+              </Link>
             ))}
           </ul>
         ) : null}
