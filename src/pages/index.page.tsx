@@ -11,7 +11,7 @@ const Home: NextPage<Props> = ({ articles }) => {
       <Container left="title" right="menu">
         <ul>
           {articles.map((item) => (
-            <li className="" key={item.id}>
+            <li key={item.id}>
               <ThemeList id={item.id} theme={item.theme} name={item.name} date={item.date} time={item.time} />
             </li>
           ))}
