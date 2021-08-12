@@ -1,40 +1,18 @@
-import { auth } from 'firebase/clientApp'
-import { db } from 'firebase/clientApp'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Container } from 'src/components/Container'
 import { getUserData, getUserIds } from 'src/lib/getUserData'
+
+import { useUser } from './useUser'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const UserHome: NextPage<Props> = ({ userData }) => {
-  const router = useRouter()
-  const [data, setData] = useState([{ theme: '' }])
-
-  //認証情報がない場合はホーム画面に遷移
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      !user && router.push('/')
-    })
-    return () => unsubscribe()
-  }, [])
-
-  //お題UIDとユーザーUIDが一致していれば、そのデータを取得してstateに格納
-  const fetchUser = useCallback(async () => {
-    await db
-      .collection('contents')
-      .where('uid', '==', userData.userId)
-      .get()
-      .then((querySnapshot) => {
-        setData(querySnapshot.docs.map((doc) => ({ theme: doc.data().theme })))
-      })
-    console.log('ugoitaYo!')
-  }, [])
+  const { data, fetchUser } = useUser()
 
   useEffect(() => {
-    fetchUser()
+    fetchUser(userData)
   }, [])
 
   return (
