@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { db } from 'firebase/clientApp'
-import { Fragment, useState, VFC } from 'react'
+import { Fragment, useCallback, useState, VFC } from 'react'
 import { ReactNode } from 'react'
 import { Button } from 'src/components/Button'
 
@@ -14,9 +14,9 @@ type ListDialogProps = {
 export const ListDialog: VFC<ListDialogProps> = (props) => {
   const [open, setOpen] = useState(false)
 
-  const articleDelete = async (id: string) => {
+  const articleDelete = useCallback(async (id: string) => {
     await db.collection('contents').doc(props.roomId).collection(props.roomId).doc(id).delete()
-  }
+  }, [])
 
   return (
     <div>
