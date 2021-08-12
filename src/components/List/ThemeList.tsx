@@ -13,7 +13,7 @@ type ThemeCardProps = {
 export const ThemeList: VFC<ThemeCardProps> = (props) => {
   return (
     <div>
-      <Link href={`/rooms/${props.id}`}>
+      <Link href={`/room/${props.id}`}>
         <div className="lg:flex lg:items-center lg:justify-between bg-gray-900 rounded-md mx-4 p-5 mt-5">
           <div className="flex-1 min-w-0">
             <h1 className="text-2xl font-bold text-gray-100 sm:text-3xl hover:text-blue-500 cursor-pointer">

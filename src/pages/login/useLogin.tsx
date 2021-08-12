@@ -4,10 +4,10 @@ import { db } from 'firebase/clientApp'
 import { useRouter } from 'next/dist/client/router'
 import { useCallback, useEffect, useState } from 'react'
 
-export const useSign = () => {
+export const useLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [isSignIn, setIsNotSignIn] = useState(true)
+  const [isLogin, setLogin] = useState(true)
 
   const router = useRouter()
 
@@ -26,27 +26,27 @@ export const useSign = () => {
   )
 
   // ログイン
-  const signIn = async () => {
+  const signIn = useCallback(async () => {
     try {
       await auth.signInWithEmailAndPassword(email, password)
       await userid()
     } catch (error) {
       alert(error.message)
     }
-  }
+  }, [email, password])
 
   // アカウント登録
-  const register = async () => {
+  const register = useCallback(async () => {
     try {
       await auth.createUserWithEmailAndPassword(email, password)
       await userid()
     } catch (error) {
       alert(error.message)
     }
-  }
+  }, [email, password])
 
   //認証時にuidをコレクションに追加してユーザーページに遷移
-  const userid = async () => {
+  const userid = useCallback(async () => {
     const user = firebase.auth().currentUser
 
     if (user !== null) {
@@ -57,12 +57,12 @@ export const useSign = () => {
       auth.onAuthStateChanged((user) => {
         user &&
           router.push({
-            pathname: '/users/[userId]',
+            pathname: '/user/[userId]',
             query: { userId: user.uid },
           })
       })
     }
-  }
+  }, [signIn, register])
 
   //既に認証IDを持っていたらuserページに遷移
   useEffect(() => {
@@ -71,17 +71,17 @@ export const useSign = () => {
     if (user) {
       const uid = user.uid
       router.push({
-        pathname: '/users/[userId]',
+        pathname: '/user/[userId]',
         query: { userId: uid },
       })
     }
   }, [])
 
   // テストユーザー
-  const hundleAuteLogin = () => {
+  const hundleTestLogin = useCallback(() => {
     setEmail('DiscussionTestEmail@yahoo.co.jp')
     setPassword('Password')
-  }
+  }, [])
 
-  return { signIn, hundleEmail, hundlePassword, email, password, isSignIn, register, hundleAuteLogin, setIsNotSignIn }
+  return { signIn, hundleEmail, hundlePassword, email, password, isLogin, register, hundleTestLogin, setLogin }
 }
