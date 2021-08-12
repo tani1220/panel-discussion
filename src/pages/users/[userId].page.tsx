@@ -35,19 +35,16 @@ const UserHome: NextPage<Props> = ({ userData }) => {
     <>
       <Container left="title" right="menu" center="admin">
         <p className="text-2xl font-mono text-gray-300 text-center my-5">作成したお題</p>
-        <ul className="text-white">
-          {data.map((item) => (
-            <Link key={item.theme} href={`/rooms/${item.theme}`}>
-              <div className="bg-gray-900 rounded-md mx-4 p-5 mt-5 cursor-pointer">
-                <div className="flex-1 min-w-0">
-                  <li className="text-2xl font-bold text-gray-100 sm:text-3xl hover:text-blue-500 cursor-pointer">
-                    {item.theme}
-                  </li>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </ul>
+
+        {data.length > 1 ? (
+          <ul className="text-gray-100 sm:text-3xl font-bold text-2xl hover:text-blue-500">
+            {data.map((item) => (
+              <li key={item.theme} className="bg-gray-900 rounded-md mx-4 p-5 mt-5 cursor-pointer">
+                <Link href={`/rooms/${item.theme}`}>{item.theme}</Link>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </Container>
     </>
   )
