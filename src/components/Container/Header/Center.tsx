@@ -1,5 +1,5 @@
 import { memo, VFC } from 'react'
-import { AdminDialog, UserDialog } from 'src/components/share/Dialog'
+import { AdminDialog, UserDialog } from 'src/components/Dialog'
 
 import { Center as Props } from './types'
 

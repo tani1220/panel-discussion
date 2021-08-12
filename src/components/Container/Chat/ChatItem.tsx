@@ -2,7 +2,7 @@ import { XIcon } from '@heroicons/react/outline'
 import { ChatAlt2Icon } from '@heroicons/react/solid'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 import { VFC } from 'react'
-import { Button } from 'src/components/share/Button'
+import { Button } from 'src/components/Button'
 
 import { ItemProps } from './types'
 

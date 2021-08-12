@@ -1,7 +1,15 @@
 import firebase from 'firebase'
 import { db } from 'firebase/clientApp'
 import { useCallback, useEffect, useState } from 'react'
-import type { AdminFormProps } from 'src/types'
+
+export type AdminFormProps = {
+  theme: string
+  name: string
+  date: string
+  time: string
+  link: string
+  discription: string
+}
 
 export const useAdmin = () => {
   const [value, setValue] = useState({ theme: '', name: '', date: '', time: '', link: '', discription: '' })
