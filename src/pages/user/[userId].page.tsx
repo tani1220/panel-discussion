@@ -20,7 +20,7 @@ const UserHome: NextPage<Props> = ({ userData }) => {
       <Container left="title" right="menu" center="admin">
         <p className="text-2xl font-mono text-gray-300 text-center my-5">作成したお題</p>
 
-        {data.length > 1 ? (
+        {data.length > 0 ? (
           <ul className="text-gray-100 sm:text-3xl font-bold text-2xl">
             {data.map((item) => (
               <Link key={item.theme} href={`/room/${item.theme}`}>

@@ -3,10 +3,13 @@ import { auth } from 'firebase/clientApp'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 
-export const useUser = () => {
-  const router = useRouter()
+type dataProps = {
+  theme: string
+}[]
 
-  const [data, setData] = useState([{ theme: '' }])
+export const useUser = () => {
+  const [data, setData] = useState<dataProps>([])
+  const router = useRouter()
 
   //認証情報がない場合はホーム画面に遷移
   useEffect(() => {
