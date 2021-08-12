@@ -1,5 +1,5 @@
 import { ReactNode, VFC } from 'react'
-import { useSlideNav } from 'src/hooks/useSlideNav'
+import { useChat } from 'src/hooks/useChat'
 
 import type { ThreadProps } from './Chat'
 import { Chat } from './Chat'
@@ -15,7 +15,7 @@ type Props = HeaderProps &
 export const Container: VFC<Props> = (props) => {
   const { children, roomId, thread, ...headerProps } = props
 
-  const { isChatOpen, hundleChat } = useSlideNav()
+  const { isChatOpen, hundleChat } = useChat()
 
   return (
     <div>

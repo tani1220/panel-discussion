@@ -1,12 +1,12 @@
 import { db } from 'firebase/clientApp'
 import { useCallback, useEffect, VFC } from 'react'
-import { useSlideNav } from 'src/hooks/useSlideNav'
+import { useChat } from 'src/hooks/useChat'
 
 import { ChatItem } from './ChatItem'
 import { ChatProps } from './types'
 
 export const Chat: VFC<ChatProps> = (props) => {
-  const { chatText, setChatText, hundleText, chatTable, setChatTable, scrollChatList, scrollRef } = useSlideNav()
+  const { chatText, setChatText, hundleText, chatTable, setChatTable, scrollChatList, scrollRef } = useChat()
 
   //チャットデータ取得
   useEffect(() => {

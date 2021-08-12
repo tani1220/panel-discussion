@@ -1,6 +1,6 @@
 import { auth } from 'firebase/clientApp'
 import { useRouter } from 'next/router'
-import { useEffect, useState, VFC } from 'react'
+import { useCallback, useEffect, useState, VFC } from 'react'
 import { Button } from 'src/components/Button'
 
 import { Logout as Props } from '../../types'
@@ -16,14 +16,14 @@ export const Logout: VFC<Props> = (props) => {
     return () => unsubscribe()
   }, [])
 
-  const hundleLogout = async () => {
+  const hundleLogout = useCallback(async () => {
     try {
       await auth.signOut()
       router.push('/')
     } catch (error) {
       alert(error.message)
     }
-  }
+  }, [])
 
   return (
     <div>
