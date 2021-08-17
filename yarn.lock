@@ -2244,6 +2244,11 @@ globby@^11.0.3:
     merge2 "^1.3.0"
     slash "^3.0.0"
 
+goober@^2.0.35:
+  version "2.0.39"
+  resolved "https://registry.yarnpkg.com/goober/-/goober-2.0.39.tgz#0a52bf78ee9562270669e7603f0250f014f37cb1"
+  integrity sha512-ryw0VaZaehKmnjL4ZEJaiUVQc+XFa5dXIAbf2QC3F+WVKRbzaSuJyq7w28bdlwqYctiZ0Ok5QL/Pap5M2pCHQg==
+
 google-auth-library@^7.0.0, google-auth-library@^7.0.2:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/google-auth-library/-/google-auth-library-7.1.2.tgz#29fc0fe8b6d5a59b93b7cb561b1a28bcc93360b7"
@@ -3787,6 +3792,13 @@ react-dom@17.0.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
+
+react-hot-toast@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-hot-toast/-/react-hot-toast-2.1.0.tgz#f4fe3107a3ccd1d7e76ad3d3282967fbf2fccf2c"
+  integrity sha512-/wUoUVUC/qCYmkJvMzl/oXBIJe47vYqtwOpA76Pz8SrklrF8RBUTLG2eS+ivznzQzY8YlsyODIV7Qk3vOnFf1g==
+  dependencies:
+    goober "^2.0.35"
 
 react-is@16.13.1, react-is@^16.8.1:
   version "16.13.1"

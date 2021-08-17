@@ -1,7 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import { PencilIcon } from '@heroicons/react/solid'
-import { db } from 'firebase/clientApp'
 import { Fragment, VFC } from 'react'
 import { Button } from 'src/components/Button'
 import { InputUser } from 'src/components/Form'
@@ -12,21 +11,7 @@ type addArticleProps = {
 }
 
 export const UserDialog: VFC<addArticleProps> = (props) => {
-  const { value, setValue, hundleChange, open, hundleDialog } = useUser()
-
-  const articleAdd = async (value: { text: string; name: string }) => {
-    if (props.roomId) {
-      await db
-        .collection('contents')
-        .doc(props.roomId)
-        .collection(props.roomId)
-        .add({
-          question: value.text,
-          name: value.name,
-          createdAt: JSON.stringify(new Date()),
-        })
-    }
-  }
+  const { value, hundleChange, open, hundleDialog, articleAdd } = useUser()
 
   return (
     <div>
@@ -67,9 +52,7 @@ export const UserDialog: VFC<addArticleProps> = (props) => {
                     type="normal"
                     className="rounded-3xl"
                     onClick={() => {
-                      articleAdd(value)
-                      setValue({ text: '', name: '' })
-                      hundleDialog()
+                      articleAdd(props.roomId)
                     }}
                   >
                     送信する
