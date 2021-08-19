@@ -1,7 +1,12 @@
 import { db } from 'firebase/clientApp'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import type { articlePost } from 'src/components/List/types'
+
+type articlePost = {
+  id: string
+  question: string
+  name: string
+}[]
 
 export const articlesCollectionRef = (id: string) => db.collection('contents').doc(id).collection(id)
 
