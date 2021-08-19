@@ -1,6 +1,6 @@
-import { db } from 'firebase/clientApp'
 import { useCallback, useState } from 'react'
 import toast from 'react-hot-toast'
+import { articlesCollectionRef } from 'src/hooks/useArticle'
 
 export const useUser = () => {
   const [value, setValue] = useState({ text: '', name: '' })
@@ -18,18 +18,15 @@ export const useUser = () => {
     [value]
   )
 
-  const articleAdd = async (roomId: any) => {
+  const articleAdd = useCallback(async (roomId) => {
     if (value.text.length > 0) {
       try {
-        await db
-          .collection('contents')
-          .doc(roomId)
-          .collection(roomId)
-          .add({
-            question: value.text,
-            name: value.name,
-            createdAt: JSON.stringify(new Date()),
-          })
+        await articlesCollectionRef(roomId).add({
+          question: value.text,
+          name: value.name,
+          createdAt: JSON.stringify(new Date()),
+        })
+        setValue({ text: '', name: '' })
         toast.success('質問しました！')
       } catch (error) {
         toast.error('送信エラーが発生！')
@@ -37,9 +34,8 @@ export const useUser = () => {
     } else {
       return toast.error('質問がないよ！')
     }
-    setValue({ text: '', name: '' })
     hundleDialog()
-  }
+  }, [])
 
   return { value, setValue, hundleChange, open, hundleDialog, articleAdd }
 }
