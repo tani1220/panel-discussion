@@ -2,10 +2,12 @@ import 'tailwindcss/tailwind.css'
 
 import { AppProps } from 'next/app'
 import { Toaster } from 'react-hot-toast'
-import { test } from 'src/lib/test'
+
+import { useUserState } from './useUserState'
 
 const App = ({ Component, pageProps }: AppProps) => {
-  test()
+  useUserState()
+
   return (
     <div>
       <Component {...pageProps} />
