@@ -1,7 +1,8 @@
 import firebase from 'firebase'
 import { auth } from 'firebase/clientApp'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 export const useUserState = () => {
   const [isLogin, setIsNotLogin] = useState(false)
@@ -18,7 +19,7 @@ export const useUserState = () => {
     return () => unsub()
   }, [])
 
-  // ログイン状態で/loginにアクセスすると、ユーザー画面に遷移
+  // ユーザー画面に遷移
   useEffect(() => {
     if (user && isLogin && router.asPath === '/login') {
       router.push({
@@ -28,8 +29,22 @@ export const useUserState = () => {
     }
   }, [router.asPath])
 
+  // ログアウト
+  const hundleLogout = useCallback(async () => {
+    try {
+      await auth.signOut()
+      router.push('/')
+      toast.success('ログアウトしました。')
+    } catch (error) {
+      toast.error('エラーが発生しました。')
+    }
+  }, [])
+
   // Prefetch
   useEffect(() => {
     router.prefetch(`/user/${user?.uid}`)
+    router.prefetch('/')
   }, [isLogin])
+
+  return { isLogin, hundleLogout }
 }
