@@ -20,7 +20,7 @@ export const Chat: VFC<ChatProps> = (props) => {
     return (
       <>
         {props.isChatOpen ? (
-          <div className="sm:max-w-xs sm:w-full bg-black text-white border-l border-gray-800">
+          <div className="sm:max-w-xs sm:w-full bg-black text-white border-l border-gray-800 sm:block hidden">
             <div className="h-full flex items-end justify-center">
               <div className="w-11/12 mb-4">
                 <div className="max-h-screen overflow-y-scroll">
