@@ -18,24 +18,27 @@ export const useUser = () => {
     [value]
   )
 
-  const articleAdd = useCallback(async (roomId) => {
-    if (value.text.length > 0) {
-      try {
-        await articlesCollectionRef(roomId).add({
-          question: value.text,
-          name: value.name,
-          createdAt: JSON.stringify(new Date()),
-        })
-        setValue({ text: '', name: '' })
-        toast.success('質問しました！')
-      } catch (error) {
-        toast.error('送信エラーが発生！')
+  const articleAdd = useCallback(
+    async (roomId) => {
+      if (value.text.length > 0) {
+        try {
+          await articlesCollectionRef(roomId).add({
+            question: value.text,
+            name: value.name,
+            createdAt: JSON.stringify(new Date()),
+          })
+          setValue({ text: '', name: '' })
+          toast.success('質問しました！')
+        } catch (error) {
+          toast.error('送信エラーが発生！')
+        }
+      } else {
+        return toast.error('質問がないよ！')
       }
-    } else {
-      return toast.error('質問がないよ！')
-    }
-    hundleDialog()
-  }, [])
+      hundleDialog()
+    },
+    [value]
+  )
 
   return { value, setValue, hundleChange, open, hundleDialog, articleAdd }
 }
