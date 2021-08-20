@@ -2,8 +2,10 @@ import 'tailwindcss/tailwind.css'
 
 import { AppProps } from 'next/app'
 import { Toaster } from 'react-hot-toast'
+import { test } from 'src/lib/test'
 
 const App = ({ Component, pageProps }: AppProps) => {
+  test()
   return (
     <div>
       <Component {...pageProps} />
