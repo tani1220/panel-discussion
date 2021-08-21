@@ -13,9 +13,9 @@ export const useList = (roomId: string) => {
   const articleDelete = useCallback(async (id) => {
     try {
       await articlesCollectionRef(roomId).doc(id).delete()
-      toast.success('削除しました！')
+      toast('Deleted!')
     } catch (error) {
-      toast.error('エラーが発生しました。')
+      toast.error('failed!')
     }
     hundleDialog()
   }, [])
