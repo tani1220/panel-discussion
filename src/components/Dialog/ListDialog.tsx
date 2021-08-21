@@ -3,6 +3,7 @@ import { Fragment, VFC } from 'react'
 import { ReactNode } from 'react'
 import { Button } from 'src/components/Button'
 import { useList } from 'src/hooks/useDialog/useList'
+import { useUserState } from 'src/pages/_app/useUserState'
 
 type ListDialogProps = {
   id: string
@@ -13,6 +14,7 @@ type ListDialogProps = {
 
 export const ListDialog: VFC<ListDialogProps> = (props) => {
   const { articleDelete, hundleDialog, open } = useList(props.roomId)
+  const { isLogin } = useUserState()
 
   return (
     <div>
@@ -59,17 +61,20 @@ export const ListDialog: VFC<ListDialogProps> = (props) => {
                 </Dialog.Title>
 
                 <div className="bg-gray-900 px-4 py-3 sm:px-6 flex sm:flex-row-reverse">
-                  <Button
-                    className="mt-3 mr-2 sm:mt-0 sm:ml-3 sm:w-auto text-sm px-4 py-2 w-full  justify-center rounded bg-red-600 font-medium text-white hover:bg-red-700 outline-none"
-                    onClick={() => articleDelete(props.id)}
-                  >
-                    削除
-                  </Button>
+                  {isLogin ? (
+                    <Button
+                      className="mt-3 mr-2 sm:mt-0 sm:ml-3 sm:w-auto text-sm px-4 py-2 w-full justify-center rounded bg-red-600 font-medium text-white hover:bg-red-700 outline-none"
+                      onClick={() => articleDelete(props.id)}
+                    >
+                      削除
+                    </Button>
+                  ) : null}
+
                   <Button
                     className="mt-3 sm:mt-0 sm:ml-3 sm:w-auto text-sm px-4 py-2 w-full justify-center rounded bg-white font-medium text-gray-700 hover:bg-gray-50"
                     onClick={hundleDialog}
                   >
-                    閉じる
+                    戻る
                   </Button>
                 </div>
               </div>

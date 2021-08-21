@@ -34,9 +34,9 @@ export const useUserState = () => {
     try {
       await auth.signOut()
       router.push('/')
-      toast.success('ログアウトしました。')
+      toast.success('logged out!')
     } catch (error) {
-      toast.error('エラーが発生しました。')
+      toast.error('failed!')
     }
   }, [])
 

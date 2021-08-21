@@ -3,6 +3,7 @@ import { auth } from 'firebase/clientApp'
 import { db } from 'firebase/clientApp'
 import { useRouter } from 'next/dist/client/router'
 import { useCallback, useState } from 'react'
+import toast from 'react-hot-toast'
 
 export const useLogin = () => {
   const [email, setEmail] = useState('')
@@ -30,8 +31,9 @@ export const useLogin = () => {
     try {
       await auth.signInWithEmailAndPassword(email, password)
       await userid()
+      toast.success('logged in!')
     } catch (error) {
-      alert(error.message)
+      toast.error('failed!')
     }
   }, [email, password])
 
@@ -40,8 +42,9 @@ export const useLogin = () => {
     try {
       await auth.createUserWithEmailAndPassword(email, password)
       await userid()
+      toast.success('registered!')
     } catch (error) {
-      alert(error.message)
+      toast.error('failed!')
     }
   }, [email, password])
 

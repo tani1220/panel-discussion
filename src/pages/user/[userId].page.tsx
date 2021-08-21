@@ -1,7 +1,5 @@
-import { db } from 'firebase/clientApp'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import Link from 'next/link'
-import { useEffect } from 'react'
 import { Container } from 'src/components/Container'
 import { getUserData, getUserIds } from 'src/lib/getUserData'
 
@@ -10,17 +8,7 @@ import { useUser } from './useUser'
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const UserHome: NextPage<Props> = ({ userData }) => {
-  const { data, setData } = useUser()
-
-  useEffect(() => {
-    const unsub = db
-      .collection('contents')
-      .where('uid', '==', userData.userId)
-      .onSnapshot((querySnapshot) => {
-        setData(querySnapshot.docs.map((doc) => ({ theme: doc.data().theme })))
-      })
-    return () => unsub()
-  }, [])
+  const { data } = useUser(userData.userId)
 
   return (
     <>

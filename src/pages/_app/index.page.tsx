@@ -12,12 +12,18 @@ const App = ({ Component, pageProps }: AppProps) => {
     <div>
       <Component {...pageProps} />
       <Toaster
+        position="top-center"
         containerClassName="font-mono"
         toastOptions={{
-          duration: 4000,
-          style: {
-            background: '#666666',
-            color: 'white',
+          duration: 2000,
+          success: {
+            icon: '👏',
+          },
+          blank: {
+            icon: '🔥',
+          },
+          error: {
+            icon: '🤯',
           },
         }}
       />

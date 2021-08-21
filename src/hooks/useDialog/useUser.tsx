@@ -18,6 +18,7 @@ export const useUser = () => {
     [value]
   )
 
+  // 質問投稿
   const articleAdd = useCallback(
     async (roomId) => {
       if (value.text.length > 0) {
@@ -28,12 +29,12 @@ export const useUser = () => {
             createdAt: JSON.stringify(new Date()),
           })
           setValue({ text: '', name: '' })
-          toast.success('質問しました！')
+          toast.success('Posted!')
         } catch (error) {
-          toast.error('送信エラーが発生！')
+          toast.error('failed!')
         }
       } else {
-        return toast.error('質問がないよ！')
+        return toast.error('no questions!')
       }
       hundleDialog()
     },
