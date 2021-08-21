@@ -1,8 +1,10 @@
-type articlePost = {
+type ThemeCardProps = {
   id: string
-  question: string
+  theme: string
   name: string
-}[]
+  date: string
+  time: string
+}
 
 type ListProps = {
   article: {
@@ -10,4 +12,4 @@ type ListProps = {
   }
 }
 
-export type { articlePost, ListProps }
+export type { ListProps, ThemeCardProps }

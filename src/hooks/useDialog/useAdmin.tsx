@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 import { db } from 'firebase/clientApp'
 import { useCallback, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 export type AdminFormProps = {
   theme: string
@@ -30,16 +31,21 @@ export const useAdmin = () => {
   }, [open])
 
   const hundleAdd = async (data: AdminFormProps) => {
-    await db.collection('contents').doc(data.theme).set({
-      theme: data.theme,
-      name: data.name,
-      date: data.date,
-      time: data.time,
-      link: data.link,
-      discription: data.discription,
-      uid: user.uid,
-    })
-    setValue({ theme: '', name: '', date: '', time: '', link: '', discription: '' })
+    try {
+      await db.collection('contents').doc(data.theme).set({
+        theme: data.theme,
+        name: data.name,
+        date: data.date,
+        time: data.time,
+        link: data.link,
+        discription: data.discription,
+        uid: user.uid,
+      })
+      setValue({ theme: '', name: '', date: '', time: '', link: '', discription: '' })
+      toast.success('Created!')
+    } catch (error) {
+      toast.error('failed!')
+    }
   }
 
   const hundleChange = useCallback(

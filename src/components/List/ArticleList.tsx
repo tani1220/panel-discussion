@@ -1,24 +1,11 @@
-import { db } from 'firebase/clientApp'
-import { useEffect, useState, VFC } from 'react'
+import { VFC } from 'react'
 import { ListDialog } from 'src/components/Dialog'
+import { useArticle } from 'src/hooks/useArticle'
 
-import type { articlePost, ListProps } from './types'
+import type { ListProps } from './types'
 
 export const ArticleList: VFC<ListProps> = ({ article }) => {
-  const [articles, setArticles] = useState<articlePost>([])
-
-  //質問データ取得
-  useEffect(() => {
-    const unsubscribe = db
-      .collection('contents')
-      .doc(article.roomId)
-      .collection(article.roomId)
-      .orderBy('createdAt')
-      .onSnapshot((snapshot) => {
-        setArticles(snapshot.docs.map((doc) => ({ id: doc.id, question: doc.data().question, name: doc.data().name })))
-      })
-    return () => unsubscribe()
-  }, [])
+  const { articles } = useArticle(article.roomId)
 
   return (
     <div>

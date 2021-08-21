@@ -2,7 +2,8 @@ import firebase from 'firebase'
 import { auth } from 'firebase/clientApp'
 import { db } from 'firebase/clientApp'
 import { useRouter } from 'next/dist/client/router'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
+import toast from 'react-hot-toast'
 
 export const useLogin = () => {
   const [email, setEmail] = useState('')
@@ -30,8 +31,9 @@ export const useLogin = () => {
     try {
       await auth.signInWithEmailAndPassword(email, password)
       await userid()
+      toast.success('logged in!')
     } catch (error) {
-      alert(error.message)
+      toast.error('failed!')
     }
   }, [email, password])
 
@@ -40,8 +42,9 @@ export const useLogin = () => {
     try {
       await auth.createUserWithEmailAndPassword(email, password)
       await userid()
+      toast.success('registered!')
     } catch (error) {
-      alert(error.message)
+      toast.error('failed!')
     }
   }, [email, password])
 
@@ -63,19 +66,6 @@ export const useLogin = () => {
       })
     }
   }, [signIn, register])
-
-  //既に認証IDを持っていたらuserページに遷移
-  useEffect(() => {
-    const user = firebase.auth().currentUser
-
-    if (user) {
-      const uid = user.uid
-      router.push({
-        pathname: '/user/[userId]',
-        query: { userId: uid },
-      })
-    }
-  }, [])
 
   // テストユーザー
   const hundleTestLogin = useCallback(() => {

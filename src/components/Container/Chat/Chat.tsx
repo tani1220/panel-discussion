@@ -1,47 +1,16 @@
-import { db } from 'firebase/clientApp'
-import { useCallback, useEffect, VFC } from 'react'
+import { useEffect, VFC } from 'react'
 import { useChat } from 'src/hooks/useChat'
 
 import { ChatItem } from './ChatItem'
 import { ChatProps } from './types'
 
 export const Chat: VFC<ChatProps> = (props) => {
-  const { chatText, setChatText, hundleText, chatTable, setChatTable, scrollChatList, scrollRef } = useChat()
-
-  //チャットデータ取得
-  useEffect(() => {
-    const unsub = db
-      .collection('contents')
-      .doc(props.roomId)
-      .collection('thread')
-      .orderBy('createdAt')
-      .onSnapshot((snapshot) => {
-        setChatTable(snapshot.docs.map((doc) => ({ message: doc.data().message, id: doc.id })))
-      })
-    return () => unsub()
-  }, [])
+  const { chatText, hundleText, chatTable, scrollChatList, scrollRef, hundleAdd } = useChat(props.roomId)
 
   //スクロール制御
   useEffect(() => {
     scrollChatList()
   }, [props.hundleChat])
-
-  //チャット送信
-  const hundleAdd = useCallback(
-    async (chatText) => {
-      await db
-        .collection('contents')
-        .doc(props.roomId)
-        .collection('thread')
-        .add({
-          message: chatText,
-          createdAt: JSON.stringify(new Date()),
-        })
-      setChatText('')
-      scrollChatList()
-    },
-    [chatText]
-  )
 
   if (!props.thread) {
     return null
@@ -51,7 +20,7 @@ export const Chat: VFC<ChatProps> = (props) => {
     return (
       <>
         {props.isChatOpen ? (
-          <div className="sm:max-w-xs sm:w-full bg-black text-white border-l border-gray-800">
+          <div className="sm:max-w-xs sm:w-full bg-black text-white border-l border-gray-800 sm:block hidden">
             <div className="h-full flex items-end justify-center">
               <div className="w-11/12 mb-4">
                 <div className="max-h-screen overflow-y-scroll">

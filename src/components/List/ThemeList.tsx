@@ -2,13 +2,7 @@ import { CalendarIcon, EmojiHappyIcon, LocationMarkerIcon, UserGroupIcon } from 
 import Link from 'next/link'
 import { VFC } from 'react'
 
-type ThemeCardProps = {
-  id: string
-  theme: string
-  name: string
-  date: string
-  time: string
-}
+import { ThemeCardProps } from './types'
 
 export const ThemeList: VFC<ThemeCardProps> = (props) => {
   return (

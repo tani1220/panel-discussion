@@ -1,8 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { db } from 'firebase/clientApp'
-import { Fragment, useCallback, useState, VFC } from 'react'
+import { Fragment, VFC } from 'react'
 import { ReactNode } from 'react'
 import { Button } from 'src/components/Button'
+import { useList } from 'src/hooks/useDialog/useList'
+import { useUserState } from 'src/pages/_app/useUserState'
 
 type ListDialogProps = {
   id: string
@@ -12,25 +13,17 @@ type ListDialogProps = {
 }
 
 export const ListDialog: VFC<ListDialogProps> = (props) => {
-  const [open, setOpen] = useState(false)
-
-  const articleDelete = useCallback(async (id: string) => {
-    await db.collection('contents').doc(props.roomId).collection(props.roomId).doc(id).delete()
-  }, [])
+  const { articleDelete, hundleDialog, open } = useList(props.roomId)
+  const { isLogin } = useUserState()
 
   return (
     <div>
-      <a
-        className="text-white block whitespace-pre-wrap"
-        onClick={() => {
-          setOpen(!open)
-        }}
-      >
+      <a className="text-white block whitespace-pre-wrap" onClick={hundleDialog}>
         {props.children}
       </a>
 
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" static className="fixed z-10 inset-0 m-5 overflow-y-auto" open={open} onClose={setOpen}>
+        <Dialog as="div" static className="fixed z-10 inset-0 m-5 overflow-y-auto" open={open} onClose={hundleDialog}>
           <div className="flex items-end justify-center h-screen">
             <Transition.Child
               as={Fragment}
@@ -68,20 +61,20 @@ export const ListDialog: VFC<ListDialogProps> = (props) => {
                 </Dialog.Title>
 
                 <div className="bg-gray-900 px-4 py-3 sm:px-6 flex sm:flex-row-reverse">
-                  <Button
-                    className="mt-3 mr-2 sm:mt-0 sm:ml-3 sm:w-auto text-sm px-4 py-2 w-full  justify-center rounded bg-red-600 font-medium text-white hover:bg-red-700 outline-none"
-                    onClick={() => {
-                      articleDelete(props.id)
-                      setOpen(false)
-                    }}
-                  >
-                    削除
-                  </Button>
+                  {isLogin ? (
+                    <Button
+                      className="mt-3 mr-2 sm:mt-0 sm:ml-3 sm:w-auto text-sm px-4 py-2 w-full justify-center rounded bg-red-600 font-medium text-white hover:bg-red-700 outline-none"
+                      onClick={() => articleDelete(props.id)}
+                    >
+                      削除
+                    </Button>
+                  ) : null}
+
                   <Button
                     className="mt-3 sm:mt-0 sm:ml-3 sm:w-auto text-sm px-4 py-2 w-full justify-center rounded bg-white font-medium text-gray-700 hover:bg-gray-50"
-                    onClick={() => setOpen(false)}
+                    onClick={hundleDialog}
                   >
-                    閉じる
+                    戻る
                   </Button>
                 </div>
               </div>

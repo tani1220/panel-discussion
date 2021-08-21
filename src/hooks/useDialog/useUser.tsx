@@ -1,4 +1,6 @@
 import { useCallback, useState } from 'react'
+import toast from 'react-hot-toast'
+import { articlesCollectionRef } from 'src/hooks/useArticle'
 
 export const useUser = () => {
   const [value, setValue] = useState({ text: '', name: '' })
@@ -16,5 +18,28 @@ export const useUser = () => {
     [value]
   )
 
-  return { value, setValue, hundleChange, open, hundleDialog }
+  // 質問投稿
+  const articleAdd = useCallback(
+    async (roomId) => {
+      if (value.text.length > 0) {
+        try {
+          await articlesCollectionRef(roomId).add({
+            question: value.text,
+            name: value.name,
+            createdAt: JSON.stringify(new Date()),
+          })
+          setValue({ text: '', name: '' })
+          toast.success('Posted!')
+        } catch (error) {
+          toast.error('failed!')
+        }
+      } else {
+        return toast.error('no questions!')
+      }
+      hundleDialog()
+    },
+    [value]
+  )
+
+  return { value, setValue, hundleChange, open, hundleDialog, articleAdd }
 }
