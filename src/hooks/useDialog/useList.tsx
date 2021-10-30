@@ -5,7 +5,7 @@ import { articlesCollectionRef } from 'src/hooks/useArticle'
 export const useList = (roomId: string) => {
   const [open, setOpen] = useState(false)
 
-  const hundleDialog = useCallback(() => {
+  const handleDialog = useCallback(() => {
     setOpen(!open)
   }, [open])
 
@@ -17,8 +17,8 @@ export const useList = (roomId: string) => {
     } catch (error) {
       toast.error('failed!')
     }
-    hundleDialog()
+    handleDialog()
   }, [])
 
-  return { articleDelete, hundleDialog, open }
+  return { articleDelete, handleDialog, open }
 }

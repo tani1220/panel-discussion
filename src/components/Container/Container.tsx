@@ -15,7 +15,7 @@ type Props = HeaderProps &
 export const Container: VFC<Props> = (props) => {
   const { children, roomId, thread, ...headerProps } = props
 
-  const { isChatOpen, hundleChat } = useChat()
+  const { isChatOpen, handleChat } = useChat()
 
   return (
     <div>
@@ -27,7 +27,7 @@ export const Container: VFC<Props> = (props) => {
           </div>
         </div>
 
-        {thread ? <Chat thread={thread} isChatOpen={isChatOpen} hundleChat={hundleChat} roomId={roomId} /> : null}
+        {thread ? <Chat thread={thread} isChatOpen={isChatOpen} handleChat={handleChat} roomId={roomId} /> : null}
       </div>
     </div>
   )

@@ -11,17 +11,17 @@ type addArticleProps = {
 }
 
 export const UserDialog: VFC<addArticleProps> = (props) => {
-  const { value, hundleChange, open, hundleDialog, articleAdd } = useUser()
+  const { value, handleChange, open, handleDialog, articleAdd } = useUser()
 
   return (
     <div>
-      <Button type="normal" className="contents md:contents lg:flex" onClick={hundleDialog}>
+      <Button type="normal" className="contents md:contents lg:flex" onClick={handleDialog}>
         <PencilIcon className="h-6 w-6" aria-hidden="true" />
         <div className="ml-2 hidden md:hidden lg:block">質問する</div>
       </Button>
 
       <Transition appear show={open} as={Fragment}>
-        <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={hundleDialog}>
+        <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={handleDialog}>
           <div className="min-h-screen px-4 text-center">
             <Transition.Child as={Fragment} leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
               <Dialog.Overlay className="fixed inset-0 bg-white bg-opacity-25" />
@@ -41,10 +41,10 @@ export const UserDialog: VFC<addArticleProps> = (props) => {
               leaveTo="opacity-0 scale-95"
             >
               <div className="inline-block w-full max-w-md overflow-hidden text-left align-middle transition-all transform bg-black rounded-3xl">
-                <InputUser hundleChange={hundleChange} value={value} />
+                <InputUser handleChange={handleChange} value={value} />
 
                 <div className="flex justify-between items-center p-3 border-t border-gray-700">
-                  <Button onClick={hundleDialog}>
+                  <Button onClick={handleDialog}>
                     <XIcon className="h-7 w-7 text-blue-500 hover:text-blue-700" aria-hidden="true" />
                   </Button>
 

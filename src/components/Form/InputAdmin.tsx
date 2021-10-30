@@ -3,7 +3,7 @@ import type { AdminFormProps } from 'src/hooks/useDialog/useAdmin'
 
 type InputAdminProps = {
   value: AdminFormProps
-  hundleChange: (e: InputHTMLAttributes<HTMLInputElement>) => void
+  handleChange: (e: InputHTMLAttributes<HTMLInputElement>) => void
 }
 
 export const InputAdmin: VFC<InputAdminProps> = (props) => {
@@ -15,7 +15,7 @@ export const InputAdmin: VFC<InputAdminProps> = (props) => {
           name="theme"
           id="theme"
           value={props.value.theme}
-          onChange={props.hundleChange}
+          onChange={props.handleChange}
           autoComplete="off"
           className="focus:outline-none focus:border-blue-900 w-full text-white h-8 px-2 sm:text-sm bg-black border-b border-gray-500"
           placeholder="タイトルを入力"
@@ -25,7 +25,7 @@ export const InputAdmin: VFC<InputAdminProps> = (props) => {
           name="name"
           id="name"
           value={props.value.name}
-          onChange={props.hundleChange}
+          onChange={props.handleChange}
           autoComplete="off"
           className="focus:outline-none focus:border-blue-900 sm:w-1/3 w-2/4 text-white h-8 px-2 sm:text-sm bg-black border-b border-gray-500 my-8"
           placeholder="名前を入力"
@@ -40,7 +40,7 @@ export const InputAdmin: VFC<InputAdminProps> = (props) => {
               name="date"
               id="date"
               value={props.value.date}
-              onChange={props.hundleChange}
+              onChange={props.handleChange}
               className="focus:outline-none h-8 px-2 mr-4 sm:text-sm bg-white bg-opacity-30 border-gray-300 rounded"
             />
           </div>
@@ -53,7 +53,7 @@ export const InputAdmin: VFC<InputAdminProps> = (props) => {
               name="time"
               id="time"
               value={props.value.time}
-              onChange={props.hundleChange}
+              onChange={props.handleChange}
               className="focus:outline-none h-8 px-2 sm:text-sm bg-white bg-opacity-30 border-gray-300 rounded"
             />
           </div>
@@ -72,7 +72,7 @@ export const InputAdmin: VFC<InputAdminProps> = (props) => {
               name="link"
               id="link"
               value={props.value.link}
-              onChange={props.hundleChange}
+              onChange={props.handleChange}
               autoComplete="off"
               className="focus:outline-none focus:border-blue-900 w-full text-white h-8 px-2 sm:text-sm bg-black border-b border-gray-500"
               placeholder="www.example.com"
@@ -88,7 +88,7 @@ export const InputAdmin: VFC<InputAdminProps> = (props) => {
             name="discription"
             id="discription"
             value={props.value.discription}
-            onChange={props.hundleChange}
+            onChange={props.handleChange}
             autoComplete="off"
             className="focus:outline-none focus:border-blue-900 w-full text-white h-40 p-2 sm:text-sm bg-black border border-gray-500 rounded"
           ></textarea>

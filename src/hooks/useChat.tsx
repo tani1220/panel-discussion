@@ -24,7 +24,7 @@ export const useChat = (roomId?: string) => {
   }, [])
 
   //チャット送信
-  const hundleAdd = useCallback(
+  const handleAdd = useCallback(
     async (chatText) => {
       await chatCollectionRef(roomId).add({
         message: chatText,
@@ -36,14 +36,14 @@ export const useChat = (roomId?: string) => {
     [chatText]
   )
 
-  const hundleText = useCallback(
+  const handleText = useCallback(
     (e) => {
       setChatText(e.target.value)
     },
     [chatText]
   )
 
-  const hundleChat = useCallback(() => {
+  const handleChat = useCallback(() => {
     isNotChatOpen(!isChatOpen)
   }, [isChatOpen])
 
@@ -55,13 +55,13 @@ export const useChat = (roomId?: string) => {
 
   return {
     chatText,
-    hundleText,
+    handleText,
     isChatOpen,
-    hundleChat,
+    handleChat,
     chatTable,
     setChatTable,
     scrollRef,
     scrollChatList,
-    hundleAdd,
+    handleAdd,
   }
 }

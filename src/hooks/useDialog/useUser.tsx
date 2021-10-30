@@ -6,11 +6,11 @@ export const useUser = () => {
   const [value, setValue] = useState({ text: '', name: '' })
   const [open, setOpen] = useState(false)
 
-  const hundleDialog = useCallback(() => {
+  const handleDialog = useCallback(() => {
     setOpen(!open)
   }, [open])
 
-  const hundleChange = useCallback(
+  const handleChange = useCallback(
     (e) => {
       const data = e.target.value
       setValue({ ...value, [e.target.name]: data })
@@ -36,10 +36,10 @@ export const useUser = () => {
       } else {
         return toast.error('no questions!')
       }
-      hundleDialog()
+      handleDialog()
     },
     [value]
   )
 
-  return { value, setValue, hundleChange, open, hundleDialog, articleAdd }
+  return { value, setValue, handleChange, open, handleDialog, articleAdd }
 }

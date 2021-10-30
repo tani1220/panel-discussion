@@ -12,14 +12,14 @@ export const useLogin = () => {
 
   const router = useRouter()
 
-  const hundleEmail = useCallback(
+  const handleEmail = useCallback(
     (e) => {
       setEmail(e.target.value)
     },
     [email]
   )
 
-  const hundlePassword = useCallback(
+  const handlePassword = useCallback(
     (e) => {
       setPassword(e.target.value)
     },
@@ -68,10 +68,10 @@ export const useLogin = () => {
   }, [signIn, register])
 
   // テストユーザー
-  const hundleTestLogin = useCallback(() => {
+  const handleTestLogin = useCallback(() => {
     setEmail('DiscussionTestEmail@yahoo.co.jp')
     setPassword('Password')
   }, [])
 
-  return { signIn, hundleEmail, hundlePassword, email, password, isLogin, register, hundleTestLogin, setLogin }
+  return { signIn, handleEmail, handlePassword, email, password, isLogin, register, handleTestLogin, setLogin }
 }

@@ -3,7 +3,7 @@ import { Button } from 'src/components/Button'
 import { useLogin } from './useLogin'
 
 const Login = () => {
-  const { setLogin, signIn, hundleEmail, hundlePassword, email, password, isLogin, register, hundleTestLogin } =
+  const { setLogin, signIn, handleEmail, handlePassword, email, password, isLogin, register, handleTestLogin } =
     useLogin()
 
   return (
@@ -26,7 +26,7 @@ const Login = () => {
                 name="email"
                 type="email"
                 value={email}
-                onChange={hundleEmail}
+                onChange={handleEmail}
                 autoComplete="off"
                 required
                 className="appearance-none rounded-none bg-blue-50 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -42,7 +42,7 @@ const Login = () => {
                 name="password"
                 type="password"
                 value={password}
-                onChange={hundlePassword}
+                onChange={handlePassword}
                 autoComplete="off"
                 required
                 className="appearance-none rounded-none bg-blue-50 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -64,7 +64,7 @@ const Login = () => {
             </div>
 
             <div className="text-sm">
-              <a onClick={hundleTestLogin} className="cursor-pointer font-mono text-white hover:text-indigo-500">
+              <a onClick={handleTestLogin} className="cursor-pointer font-mono text-white hover:text-indigo-500">
                 テストユーザー
               </a>
             </div>

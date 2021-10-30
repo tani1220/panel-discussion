@@ -13,17 +13,17 @@ type ListDialogProps = {
 }
 
 export const ListDialog: VFC<ListDialogProps> = (props) => {
-  const { articleDelete, hundleDialog, open } = useList(props.roomId)
+  const { articleDelete, handleDialog, open } = useList(props.roomId)
   const { isLogin } = useUserState()
 
   return (
     <div>
-      <a className="text-white block whitespace-pre-wrap" onClick={hundleDialog}>
+      <a className="text-white block whitespace-pre-wrap" onClick={handleDialog}>
         {props.children}
       </a>
 
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" static className="fixed z-10 inset-0 m-5 overflow-y-auto" open={open} onClose={hundleDialog}>
+        <Dialog as="div" static className="fixed z-10 inset-0 m-5 overflow-y-auto" open={open} onClose={handleDialog}>
           <div className="flex items-end justify-center h-screen">
             <Transition.Child
               as={Fragment}
@@ -72,7 +72,7 @@ export const ListDialog: VFC<ListDialogProps> = (props) => {
 
                   <Button
                     className="mt-3 sm:mt-0 sm:ml-3 sm:w-auto text-sm px-4 py-2 w-full justify-center rounded bg-white font-medium text-gray-700 hover:bg-gray-50"
-                    onClick={hundleDialog}
+                    onClick={handleDialog}
                   >
                     戻る
                   </Button>

@@ -6,17 +6,17 @@ import { InputAdmin } from 'src/components/Form'
 import { useAdmin } from 'src/hooks/useDialog/useAdmin'
 
 export const AdminDialog = () => {
-  const { value, hundleAdd, hundleChange, open, hundleDialog } = useAdmin()
+  const { value, handleAdd, handleChange, open, handleDialog } = useAdmin()
 
   return (
     <div>
-      <Button type="normal" className="contents sm:contents md:flex" onClick={hundleDialog}>
+      <Button type="normal" className="contents sm:contents md:flex" onClick={handleDialog}>
         <DocumentTextIcon className="h-6 w-6" aria-hidden="true" />
         <div className="ml-2 hidden sm:hidden md:block">お題作成</div>
       </Button>
 
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" static className="fixed z-10 inset-0 " open={open} onClose={hundleDialog}>
+        <Dialog as="div" static className="fixed z-10 inset-0 " open={open} onClose={handleDialog}>
           <div className="flex items-end justify-center h-screen">
             <Transition.Child
               as={Fragment}
@@ -44,7 +44,7 @@ export const AdminDialog = () => {
             >
               <div className="sm:h-5/6 h-full bg-black m-auto rounded-2xl sm:max-w-xl sm:w-full transform sm:mt-20">
                 <div className="text-white flex justify-between items-center font-mono rounded-t-2xl bg-gray-900 p-2 px-6 sm:p-4">
-                  <Button onClick={hundleDialog}>
+                  <Button onClick={handleDialog}>
                     <XIcon className="h-6 w-6 text-blue-500 hover:text-blue-700" aria-hidden="true" />
                   </Button>
 
@@ -53,15 +53,15 @@ export const AdminDialog = () => {
                     type="normal"
                     className="py-0 px-3 rounded-2xl hover:bg-blue-900"
                     onClick={() => {
-                      hundleDialog()
-                      hundleAdd(value)
+                      handleDialog()
+                      handleAdd(value)
                     }}
                   >
                     送信
                   </Button>
                 </div>
 
-                <InputAdmin value={value} hundleChange={hundleChange} />
+                <InputAdmin value={value} handleChange={handleChange} />
               </div>
             </Transition.Child>
           </div>

@@ -26,11 +26,11 @@ export const useAdmin = () => {
     }
   }, [])
 
-  const hundleDialog = useCallback(() => {
+  const handleDialog = useCallback(() => {
     setOpen(!open)
   }, [open])
 
-  const hundleAdd = async (data: AdminFormProps) => {
+  const handleAdd = async (data: AdminFormProps) => {
     try {
       await db.collection('contents').doc(data.theme).set({
         theme: data.theme,
@@ -48,7 +48,7 @@ export const useAdmin = () => {
     }
   }
 
-  const hundleChange = useCallback(
+  const handleChange = useCallback(
     (e) => {
       const data = e.target.value
       setValue({ ...value, [e.target.name]: data })
@@ -56,5 +56,5 @@ export const useAdmin = () => {
     [value]
   )
 
-  return { value, hundleChange, hundleAdd, open, hundleDialog }
+  return { value, handleChange, handleAdd, open, handleDialog }
 }
