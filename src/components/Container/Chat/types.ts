@@ -1,6 +1,6 @@
 type ItemProps = {
-  hundleChat: () => void
-  hundleAdd?: () => void
+  handleChat: () => void
+  handleAdd?: () => void
   variety?: 'open' | 'close' | JSX.Element
 }
 
@@ -10,7 +10,7 @@ type ThreadProps = {
 
 type ChatProps = ThreadProps & {
   roomId?: string
-  hundleChat: () => void
+  handleChat: () => void
   isChatOpen: boolean
 }
 

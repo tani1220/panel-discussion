@@ -5,12 +5,12 @@ import { ChatItem } from './ChatItem'
 import { ChatProps } from './types'
 
 export const Chat: VFC<ChatProps> = (props) => {
-  const { chatText, hundleText, chatTable, scrollChatList, scrollRef, hundleAdd } = useChat(props.roomId)
+  const { chatText, handleText, chatTable, scrollChatList, scrollRef, handleAdd } = useChat(props.roomId)
 
   //スクロール制御
   useEffect(() => {
     scrollChatList()
-  }, [props.hundleChat])
+  }, [props.handleChat])
 
   if (!props.thread) {
     return null
@@ -41,7 +41,7 @@ export const Chat: VFC<ChatProps> = (props) => {
                     type="text"
                     name="text"
                     value={chatText}
-                    onChange={hundleText}
+                    onChange={handleText}
                     autoComplete="off"
                     className="focus:outline-none w-full h-8 px-2 sm:text-sm bg-white bg-opacity-20 border-gray-300 rounded"
                     placeholder="テキストを入力"
@@ -49,9 +49,9 @@ export const Chat: VFC<ChatProps> = (props) => {
                 </div>
 
                 <ChatItem
-                  hundleChat={props.hundleChat}
-                  hundleAdd={() => {
-                    hundleAdd(chatText)
+                  handleChat={props.handleChat}
+                  handleAdd={() => {
+                    handleAdd(chatText)
                   }}
                   variety="close"
                 />
@@ -59,7 +59,7 @@ export const Chat: VFC<ChatProps> = (props) => {
             </div>
           </div>
         ) : (
-          <ChatItem hundleChat={props.hundleChat} variety="open" />
+          <ChatItem handleChat={props.handleChat} variety="open" />
         )}
       </>
     )

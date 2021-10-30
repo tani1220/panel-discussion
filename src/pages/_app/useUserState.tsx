@@ -30,7 +30,7 @@ export const useUserState = () => {
   }, [router.asPath])
 
   // ログアウト
-  const hundleLogout = useCallback(async () => {
+  const handleLogout = useCallback(async () => {
     try {
       await auth.signOut()
       router.push('/')
@@ -46,5 +46,5 @@ export const useUserState = () => {
     router.prefetch('/')
   }, [isLogin])
 
-  return { isLogin, hundleLogout }
+  return { isLogin, handleLogout }
 }

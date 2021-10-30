@@ -7,7 +7,7 @@ type UserFormProps = {
 
 type InputUserPorps = {
   value: UserFormProps
-  hundleChange: (e: InputHTMLAttributes<HTMLInputElement>) => void
+  handleChange: (e: InputHTMLAttributes<HTMLInputElement>) => void
 }
 
 export const InputUser: VFC<InputUserPorps> = (props) => {
@@ -20,7 +20,7 @@ export const InputUser: VFC<InputUserPorps> = (props) => {
             name="text"
             id="text"
             value={props.value.text}
-            onChange={props.hundleChange}
+            onChange={props.handleChange}
             autoComplete="off"
             placeholder="質問してみよう！"
           ></textarea>
@@ -33,7 +33,7 @@ export const InputUser: VFC<InputUserPorps> = (props) => {
             name="name"
             id="name"
             value={props.value.name}
-            onChange={props.hundleChange}
+            onChange={props.handleChange}
             autoComplete="off"
             placeholder="匿名"
           />
