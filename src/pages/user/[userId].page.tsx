@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import Link from 'next/link'
 import { Container } from 'src/components/Container'
-import { getUserData, getUserIds } from 'src/lib/getUserData'
+import { getUserData, getUserId } from 'src/lib/getUserData'
 
 import { useUser } from './useUser'
 
@@ -32,7 +32,7 @@ const UserHome: NextPage<Props> = ({ userData }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getUserIds()
+  const paths = await getUserId()
 
   return {
     paths,

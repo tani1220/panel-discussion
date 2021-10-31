@@ -13,7 +13,7 @@ type Right = {
 }
 
 type Logout = {
-  buttonType?: 'normal' | 'mobilelMenu' | JSX.Element
+  buttonType?: 'normal' | 'mobileMenu' | JSX.Element
 }
 
 type HeaderProps = Left & Right & Center

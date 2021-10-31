@@ -5,12 +5,12 @@ type UserFormProps = {
   name: string
 }
 
-type InputUserPorps = {
+type InputUserProps = {
   value: UserFormProps
   handleChange: (e: InputHTMLAttributes<HTMLInputElement>) => void
 }
 
-export const InputUser: VFC<InputUserPorps> = (props) => {
+export const InputUser: VFC<InputUserProps> = (props) => {
   return (
     <div>
       <div className="p-6 text-white">
