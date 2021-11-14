@@ -9,11 +9,11 @@ export type AdminFormProps = {
   date: string
   time: string
   link: string
-  discription: string
+  description: string
 }
 
 export const useAdmin = () => {
-  const [value, setValue] = useState({ theme: '', name: '', date: '', time: '', link: '', discription: '' })
+  const [value, setValue] = useState({ theme: '', name: '', date: '', time: '', link: '', description: '' })
   const [user, userId] = useState({ uid: '' })
   const [open, setOpen] = useState(false)
 
@@ -38,10 +38,10 @@ export const useAdmin = () => {
         date: data.date,
         time: data.time,
         link: data.link,
-        discription: data.discription,
+        description: data.description,
         uid: user.uid,
       })
-      setValue({ theme: '', name: '', date: '', time: '', link: '', discription: '' })
+      setValue({ theme: '', name: '', date: '', time: '', link: '', description: '' })
       toast.success('Created!')
     } catch (error) {
       toast.error('failed!')

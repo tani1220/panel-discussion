@@ -30,7 +30,7 @@ export const useLogin = () => {
   const signIn = useCallback(async () => {
     try {
       await auth.signInWithEmailAndPassword(email, password)
-      await userid()
+      await userId()
       toast.success('logged in!')
     } catch (error) {
       toast.error('failed!')
@@ -41,7 +41,7 @@ export const useLogin = () => {
   const register = useCallback(async () => {
     try {
       await auth.createUserWithEmailAndPassword(email, password)
-      await userid()
+      await userId()
       toast.success('registered!')
     } catch (error) {
       toast.error('failed!')
@@ -49,7 +49,7 @@ export const useLogin = () => {
   }, [email, password])
 
   //認証時にuidをコレクションに追加してユーザーページに遷移
-  const userid = useCallback(async () => {
+  const userId = useCallback(async () => {
     const user = firebase.auth().currentUser
 
     if (user !== null) {

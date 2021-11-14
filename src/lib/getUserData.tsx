@@ -1,6 +1,6 @@
 import { db } from 'firebase/clientApp'
 
-export const getUserIds = async () => {
+export const getUserId = async () => {
   const ids: { id: string }[] = []
 
   await db

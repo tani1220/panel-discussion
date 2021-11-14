@@ -33,14 +33,14 @@ export const MobileMenu = () => {
                 <div className="hover:bg-blue-600">
                   <Menu.Item>
                     <Link href="/login">
-                      <Button type="mobilelMenu">管理者</Button>
+                      <Button type="mobileMenu">管理者</Button>
                     </Link>
                   </Menu.Item>
                 </div>
 
                 <div className="hover:bg-blue-600">
                   <Menu.Item>
-                    <Logout buttonType="mobilelMenu" />
+                    <Logout buttonType="mobileMenu" />
                   </Menu.Item>
                 </div>
               </div>

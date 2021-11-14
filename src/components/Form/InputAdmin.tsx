@@ -81,13 +81,13 @@ export const InputAdmin: VFC<InputAdminProps> = (props) => {
         </div>
 
         <div className="my-8">
-          <label htmlFor="discription" className="mb-1 block text-sm font-medium text-gray-500 mt-5">
+          <label htmlFor="description" className="mb-1 block text-sm font-medium text-gray-500 mt-5">
             詳細
           </label>
           <textarea
-            name="discription"
-            id="discription"
-            value={props.value.discription}
+            name="description"
+            id="description"
+            value={props.value.description}
             onChange={props.handleChange}
             autoComplete="off"
             className="focus:outline-none focus:border-blue-900 w-full text-white h-40 p-2 sm:text-sm bg-black border border-gray-500 rounded"
